@@ -4,7 +4,7 @@
 //
 //  Created by lai on 15/6/26.
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
-//
+//  测试使用Git
 
 #import "HomeViewController.h"
 #import "UIBarButtonItem+DIYButton.h"
@@ -40,7 +40,8 @@
     self.navigationItem.titleView = titleButton ;
     
 }
- 
+
+
 /**
  *  点击标题
  */
