@@ -37,7 +37,6 @@
     else{ //没有登录过,进入登陆授权页面
         self.window.rootViewController = [[OAuthViewController alloc]init];
     }
-
     return YES;
 }
 
