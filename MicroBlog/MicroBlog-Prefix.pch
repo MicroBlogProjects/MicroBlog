@@ -1,0 +1,31 @@
+
+//#import <Availability.h>
+//#ifndef __IPHONE_5_0
+//#warning "This project uses features only available in IOS SDK 5.0 and later."
+//#endif
+
+
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "UIView+Extention.h"
+#import "UIWindow+Extention.h"
+
+//设置随机颜色
+#define myRandomColor   [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0]
+//RBG颜色的简写
+#define myColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
+
+
+#endif
+
+
+
+//取消时间戳的显示（就是NSLog打印出来的内容不显示时间）
+#ifdef DEBUG
+#define NSLog(FORMAT, ...) fprintf(stderr,"%s\n",[[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(...)
+#endif
