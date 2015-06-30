@@ -4,7 +4,7 @@
 //
 //  Created by lai on 15/6/26.
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
-//
+//   githubc测试用的注释 可以删掉
 
 #import "AppDelegate.h"
 #import "MainTabbarViewController.h"
