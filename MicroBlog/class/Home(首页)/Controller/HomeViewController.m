@@ -14,7 +14,12 @@
 #import "AFNetworking.h"
 #import "AccountTool.h"
 #import "TitleButton.h"
+#import "UIImageView+WebCache.h"
 @interface HomeViewController () <DropDownMenuDelegate>
+/**
+ *  微博数组（里面放的都是字典，一个字典就代表一条微博）
+ */
+@property (nonatomic , strong) NSArray *statuses;
 
 @end
 
@@ -48,11 +53,16 @@
     AccountModel *account = [AccountTool account];
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
-    params[@"count"] = @2;
+    params[@"count"] = @20;
  
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+        
+        //获取微博数组
+        self.statuses = responseObject[@"statuses"];
+        
+        //刷新表格
+        [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
     }];
@@ -183,13 +193,37 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.statuses.count;
 }
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *ID = @"Cell" ;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if(cell ==nil){
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    //取出这行cell对应的微博字典
+    NSDictionary *status = self.statuses[indexPath.row];
+    
+    //取出这条微博的作者（用户）
+    NSDictionary *user = status[@"user"];
+    cell.textLabel.text = user[@"name"];
+    
+    //设置微博具体内容
+    cell.detailTextLabel.text = status[@"text"];
+    
+    //设置微博博主头像
+    UIImage *placeHolderImage = [UIImage imageNamed:@"avatar_default_small"];
+    NSString *imageURL = user[@"profile_image_url"];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:placeHolderImage];
+
+    return  cell;
+}
 
 
 
@@ -198,3 +232,17 @@
 
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

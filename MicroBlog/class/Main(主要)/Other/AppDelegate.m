@@ -12,6 +12,7 @@
 #import "OAuthViewController.h"
 #import "AccountModel.h"
 #import "AccountTool.h"
+#import "SDWebImageManager.h"
 @interface AppDelegate ()
 
 @end
@@ -64,6 +65,19 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+/**
+ *   当手机收到内存警告时，取消当前下载的图片并清除内存中的图片
+ */
+-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
+    
+    //1.取消下载
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+
+    //2.清除内存中所有的图片
+    [manager.imageCache clearMemory];
 }
 
 @end
