@@ -15,9 +15,11 @@
 #import "AccountTool.h"
 #import "TitleButton.h"
 #import "UIImageView+WebCache.h"
+#import "StatusModel.h"
+#import "UserModel.h"
 @interface HomeViewController () <DropDownMenuDelegate>
 /**
- *  微博数组（里面放的都是字典，一个字典就代表一条微博）
+ *  微博数组（里面放的都是StatusModel模型，一个StatusModel就代表一条微博）
  */
 @property (nonatomic , strong) NSArray *statuses;
 
@@ -59,7 +61,7 @@
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         //获取微博数组
-        self.statuses = responseObject[@"statuses"];
+        self.statuses = [StatusModel statusWithArray:responseObject[@"statuses"]];
         
         //刷新表格
         [self.tableView reloadData];
@@ -208,18 +210,18 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     //取出这行cell对应的微博字典
-    NSDictionary *status = self.statuses[indexPath.row];
-    
+    StatusModel *status = self.statuses[indexPath.row];
+    UserModel *user = status.user;
     //取出这条微博的作者（用户）
-    NSDictionary *user = status[@"user"];
-    cell.textLabel.text = user[@"name"];
+//    NSDictionary *user = status[@"user"];
+    cell.textLabel.text = user.name;
     
     //设置微博具体内容
-    cell.detailTextLabel.text = status[@"text"];
+    cell.detailTextLabel.text = status.text;
     
     //设置微博博主头像
     UIImage *placeHolderImage = [UIImage imageNamed:@"avatar_default_small"];
-    NSString *imageURL = user[@"profile_image_url"];
+    NSString *imageURL = user.profile_image_url;
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:placeHolderImage];
 
     return  cell;

@@ -25,6 +25,8 @@
 		2B6332221B4386AF006D2840 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6332101B4386AF006D2840 /* UIImageView+HighlightedWebCache.m */; };
 		2B6332231B4386AF006D2840 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6332121B4386AF006D2840 /* UIImageView+WebCache.m */; };
 		2B6332241B4386AF006D2840 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6332141B4386AF006D2840 /* UIView+WebCacheOperation.m */; };
+		2B6332271B438D70006D2840 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6332261B438D70006D2840 /* UserModel.m */; };
+		2B63322A1B438D80006D2840 /* StatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6332291B438D80006D2840 /* StatusModel.m */; };
 		2B64E5801B3F154B008574DB /* DropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E57F1B3F154B008574DB /* DropDownMenu.m */; };
 		2B6539081B41671500FD9893 /* AccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6539071B41671500FD9893 /* AccountModel.m */; };
 		2B65390C1B41728600FD9893 /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B65390B1B41728600FD9893 /* AccountTool.m */; };
@@ -112,6 +114,10 @@
 		2B6332121B4386AF006D2840 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		2B6332131B4386AF006D2840 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		2B6332141B4386AF006D2840 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		2B6332251B438D70006D2840 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = SOURCE_ROOT; };
+		2B6332261B438D70006D2840 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = SOURCE_ROOT; };
+		2B6332281B438D80006D2840 /* StatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusModel.h; sourceTree = SOURCE_ROOT; };
+		2B6332291B438D80006D2840 /* StatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusModel.m; sourceTree = SOURCE_ROOT; };
 		2B64E57E1B3F154B008574DB /* DropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownMenu.h; sourceTree = "<group>"; };
 		2B64E57F1B3F154B008574DB /* DropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownMenu.m; sourceTree = "<group>"; };
 		2B6539061B41671500FD9893 /* AccountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountModel.h; sourceTree = "<group>"; };
@@ -454,6 +460,10 @@
 		2BDE74A71B3D343500E540AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2B6332251B438D70006D2840 /* UserModel.h */,
+				2B6332261B438D70006D2840 /* UserModel.m */,
+				2B6332281B438D80006D2840 /* StatusModel.h */,
+				2B6332291B438D80006D2840 /* StatusModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -740,9 +750,11 @@
 				2BDE74CD1B3D343500E540AF /* DiscoverViewController.m in Sources */,
 				2B6539081B41671500FD9893 /* AccountModel.m in Sources */,
 				2BDE74D51B3D343500E540AF /* ProfileViewController.m in Sources */,
+				2B6332271B438D70006D2840 /* UserModel.m in Sources */,
 				2B6903E91B42BE9100629696 /* Foundation+Log.m in Sources */,
 				2BDE74D01B3D343500E540AF /* MainTabbarViewController.m in Sources */,
 				2BD035901B40DEF400E5A0F7 /* AFURLSessionManager.m in Sources */,
+				2B63322A1B438D80006D2840 /* StatusModel.m in Sources */,
 				2BDE74D21B3D343500E540AF /* AppDelegate.m in Sources */,
 				2BD035731B40CE8400E5A0F7 /* OAuthViewController.m in Sources */,
 				2BCCDB701B3ED31000E407CC /* MBProgressHUD+MJ.m in Sources */,
