@@ -17,14 +17,14 @@
 #import "UIImageView+WebCache.h"
 #import "StatusModel.h"
 #import "UserModel.h"
-@interface HomeViewController () <DropDownMenuDelegate>
+#import "MJExtension.h"
+@interface HomeViewController () <DropDownMenuDelegate >
 /**
  *  微博数组（里面放的都是StatusModel模型，一个StatusModel就代表一条微博）
  */
-@property (nonatomic , strong) NSArray *statuses;
+@property (nonatomic , strong) NSMutableArray *statuses;
 
 @end
-
 @implementation HomeViewController
 
 - (void)viewDidLoad {
@@ -35,15 +35,67 @@
     
     //获取用户信息（昵称）
     [self setupUserInfo];
+#warning 暂时不用，节省时间
+//    //加载最新的微博数据
+//    [self loadNewStatus];
     
-    //加载最新的微博数据
-    [self loadNewStatus];
+    //集成刷新控件
+    [self setupRefresh];
 
 }
-
+/**
+ *  集成刷新控件
+ */
+-(void)setupRefresh{
+    UIRefreshControl *fresh = [[UIRefreshControl alloc]init];
+    [fresh addTarget:self action:@selector(refreshStatChange:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:fresh];
+}
 
 /**
- *  加载最新的微博数据
+ *  下拉刷新加载最新微博数据
+ */
+-(void)refreshStatChange:(UIRefreshControl *)control{
+
+    //1.请求管理者
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //2.拼接请求参数
+    AccountModel *account = [AccountTool account];
+    NSMutableDictionary *params= [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    //取出最前面的微博（当前缓存数组中最新的微博，我们下拉只需要获取比缓存中更新的微博数据）
+    StatusModel *firstStatus = [self.statuses firstObject];
+    if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
+       params[@"since_id"] = firstStatus.idstr;
+    }
+    params[@"count"] = @20;
+    
+    //3.发送请求
+    [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
+        NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        //把最新的微博数组，添加到总数组的最前面
+        NSRange range = NSMakeRange(0, newStatuses.count);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        [self.statuses insertObjects:newStatuses atIndexes:indexSet];
+        
+        //刷新表格
+        [self.tableView reloadData];
+        
+        //菊花停止转动
+        [control endRefreshing];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //菊花停止转动
+        [control endRefreshing];
+    }];
+    NSLog(@"请求刷新");
+}
+
+/**
+ *  启动时候加载的微博数据
  */
 -(void)loadNewStatus{
     //https://api.weibo.com/2/statuses/friends_timeline.json
@@ -59,9 +111,14 @@
  
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+        //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
+        NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
-        //获取微博数组
-        self.statuses = [StatusModel statusWithArray:responseObject[@"statuses"]];
+        //把最新的微博数组，添加到总数组的最前面
+        NSRange range = NSMakeRange(0, newStatuses.count);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        [self.statuses insertObjects:newStatuses atIndexes:indexSet];
         
         //刷新表格
         [self.tableView reloadData];
@@ -110,7 +167,6 @@
 }
 
 
-
 /**
  *  设置导航栏内容
  */
@@ -154,20 +210,16 @@
 
 
 /**
- *  点击左上角按钮
+ *  点击右上角按钮
  */
 -(void)pop{
-    [MBProgressHUD showMessage:@"扫码功能，施工中"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUD];
-    });
-    NSLog(@"pop");
+    
     
 }
 
 
 /**
- *  点击右上角按钮
+ *  点击左上角按钮
  */
 -(void) friendSearch{
     [MBProgressHUD showMessage:@"添加好友，施工中"];
@@ -179,11 +231,24 @@
 }
 
 
+
+
+
+/**
+ *  statuses懒加载
+ 
+ */
+-(NSMutableArray *)statuses{
+    if(_statuses == nil){
+        _statuses = [NSMutableArray array];
+    }
+    return _statuses ;
+}
+
+
 #pragma mark - dropDownMenuDelegate代理实现
 /**
  *  下拉菜单被销毁时触发，箭头方向向下
- *
- *  @param menu 下拉菜单
  */
 -(void)dropDownMenuDidDismiss:(DropDownMenu *)menu{
     UIButton *titleButton  = (UIButton*)self.navigationItem.titleView ;
@@ -192,8 +257,9 @@
 }
 
 
-#pragma mark - Table view data source
 
+
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

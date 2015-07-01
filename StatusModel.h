@@ -22,6 +22,6 @@
  */
 @property (nonatomic , strong) UserModel *user;
 
-+(instancetype)statusWithDict:(NSDictionary *)dict ; 
-+(NSArray *)statusWithArray:(NSArray *)array;
+//+(instancetype)statusWithDict:(NSDictionary *)dict ; 
+//+(NSArray *)statusWithArray:(NSArray *)array;
 @end
