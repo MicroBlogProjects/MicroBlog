@@ -18,6 +18,7 @@
 #import "StatusModel.h"
 #import "UserModel.h"
 #import "MJExtension.h"
+#import "LoadMoreFootView.h"
 @interface HomeViewController () <DropDownMenuDelegate >
 /**
  *  微博数组（里面放的都是StatusModel模型，一个StatusModel就代表一条微博）
@@ -39,17 +40,35 @@
 //    //加载最新的微博数据
 //    [self loadNewStatus];
     
-    //集成刷新控件
-    [self setupRefresh];
+    //集成下拉刷新控件
+    [self setupDownRefresh];
+    
+    //集成上拉刷新控件
+    [self setupUpRefresh];
 
 }
+
 /**
- *  集成刷新控件
+ *  集成上拉刷新控件
  */
--(void)setupRefresh{
+-(void)setupUpRefresh{
+    
+    LoadMoreFootView *footer = [LoadMoreFootView footer];
+    self.tableView.tableFooterView =footer;
+    
+}
+
+/**
+ *  集成下拉刷新控件
+ */
+-(void)setupDownRefresh{
     UIRefreshControl *fresh = [[UIRefreshControl alloc]init];
     [fresh addTarget:self action:@selector(refreshStatChange:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:fresh];
+    
+    //马上进入刷新状态
+//    [fresh beginRefreshing];
+//    [self refreshStatChange:fresh];
 }
 
 /**
@@ -87,12 +106,58 @@
         //菊花停止转动
         [control endRefreshing];
         
+        //显示最新微博的数量
+        [self showNewStatusCount:newStatuses.count];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //菊花停止转动
         [control endRefreshing];
+        NSLog(@"%@",error);
     }];
     NSLog(@"请求刷新");
 }
+
+/**
+ *  刷新微博后 显示最新微博的数量
+ */
+-(void)showNewStatusCount:(int)count{
+    /*这个Label是用来显示：当刷新微博后，提示有多少条新微博*/
+    UILabel *label = [[UILabel alloc]init] ;
+    label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_new_status_background"]];
+    label.width = [UIScreen mainScreen].bounds.size.width;
+    label.heigt =35 ;
+    
+    if(count == 0){
+        label.text = @"没有新的微博数据，稍后再试";
+    }else{
+        label.text = [NSString stringWithFormat:@"共有%d条新的微博数据",count];
+    }
+    label.textAlignment = NSTextAlignmentCenter;
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont systemFontOfSize:16];
+    label.y = 64-35;
+    
+    //将label添加到导航控制器的view中，并且是盖在导航栏下边
+    [self.navigationController.view  insertSubview:label belowSubview:self.navigationController.navigationBar];
+    
+    //动画效果
+    CGFloat duration = 1.0 ;
+    [UIView animateWithDuration:duration animations:^{
+        //label.y+=label.heigt; //这句话实现效果跟下面的一样，不过推荐使用下面的语句 label.transform来实现
+        label.transform = CGAffineTransformMakeTranslation(0, label.heigt);
+    } completion:^(BOOL finished) {
+        CGFloat delay = 2.0;
+         [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveLinear animations:^{ 
+             //label.y  -=label.heigt ;
+             label.transform = CGAffineTransformIdentity; //回到动画的原点
+         } completion:^(BOOL finished) {
+             [label removeFromSuperview];
+         }];
+    }];
+    
+}
+
+
 
 /**
  *  启动时候加载的微博数据

@@ -50,7 +50,7 @@
     if(cell ==nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"test_message_%d",indexPath.row];
+//    cell.textLabel.text = [NSString stringWithFormat:@"test_message_%d",indexPath.row];
     return  cell ;
 }
 

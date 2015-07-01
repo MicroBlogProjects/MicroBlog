@@ -62,6 +62,8 @@
 		2BD0358E1B40DEF400E5A0F7 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035831B40DEF400E5A0F7 /* AFURLRequestSerialization.m */; };
 		2BD0358F1B40DEF400E5A0F7 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035851B40DEF400E5A0F7 /* AFURLResponseSerialization.m */; };
 		2BD035901B40DEF400E5A0F7 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035871B40DEF400E5A0F7 /* AFURLSessionManager.m */; };
+		2BD0576B1B44155F0060B885 /* LoadMoreFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0576A1B44155F0060B885 /* LoadMoreFootView.m */; };
+		2BD0576D1B44158A0060B885 /* LoadMoreFootView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BD0576C1B44158A0060B885 /* LoadMoreFootView.xib */; };
 		2BDE74CD1B3D343500E540AF /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74A01B3D343500E540AF /* DiscoverViewController.m */; };
 		2BDE74CE1B3D343500E540AF /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74A61B3D343500E540AF /* HomeViewController.m */; };
 		2BDE74CF1B3D343500E540AF /* UIView+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74AD1B3D343500E540AF /* UIView+Extention.m */; };
@@ -201,6 +203,9 @@
 		2BD035851B40DEF400E5A0F7 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		2BD035861B40DEF400E5A0F7 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		2BD035871B40DEF400E5A0F7 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		2BD057691B44155F0060B885 /* LoadMoreFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreFootView.h; sourceTree = SOURCE_ROOT; };
+		2BD0576A1B44155F0060B885 /* LoadMoreFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreFootView.m; sourceTree = SOURCE_ROOT; };
+		2BD0576C1B44158A0060B885 /* LoadMoreFootView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreFootView.xib; sourceTree = SOURCE_ROOT; };
 		2BDE74741B3CF55400E540AF /* MicroBlog-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MicroBlog-Prefix.pch"; sourceTree = "<group>"; };
 		2BDE749F1B3D343500E540AF /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		2BDE74A01B3D343500E540AF /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
@@ -544,6 +549,9 @@
 			children = (
 				2B6903EA1B42D6BA00629696 /* TitleButton.h */,
 				2B6903EB1B42D6BA00629696 /* TitleButton.m */,
+				2BD057691B44155F0060B885 /* LoadMoreFootView.h */,
+				2BD0576A1B44155F0060B885 /* LoadMoreFootView.m */,
+				2BD0576C1B44158A0060B885 /* LoadMoreFootView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -789,6 +797,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BD0576D1B44158A0060B885 /* LoadMoreFootView.xib in Resources */,
 				2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */,
 				2BCCDB711B3ED31000E407CC /* MBProgressHUD.bundle in Resources */,
 				2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */,
@@ -861,6 +870,7 @@
 				2B63321D1B4386AF006D2840 /* SDWebImagePrefetcher.m in Sources */,
 				2B6332201B4386AF006D2840 /* UIImage+MultiFormat.m in Sources */,
 				2B6332461B43ACF7006D2840 /* MJIvar.m in Sources */,
+				2BD0576B1B44155F0060B885 /* LoadMoreFootView.m in Sources */,
 				2B6332181B4386AF006D2840 /* SDWebImageCompat.m in Sources */,
 				2B6332431B43ACF7006D2840 /* MJArgument.m in Sources */,
 				2BDE74D81B3D343500E540AF /* TestViewController.m in Sources */,
