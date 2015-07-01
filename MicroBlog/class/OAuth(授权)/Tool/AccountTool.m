@@ -10,7 +10,6 @@
 #define kAccountPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject] stringByAppendingPathComponent:@"account.archive"]
 
 #import "AccountTool.h"
-#import "AccountModel.h"
 
 @implementation AccountTool
 
@@ -21,8 +20,6 @@
  */
 +(void)saveAccount:(AccountModel *)account{
     
-    //获得账号存储的时间（accessToken的产生时间）
-    account.create_time = [NSDate date];
     //自定义对象存储到沙盒中
     [NSKeyedArchiver archiveRootObject:account toFile:kAccountPath];
     
@@ -43,13 +40,13 @@
     NSDate *expiresTime = [account.create_time dateByAddingTimeInterval:expires_in];
     //获取当前时间
     NSDate *now = [NSDate date];
-    //比较当前时间和accessToken过期时间来判断是否过期;
     
+    
+    //比较当前时间和accessToken过期时间来判断是否过期;
     if([expiresTime compare:now] != NSOrderedDescending){
         return  nil ;
     }
-    NSLog(@"%@ , %@",expiresTime ,now);
-   return account;
+    return account;
 }
 
 @end
