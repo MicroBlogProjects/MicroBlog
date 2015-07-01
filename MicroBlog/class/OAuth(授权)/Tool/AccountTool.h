@@ -7,7 +7,8 @@
 //  处理账号相关的所有操作：存储账号、取出账号、验证账号
 
 #import <Foundation/Foundation.h>
-@class AccountModel ;
+#import "AccountModel.h"
+
 @interface AccountTool : NSObject
 
 +(void)saveAccount:(AccountModel *)account; 

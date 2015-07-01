@@ -13,6 +13,8 @@
 		2B6539081B41671500FD9893 /* AccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6539071B41671500FD9893 /* AccountModel.m */; };
 		2B65390C1B41728600FD9893 /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B65390B1B41728600FD9893 /* AccountTool.m */; };
 		2B65390F1B417E7C00FD9893 /* UIWindow+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B65390E1B417E7C00FD9893 /* UIWindow+Extention.m */; };
+		2B6903E91B42BE9100629696 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6903E81B42BE9100629696 /* Foundation+Log.m */; };
+		2B6903EC1B42D6BA00629696 /* TitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6903EB1B42D6BA00629696 /* TitleButton.m */; };
 		2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7863521B3CEFED00DC74C4 /* Images.xcassets */; };
 		2B7863621B3CEFED00DC74C4 /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7863611B3CEFED00DC74C4 /* __Tests.m */; };
 		2BC7C10C1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */; };
@@ -69,6 +71,9 @@
 		2B65390B1B41728600FD9893 /* AccountTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTool.m; sourceTree = "<group>"; };
 		2B65390D1B417E7C00FD9893 /* UIWindow+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Extention.h"; sourceTree = "<group>"; };
 		2B65390E1B417E7C00FD9893 /* UIWindow+Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Extention.m"; sourceTree = "<group>"; };
+		2B6903E81B42BE9100629696 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
+		2B6903EA1B42D6BA00629696 /* TitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleButton.h; sourceTree = SOURCE_ROOT; };
+		2B6903EB1B42D6BA00629696 /* TitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleButton.m; sourceTree = SOURCE_ROOT; };
 		2B7863421B3CEFED00DC74C4 /* MicroBlog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MicroBlog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7863461B3CEFED00DC74C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B7863521B3CEFED00DC74C4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -374,6 +379,8 @@
 		2BDE74A91B3D343500E540AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2B6903EA1B42D6BA00629696 /* TitleButton.h */,
+				2B6903EB1B42D6BA00629696 /* TitleButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -394,6 +401,7 @@
 		2BDE74AB1B3D343500E540AF /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				2B6903E81B42BE9100629696 /* Foundation+Log.m */,
 				2BDE74AC1B3D343500E540AF /* UIView+Extention.h */,
 				2BDE74AD1B3D343500E540AF /* UIView+Extention.m */,
 				2BC7C10A1B3D6F77005636CE /* UIBarButtonItem+DIYButton.h */,
@@ -642,6 +650,7 @@
 				2BDE74CD1B3D343500E540AF /* DiscoverViewController.m in Sources */,
 				2B6539081B41671500FD9893 /* AccountModel.m in Sources */,
 				2BDE74D51B3D343500E540AF /* ProfileViewController.m in Sources */,
+				2B6903E91B42BE9100629696 /* Foundation+Log.m in Sources */,
 				2BDE74D01B3D343500E540AF /* MainTabbarViewController.m in Sources */,
 				2BD035901B40DEF400E5A0F7 /* AFURLSessionManager.m in Sources */,
 				2BDE74D21B3D343500E540AF /* AppDelegate.m in Sources */,
@@ -652,6 +661,7 @@
 				2BDE74D11B3D343500E540AF /* NavigationController.m in Sources */,
 				2BC7C10C1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m in Sources */,
 				2B65390F1B417E7C00FD9893 /* UIWindow+Extention.m in Sources */,
+				2B6903EC1B42D6BA00629696 /* TitleButton.m in Sources */,
 				2BCCDB721B3ED31000E407CC /* MBProgressHUD.m in Sources */,
 				2BCCDB691B3ECD3200E407CC /* SearchBar.m in Sources */,
 				2B5F28731B3FD91D00C36B97 /* TabBar.m in Sources */,
