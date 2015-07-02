@@ -20,6 +20,7 @@
 #import "MJExtension.h"
 #import "LoadMoreFootView.h"
 @interface HomeViewController () <DropDownMenuDelegate >
+
 /**
  *  微博数组（里面放的都是StatusModel模型，一个StatusModel就代表一条微博）
  */
@@ -200,8 +201,6 @@
     
 }
 
-
-
 /**
  *  上拉到一定程度后自动调用该方法， 功能：加载更多旧微博
  */
@@ -346,11 +345,8 @@
 
 
 
-
-
 /**
  *  statuses懒加载
- 
  */
 -(NSMutableArray *)statuses{
     if(_statuses == nil){
@@ -358,6 +354,7 @@
     }
     return _statuses ;
 }
+
 
 
 #pragma mark - dropDownMenuDelegate代理实现
@@ -432,11 +429,6 @@
      */
     
 }
-
-
-
-
-
 
 
 @end

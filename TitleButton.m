@@ -39,4 +39,16 @@
     [super setImage:image forState:state];
     [self sizeToFit];
 }
+
+/**
+ *  重写的目的：想在系统计算和设置完按钮的尺寸后，再修改一下尺寸
+ */
+-(void)setFrame:(CGRect)frame{
+    
+     frame.size.width+=5;
+    [super setFrame:frame];
+   
+    NSLog(@"%@",NSStringFromCGRect(frame));
+}
+
 @end
