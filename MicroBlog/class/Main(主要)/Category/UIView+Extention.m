@@ -24,6 +24,7 @@
     CGRect frame = self.frame ;
     frame.size.width = width ;
     self.frame = frame;
+
 }
 
 -(void)setHeigt:(CGFloat)heigt {
@@ -80,9 +81,6 @@
 -(CGPoint)origin{
     return self.frame.origin;
 }
-
-
-
 
 
 @end

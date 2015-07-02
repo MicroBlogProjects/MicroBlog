@@ -24,7 +24,6 @@
     [super layoutSubviews];
     self.titleLabel.x = self.imageView.x;
     self.imageView.x = CGRectGetMaxX(self.titleLabel.frame)+10;
-    self.backgroundColor = [UIColor redColor];
 }
 
 
@@ -47,8 +46,7 @@
     
      frame.size.width+=5;
     [super setFrame:frame];
-   
-    NSLog(@"%@",NSStringFromCGRect(frame));
+    
 }
 
 @end

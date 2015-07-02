@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1CAAA51B4523270066A06D /* StatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1CAAA41B4523270066A06D /* StatusCell.m */; };
+		2B1CAAA81B4529700066A06D /* StatusFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1CAAA71B4529700066A06D /* StatusFrameModel.m */; };
 		2B5F28731B3FD91D00C36B97 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F28721B3FD91D00C36B97 /* TabBar.m */; };
 		2B5F28771B4006E200C36B97 /* NewFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5F28761B4006E200C36B97 /* NewFeatureViewController.m */; };
 		2B6332151B4386AF006D2840 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6331F51B4386AF006D2840 /* MKAnnotationView+WebCache.m */; };
@@ -90,6 +92,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B1CAAA31B4523270066A06D /* StatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusCell.h; sourceTree = SOURCE_ROOT; };
+		2B1CAAA41B4523270066A06D /* StatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusCell.m; sourceTree = SOURCE_ROOT; };
+		2B1CAAA61B4529700066A06D /* StatusFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusFrameModel.h; sourceTree = SOURCE_ROOT; };
+		2B1CAAA71B4529700066A06D /* StatusFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusFrameModel.m; sourceTree = SOURCE_ROOT; };
 		2B5F28711B3FD91D00C36B97 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
 		2B5F28721B3FD91D00C36B97 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
 		2B5F28751B4006E200C36B97 /* NewFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeatureViewController.h; sourceTree = "<group>"; };
@@ -533,6 +539,8 @@
 				2B6332261B438D70006D2840 /* UserModel.m */,
 				2B6332281B438D80006D2840 /* StatusModel.h */,
 				2B6332291B438D80006D2840 /* StatusModel.m */,
+				2B1CAAA61B4529700066A06D /* StatusFrameModel.h */,
+				2B1CAAA71B4529700066A06D /* StatusFrameModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -552,6 +560,8 @@
 				2BD057691B44155F0060B885 /* LoadMoreFootView.h */,
 				2BD0576A1B44155F0060B885 /* LoadMoreFootView.m */,
 				2BD0576C1B44158A0060B885 /* LoadMoreFootView.xib */,
+				2B1CAAA31B4523270066A06D /* StatusCell.h */,
+				2B1CAAA41B4523270066A06D /* StatusCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -848,8 +858,10 @@
 				2B63321F1B4386AF006D2840 /* UIImage+GIF.m in Sources */,
 				2B6903EC1B42D6BA00629696 /* TitleButton.m in Sources */,
 				2BCCDB721B3ED31000E407CC /* MBProgressHUD.m in Sources */,
+				2B1CAAA81B4529700066A06D /* StatusFrameModel.m in Sources */,
 				2B6332171B4386AF006D2840 /* SDImageCache.m in Sources */,
 				2B6332151B4386AF006D2840 /* MKAnnotationView+WebCache.m in Sources */,
+				2B1CAAA51B4523270066A06D /* StatusCell.m in Sources */,
 				2B6332481B43ACF7006D2840 /* MJMethod.m in Sources */,
 				2B63321B1B4386AF006D2840 /* SDWebImageDownloaderOperation.m in Sources */,
 				2BCCDB691B3ECD3200E407CC /* SearchBar.m in Sources */,

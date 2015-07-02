@@ -19,12 +19,16 @@
 #import "UserModel.h"
 #import "MJExtension.h"
 #import "LoadMoreFootView.h"
+#import "StatusCell.h"
+#import "StatusFrameModel.h"
+
+
 @interface HomeViewController () <DropDownMenuDelegate >
 
 /**
- *  微博数组（里面放的都是StatusModel模型，一个StatusModel就代表一条微博）
+ *  微博数组（里面放的都是StatusModelFrame模型，一个StatusModelFrame就代表一条微博信息）
  */
-@property (nonatomic , strong) NSMutableArray *statuses;
+@property (nonatomic , strong) NSMutableArray *statusFrameModels;
 
 @end
 @implementation HomeViewController
@@ -70,9 +74,9 @@
         if(unReadStatusCount ==0){ //如果未读消息数目为0，清除badgeValue , 并将应用图片数字清零
             self.tabBarItem.badgeValue =nil ;
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-            NSLog(@"%d",unReadStatusCount);
+        
         }else{
-            NSLog(@"%d",unReadStatusCount);
+         
                 self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",unReadStatusCount];
             [UIApplication sharedApplication].applicationIconBadgeNumber = unReadStatusCount;
         }
@@ -94,6 +98,7 @@
     LoadMoreFootView *footer = [LoadMoreFootView footer];
     footer.hidden =YES;
     self.tableView.tableFooterView =footer;
+    
 }
 
 /**
@@ -110,20 +115,21 @@
 }
 
 /**
- *  下拉刷新加载最新微博数据
+ *  下拉刷新
  */
 -(void)loadNewStatus:(UIRefreshControl *)control{
 
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
     //2.拼接请求参数
     AccountModel *account = [AccountTool account];
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
     //取出最前面的微博（当前缓存数组中最新的微博，我们下拉只需要获取比缓存中更新的微博数据）
-    StatusModel *firstStatus = [self.statuses firstObject];
+    StatusFrameModel *firstStatus = [self.statusFrameModels firstObject];
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
-       params[@"since_id"] = firstStatus.idstr;
+       params[@"since_id"] = firstStatus.statusModel.idstr;
     }
     params[@"count"] = @20;
     
@@ -133,10 +139,18 @@
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
+        //将StatusModel数组 转换成 StatusFrameModel数组
+        NSMutableArray *newsFrames = [NSMutableArray array];
+        for(StatusModel *statusModel in newStatuses){
+            StatusFrameModel *f = [[StatusFrameModel alloc]init];
+            f.statusModel = statusModel ;
+            [newsFrames addObject:f];
+        }
+        
         //把最新的微博数组，添加到总数组的最前面
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-        [self.statuses insertObjects:newStatuses atIndexes:indexSet];
+        [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
         
         //刷新表格
         [self.tableView reloadData];
@@ -145,18 +159,71 @@
         [control endRefreshing];
         
         //显示最新微博的数量
-        [self showNewStatusCount:newStatuses.count];
+        [self showNewStatusCount:(int)newStatuses.count];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //菊花停止转动
         [control endRefreshing];
         NSLog(@"%@",error);
     }];
-    NSLog(@"请求刷新");
+ 
 }
 
+
 /**
- *  刷新微博后 显示最新微博的数量（有动画效果）
+ *   上拉加载更多微博
+ */
+-(void)loadMoreStatus{
+    /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
+    //1.请求管理者
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //2.拼接请求参数
+    AccountModel *account= [AccountTool account];
+    NSMutableDictionary *params= [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    
+    //取出scrollView中最后一条微博
+    StatusFrameModel *lastStatus = [self.statusFrameModels lastObject];
+    if(lastStatus){
+        //若指定此参数，则返回ID小于或等于max_id的微博。默认为0
+        //id这种数据一般比较大，转化成整数最好用long long
+        long long maxID = lastStatus.statusModel.idstr.longLongValue - 1;
+        params[@"max_id"] = @(maxID);
+    }
+    //3.发送请求
+    [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        //将“微博字典”数组 转为 “微博模型”数组
+        NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        //将StatusModel数组 转换成 StatusFrameModel数组
+        NSMutableArray *newsFrames = [NSMutableArray array];
+        for(StatusModel *statusModel in newStatuses){
+            StatusFrameModel *f = [[StatusFrameModel alloc]init];
+            f.statusModel = statusModel ;
+            [newsFrames addObject:f];
+        }
+        
+        
+        //将微博添加到微博数组最后面
+        [self.statusFrameModels addObjectsFromArray:newsFrames];
+        
+        //刷新表格
+        [self.tableView reloadData];
+        
+        //结束刷新后，隐藏Footer
+        self.tableView.tableFooterView.hidden = YES;
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求失败 - %@",error);
+        //结束刷新
+        self.tableView.tableFooterView.hidden =YES ;
+    }];
+}
+
+
+/**
+ *  刷新微博后-》动画效果
  */
 -(void)showNewStatusCount:(int)count{
     
@@ -199,47 +266,6 @@
          }];
     }];
     
-}
-
-/**
- *  上拉到一定程度后自动调用该方法， 功能：加载更多旧微博
- */
--(void)loadMoreStatus{
-    /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
-    //1.请求管理者
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //2.拼接请求参数
-    AccountModel *account= [AccountTool account];
-    NSMutableDictionary *params= [NSMutableDictionary dictionary];
-    params[@"access_token"] = account.access_token;
-    
-    //取出scrollView中最后一条微博
-    StatusModel *lastStatus = [self.statuses lastObject];
-    if(lastStatus){
-        //若指定此参数，则返回ID小于或等于max_id的微博。默认为0
-        //id这种数据一般比较大，转化成整数最好用long long
-        long long maxID = lastStatus.idstr.longLongValue -1;
-        params[@"max_id"] = @(maxID);
-    }
-    //3.发送请求
-    [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //将“微博字典”数组 转为 “微博模型”数组
-        NSArray *newArray = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-        
-        //将微博添加到微博数组最后面
-        [self.statuses addObjectsFromArray:newArray];
-        
-        //刷新表格
-        [self.tableView reloadData];
-        
-        //结束刷新后，隐藏Footer
-        self.tableView.tableFooterView.hidden = YES;
-         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"请求失败 - %@",error);
-        //结束刷新
-        self.tableView.tableFooterView.hidden =YES ;
-    }];
 }
 
 
@@ -340,19 +366,18 @@
         [MBProgressHUD hideHUD];
     });
     
-    NSLog(@"friendSearch");
+ 
 }
-
 
 
 /**
  *  statuses懒加载
  */
--(NSMutableArray *)statuses{
-    if(_statuses == nil){
-        _statuses = [NSMutableArray array];
+-(NSMutableArray *)statusFrameModels{
+    if(_statusFrameModels == nil){
+        _statusFrameModels = [NSMutableArray array];
     }
-    return _statuses ;
+    return _statusFrameModels ;
 }
 
 
@@ -376,31 +401,35 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.statuses.count;
+    return self.statusFrameModels.count;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    StatusFrameModel * frame = self.statusFrameModels[indexPath.row];
+    return frame.cellHeight ;
+}
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *ID = @"status" ;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if(cell ==nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
-    //取出这行cell对应的微博字典
-    StatusModel *status = self.statuses[indexPath.row];
-    UserModel *user = status.user;
-    //取出这条微博的作者（用户）
-//    NSDictionary *user = status[@"user"];
-    cell.textLabel.text = user.name;
     
-    //设置微博具体内容
-    cell.detailTextLabel.text = status.text;
-    
-    //设置微博博主头像
-    UIImage *placeHolderImage = [UIImage imageNamed:@"avatar_default_small"];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:placeHolderImage];
+    //获得cell
+    StatusCell *cell = [StatusCell cellWithTablView:tableView];
+//    //取出这行cell对应的微博字典
+    StatusFrameModel *statusFrameModel = self.statusFrameModels[indexPath.row];
+//    StatusModel *status = statusFrame.statusModel;
+//    UserModel *user = status.user;
+//    //取出这条微博的作者（用户）
+////    NSDictionary *user = status[@"user"];
+//    cell.textLabel.text = user.name;
+//    
+//    //设置微博具体内容
+//    cell.detailTextLabel.text = status.text;
+//    
+//    //设置微博博主头像
+//    UIImage *placeHolderImage = [UIImage imageNamed:@"avatar_default_small"];
+//    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:placeHolderImage];
+    cell.statusFrameModel = statusFrameModel;
 
     return  cell;
 }
@@ -408,7 +437,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     // scrollView = self.tableView = self.view
     //如果tableView还没有数据，就直接返回
-    if(self.statuses.count==0 || self.tableView.tableFooterView.isHidden == NO)return;
+    if(self.statusFrameModels.count==0 || self.tableView.tableFooterView.isHidden == NO)return;
     
      CGFloat offsetY = scrollView.contentOffset.y;
     // 当最后一个cell完全显示在眼前时，contentOffset的y值
