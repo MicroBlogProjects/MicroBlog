@@ -25,6 +25,7 @@
     webView.delegate =self;
     [self.view addSubview:webView];
     
+    
     //用webView加载登录页面(新浪提供的)
     //请求地址：https://api.weibo.com/oauth2/authorize
     /*
@@ -32,13 +33,20 @@
      client_id	 	申请应用时分配的AppKey。 304647707
      redirect_uri	授权回调地址，站外应用需与设置的回调地址一致，站内应用需填写canvas page的地址。
     */
-    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=942446141&redirect_uri=http://"];
+    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=304647707&redirect_uri=http://"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 
 }
 
-//2218986652@qq.com asd.123
+/*
+ App Key：304647707
+ App Secret：533cfea336e04f236c469931f5d40a7c
+ 
+ App key : 942446141
+ App Secret : 387ea016d0c2baa3fb73ca00ac3ec049
+ 
+ */
 
 /**
  *  利用code换取accessToken , 获取accessToken后存入沙盒中以供以后使用
@@ -52,8 +60,8 @@
     AFHTTPRequestOperationManager *manager  = [AFHTTPRequestOperationManager  manager];
     //2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"client_id"]     = @"942446141" ;
-    params[@"client_secret"] = @"387ea016d0c2baa3fb73ca00ac3ec049";
+    params[@"client_id"]     = @"304647707" ;
+    params[@"client_secret"] = @"533cfea336e04f236c469931f5d40a7c";
     params[@"grant_type"]    = @"authorization_code";
     params[@"code"]          = code ;
     params[@"redirect_uri"]  = @"http://";

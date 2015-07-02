@@ -22,10 +22,9 @@
 
 -(void)layoutSubviews{
     [super layoutSubviews];
-    
     self.titleLabel.x = self.imageView.x;
-    self.imageView.x = CGRectGetMaxX(self.titleLabel.frame);
-    
+    self.imageView.x = CGRectGetMaxX(self.titleLabel.frame)+10;
+    self.backgroundColor = [UIColor redColor];
 }
 
 

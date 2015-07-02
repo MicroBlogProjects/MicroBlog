@@ -36,16 +36,53 @@
     
     //获取用户信息（昵称）
     [self setupUserInfo];
-#warning 暂时不用，节省时间
-//    //加载最新的微博数据
-//    [self loadNewStatus];
-    
-    //集成下拉刷新控件
+ 
+    //集成下拉刷新控件 (刚打开APP的时候 模拟下拉一次来获取数据)
     [self setupDownRefresh];
     
     //集成上拉刷新控件
     [self setupUpRefresh];
+    
+    //定时获取未读消息数目，显示在badge上
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(setupUnReadCount) userInfo:nil repeats:YES];
+    //主线程也会抽出时间处理一下timer
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
 
+/**
+ *  获取未读消息数目  (没有访问次数限制)
+ */
+
+-(void)setupUnReadCount {
+    /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
+    //1.请求管理者
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //2.拼接请求参数
+    NSMutableDictionary *params= [NSMutableDictionary dictionary];
+    
+    AccountModel *account = [AccountTool account];
+    params[@"access_token"] = account.access_token;
+    params[@"uid"] = account.uid;
+    //3.发送请求
+    [manager GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        int unReadStatusCount = [responseObject[@"status"] intValue];
+        if(unReadStatusCount ==0){ //如果未读消息数目为0，清除badgeValue , 并将应用图片数字清零
+            self.tabBarItem.badgeValue =nil ;
+            [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+            NSLog(@"%d",unReadStatusCount);
+        }else{
+            NSLog(@"%d",unReadStatusCount);
+                self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",unReadStatusCount];
+            [UIApplication sharedApplication].applicationIconBadgeNumber = unReadStatusCount;
+        }
+      
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求失败-%@",error);
+    }];
+    
+    
+    
 }
 
 /**
@@ -54,8 +91,8 @@
 -(void)setupUpRefresh{
     
     LoadMoreFootView *footer = [LoadMoreFootView footer];
+    footer.hidden =YES;
     self.tableView.tableFooterView =footer;
-    
 }
 
 /**
@@ -63,18 +100,18 @@
  */
 -(void)setupDownRefresh{
     UIRefreshControl *fresh = [[UIRefreshControl alloc]init];
-    [fresh addTarget:self action:@selector(refreshStatChange:) forControlEvents:UIControlEventValueChanged];
+    [fresh addTarget:self action:@selector(loadNewStatus:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:fresh];
     
     //马上进入刷新状态
-//    [fresh beginRefreshing];
-//    [self refreshStatChange:fresh];
+    [fresh beginRefreshing];
+    [self loadNewStatus:fresh];
 }
 
 /**
  *  下拉刷新加载最新微博数据
  */
--(void)refreshStatChange:(UIRefreshControl *)control{
+-(void)loadNewStatus:(UIRefreshControl *)control{
 
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -118,9 +155,15 @@
 }
 
 /**
- *  刷新微博后 显示最新微博的数量
+ *  刷新微博后 显示最新微博的数量（有动画效果）
  */
 -(void)showNewStatusCount:(int)count{
+    
+    //将未读消息数清零
+    self.tabBarItem.badgeValue = nil;
+    //应用图标数字清零
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0 ;
+    
     /*这个Label是用来显示：当刷新微博后，提示有多少条新微博*/
     UILabel *label = [[UILabel alloc]init] ;
     label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_new_status_background"]];
@@ -160,39 +203,46 @@
 
 
 /**
- *  启动时候加载的微博数据
+ *  上拉到一定程度后自动调用该方法， 功能：加载更多旧微博
  */
--(void)loadNewStatus{
-    //https://api.weibo.com/2/statuses/friends_timeline.json
-    
-    
+-(void)loadMoreStatus{
+    /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //2.拼接请求参数
-    AccountModel *account = [AccountTool account];
+    AccountModel *account= [AccountTool account];
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
-    params[@"count"] = @20;
- 
+    
+    //取出scrollView中最后一条微博
+    StatusModel *lastStatus = [self.statuses lastObject];
+    if(lastStatus){
+        //若指定此参数，则返回ID小于或等于max_id的微博。默认为0
+        //id这种数据一般比较大，转化成整数最好用long long
+        long long maxID = lastStatus.idstr.longLongValue -1;
+        params[@"max_id"] = @(maxID);
+    }
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    
-        //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
-        NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        //将“微博字典”数组 转为 “微博模型”数组
+        NSArray *newArray = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
-        //把最新的微博数组，添加到总数组的最前面
-        NSRange range = NSMakeRange(0, newStatuses.count);
-        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-        [self.statuses insertObjects:newStatuses atIndexes:indexSet];
+        //将微博添加到微博数组最后面
+        [self.statuses addObjectsFromArray:newArray];
         
         //刷新表格
         [self.tableView reloadData];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
+        //结束刷新后，隐藏Footer
+        self.tableView.tableFooterView.hidden = YES;
+         
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求失败 - %@",error);
+        //结束刷新
+        self.tableView.tableFooterView.hidden =YES ;
     }];
-    
-    
 }
+
 
 /**
  *  获取用户信息
@@ -219,14 +269,13 @@
         UIButton *titleButton = (UIButton *)self.navigationItem.titleView ;
         [titleButton setTitle:responseObject[@"name"] forState:UIControlStateNormal];
 
-
         //存储昵称到沙盒中
         account.name = responseObject[@"name"];
         [AccountTool saveAccount:account];
         
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-       
+        NSLog(@"%@",error);
     }];
     
 }
@@ -333,9 +382,11 @@
     return self.statuses.count;
 }
 
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *ID = @"Cell" ;
+    static NSString *ID = @"status" ;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if(cell ==nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
@@ -352,10 +403,34 @@
     
     //设置微博博主头像
     UIImage *placeHolderImage = [UIImage imageNamed:@"avatar_default_small"];
-    NSString *imageURL = user.profile_image_url;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageURL] placeholderImage:placeHolderImage];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:placeHolderImage];
 
     return  cell;
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    // scrollView = self.tableView = self.view
+    //如果tableView还没有数据，就直接返回
+    if(self.statuses.count==0 || self.tableView.tableFooterView.isHidden == NO)return;
+    
+     CGFloat offsetY = scrollView.contentOffset.y;
+    // 当最后一个cell完全显示在眼前时，contentOffset的y值
+    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.heigt - self.tableView.tableFooterView.heigt;
+    if (offsetY >= judgeOffsetY) { // 最后一个cell完全进入视野范围内
+        // 显示footer
+        self.tableView.tableFooterView.hidden = NO;
+        
+        // 加载更多的微博数据
+        [self loadMoreStatus];
+    }
+    /*
+     contentInset：除具体内容以外的边框尺寸
+     contentSize: 里面的具体内容（header、cell、footer），除掉contentInset以外的尺寸
+     contentOffset:
+     1.它可以用来判断scrollView滚动到什么位置
+     2.指scrollView的内容超出了scrollView顶部的距离（除掉contentInset以外的尺寸）
+     */
+    
 }
 
 

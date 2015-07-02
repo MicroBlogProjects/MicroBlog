@@ -38,22 +38,51 @@
     else{ //没有登录过,进入登陆授权页面
         self.window.rootViewController = [[OAuthViewController alloc]init];
     }
+    
     return YES;
 }
 
 
+/**
+ *   当手机收到内存警告时，取消当前下载的图片并清除内存中的图片
+ */
+-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
+    
+    //1.取消下载
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    
+    //2.清除内存中所有的图片
+    [manager.imageCache clearMemory];
+}
 
 
+/**
+ *  程序进入后台时候调用
+ *
+ */
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    /*
+        app的几种状态
+         1、死亡状态，没有打开APP
+         2、前台运行状态
+         3、后台暂停状态：停止一切动画、定时器、多媒体、联网操作等
+         4、后台运行状态
+    */
+    
+    //向操作系统申请后台运行的资格，能维持多久是不确定的
+    [application beginBackgroundTaskWithExpirationHandler:^{
+         //当申请的后台运行时间结束（过期），就会调用这个block方法
+    }];
+    
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state  information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
+
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -68,16 +97,6 @@
 }
 
 
-/**
- *   当手机收到内存警告时，取消当前下载的图片并清除内存中的图片
- */
--(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
-    
-    //1.取消下载
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
 
-    //2.清除内存中所有的图片
-    [manager.imageCache clearMemory];
-}
 
 @end

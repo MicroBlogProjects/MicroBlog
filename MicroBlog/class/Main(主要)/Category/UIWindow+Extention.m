@@ -31,6 +31,16 @@
     }
     
     
+    //想要在桌面图标显示未读消息数字，在ios8.0系统之后都要 先获得用户允许才能实现
+    float sysVersion = [[[UIDevice currentDevice]systemVersion] floatValue];
+    if(sysVersion>=8.0){
+        UIUserNotificationType type=UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound;
+        UIUserNotificationSettings *setting=[UIUserNotificationSettings settingsForTypes:type categories:nil];
+        [[UIApplication sharedApplication]registerUserNotificationSettings:setting];
+    }
+    //如果不实现上面方法，则会报错：Attempting to badge the application icon but haven't received permission from the user to badge the application
+    
+    
 }
 
 @end
