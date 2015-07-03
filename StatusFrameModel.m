@@ -23,7 +23,7 @@
     //cell的宽度
     CGFloat cellW = [UIScreen mainScreen].bounds.size.width ;
     
-    /*原创微博框架容器*/
+    /** 原创微博*/
     
     /* 头像*/
     CGFloat iconW = 50 ;
@@ -65,28 +65,78 @@
     
     CGFloat contentX = iconX ;
     CGFloat contentY = MAX(CGRectGetMaxY(self.iconViewF), CGRectGetMaxY(self.timeLabelF))+kStatusCellBorderWidth;
-    CGFloat MaxWidth = cellW - 2*kStatusCellBorderWidth ;
+    CGFloat MaxWidth = cellW - 2*kStatusCellBorderWidth ; //微博消息的最大宽度
     CGSize contenSize = [self sizeWithText:statusModel.text font:kStatusCellContentFont maxWidth:MaxWidth];
     self.contenLabelF = CGRectMake(contentX, contentY, contenSize.width, contenSize.height);
     
     /* 微博配图*/
-    
+    CGFloat originalH = 0 ;  //原创微博整体的高度
+    if(statusModel.pic_urls.count){ //有配图
+        CGFloat photoWH = 100 ;
+        CGFloat photoX = contentX ;
+        CGFloat photoY = CGRectGetMaxY(self.contenLabelF) + kStatusCellBorderWidth ;
+        self.photoViewF = CGRectMake(photoX, photoY, photoWH, photoWH);
+        originalH = CGRectGetMaxY(self.photoViewF) + kStatusCellBorderWidth ;
+    }else{//没配图
+        originalH = CGRectGetMaxY(self.contenLabelF) + kStatusCellBorderWidth ;
+    }
 
+    
     /*原创微博整体*/
     CGFloat originalX = 0 ;
     CGFloat originalY = 0 ;
     CGFloat originalW = cellW ;
-    CGFloat originalH = CGRectGetMaxY(self.contenLabelF) + kStatusCellBorderWidth ;
     self.originalViewF = CGRectMake(originalX, originalY, originalW, originalH);
     
-    /* cell的高度*/
-    self.cellHeight =CGRectGetMaxY(self.originalViewF) ;
-
+    /**被转发微博*/
+    CGFloat toolbarY = 0 ;
+    if(statusModel.retweeted_status){ //如果有被转发微博，才计算frame
+        StatusModel *retweeted_statusModel = statusModel.retweeted_status; //被转发微博的数据
+        UserModel *retweeted_userModel  = retweeted_statusModel.user ; //被转发微博博主的数据
+        
+        /*被转发微博正文*/
+        CGFloat retweetContentX = kStatusCellBorderWidth;
+        CGFloat retweetContentY = kStatusCellBorderWidth ;
+        NSString *retweetContent = [NSString stringWithFormat:@"@%@ : %@",retweeted_userModel.name , retweeted_statusModel.text];
+        CGSize retweetContenSize = [self sizeWithText:retweetContent font:kStatusCellRetweetContentFont maxWidth:MaxWidth];
+        self.retweetContentLabelF = CGRectMake(retweetContentX, retweetContentY, retweetContenSize.width, retweetContenSize.height);
+        
+        /*被转发微博配图*/
+        CGFloat retweetViewH =0 ;
+        if(retweeted_statusModel.pic_urls.count){ //如果转发微博有配图
+            CGFloat retweetPhotoX = retweetContentX ;
+            CGFloat retweetPhotoY = CGRectGetMaxY(self.retweetContentLabelF) + kStatusCellBorderWidth ;
+            CGFloat retweetWH = 100;
+            self.retweetPhotoViewF = CGRectMake(retweetPhotoX, retweetPhotoY, retweetWH, retweetWH);
+            retweetViewH = CGRectGetMaxY(self.retweetPhotoViewF) + kStatusCellBorderWidth ;
+        }else{//转发微博没配图
+            retweetViewH = CGRectGetMaxY(self.contenLabelF) + kStatusCellBorderWidth ;
+        }
+        
+        /*被转发微博整体*/
+        CGFloat retweetViewX = 0 ;
+        CGFloat retweetViewY = CGRectGetMaxY(self.originalViewF);
+        CGFloat retweetViewW = cellW ;
+        
+        self.retweetViewF = CGRectMake(retweetViewX, retweetViewY, retweetViewW, retweetViewH);
+        toolbarY = CGRectGetMaxY(self.retweetViewF); //有转发，则toolBar参照物为转发微博
+        
+    }else{ //没有转发微博
+        toolbarY = CGRectGetMaxY(self.originalViewF);
+    }
+    
+    
+    /*工具条*/
+    CGFloat toolbarX = 0 ;
+    CGFloat toolbarW = cellW ;
+    CGFloat toolbarH = 35;
+    self.toolBarF = CGRectMake(toolbarX, toolbarY, toolbarW, toolbarH);
+    
+    
+    
+    self.cellHeight = CGRectGetMaxY(self.toolBarF);
     
 }
-
-
-
 
 
 /**

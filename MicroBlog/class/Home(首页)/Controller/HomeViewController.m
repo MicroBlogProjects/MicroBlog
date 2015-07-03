@@ -131,11 +131,12 @@
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
        params[@"since_id"] = firstStatus.statusModel.idstr;
     }
-    params[@"count"] = @20;
+    params[@"count"] = @5;
     
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        NSLog(@"%@",responseObject);
+      
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         

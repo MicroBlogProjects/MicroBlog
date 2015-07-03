@@ -49,6 +49,7 @@
 		2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7863521B3CEFED00DC74C4 /* Images.xcassets */; };
 		2B7863621B3CEFED00DC74C4 /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7863611B3CEFED00DC74C4 /* __Tests.m */; };
 		2BC7C10C1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */; };
+		2BCA23991B463190007E70AB /* photoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCA23981B463190007E70AB /* photoModel.m */; };
 		2BCA7DEA1B3F95D000CF0003 /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCA7DE91B3F95D000CF0003 /* MenuTableViewController.m */; };
 		2BCCDB691B3ECD3200E407CC /* SearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCCDB681B3ECD3200E407CC /* SearchBar.m */; };
 		2BCCDB701B3ED31000E407CC /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCCDB6C1B3ED31000E407CC /* MBProgressHUD+MJ.m */; };
@@ -179,6 +180,8 @@
 		2B7863611B3CEFED00DC74C4 /* __Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __Tests.m; sourceTree = "<group>"; };
 		2BC7C10A1B3D6F77005636CE /* UIBarButtonItem+DIYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DIYButton.h"; sourceTree = "<group>"; };
 		2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DIYButton.m"; sourceTree = "<group>"; };
+		2BCA23971B463190007E70AB /* photoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photoModel.h; sourceTree = SOURCE_ROOT; };
+		2BCA23981B463190007E70AB /* photoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = photoModel.m; sourceTree = SOURCE_ROOT; };
 		2BCA7DE81B3F95D000CF0003 /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		2BCA7DE91B3F95D000CF0003 /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
 		2BCCDB671B3ECD3200E407CC /* SearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBar.h; sourceTree = "<group>"; };
@@ -541,6 +544,8 @@
 				2B6332291B438D80006D2840 /* StatusModel.m */,
 				2B1CAAA61B4529700066A06D /* StatusFrameModel.h */,
 				2B1CAAA71B4529700066A06D /* StatusFrameModel.m */,
+				2BCA23971B463190007E70AB /* photoModel.h */,
+				2BCA23981B463190007E70AB /* photoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -877,6 +882,7 @@
 				2B63324C1B43ACF7006D2840 /* NSObject+MJKeyValue.m in Sources */,
 				2B6332211B4386AF006D2840 /* UIImage+WebP.m in Sources */,
 				2B6332471B43ACF7006D2840 /* MJMember.m in Sources */,
+				2BCA23991B463190007E70AB /* photoModel.m in Sources */,
 				2B64E5801B3F154B008574DB /* DropDownMenu.m in Sources */,
 				2BD035891B40DEF400E5A0F7 /* AFHTTPRequestOperationManager.m in Sources */,
 				2B63321D1B4386AF006D2840 /* SDWebImagePrefetcher.m in Sources */,

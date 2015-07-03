@@ -23,6 +23,8 @@
 #define  kStatusCellSourceFont [UIFont systemFontOfSize:12]
 //微博正文字体
 #define  kStatusCellContentFont [UIFont systemFontOfSize:14]
+//被转发微博的正文字体
+#define   kStatusCellRetweetContentFont [UIFont systemFontOfSize:13]
 
 @class  StatusModel;
 
@@ -49,9 +51,22 @@
 @property (nonatomic , assign) CGRect sourceLabelF ; 
 /** 微博正文*/
 @property (nonatomic , assign) CGRect contenLabelF ; 
+
+
+/*转发微博*/
+/** 转发微博容器*/
+@property (nonatomic , assign) CGRect retweetViewF ;
+/** 转发微博正文+昵称*/
+@property (nonatomic , assign) CGRect retweetContentLabelF ;
+/** 转发配图*/
+@property (nonatomic , assign) CGRect retweetPhotoViewF ;
+
+
+/** 底部工具条*/
+@property (nonatomic , assign) CGRect toolBarF;
+
+
+
 /** cell的高度*/
 @property (nonatomic , assign) CGFloat cellHeight;
-
-
-
 @end
