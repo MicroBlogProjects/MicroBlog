@@ -84,7 +84,7 @@
     
     /*原创微博整体*/
     CGFloat originalX = 0 ;
-    CGFloat originalY = 0 ;
+    CGFloat originalY = kStatusCellBorderWidth ;
     CGFloat originalW = cellW ;
     self.originalViewF = CGRectMake(originalX, originalY, originalW, originalH);
     
@@ -130,7 +130,7 @@
     CGFloat toolbarX = 0 ;
     CGFloat toolbarW = cellW ;
     CGFloat toolbarH = 35;
-    self.toolBarF = CGRectMake(toolbarX, toolbarY, toolbarW, toolbarH);
+    self.toolBarF = CGRectMake(toolbarX, toolbarY+1, toolbarW, toolbarH);
     
     
     

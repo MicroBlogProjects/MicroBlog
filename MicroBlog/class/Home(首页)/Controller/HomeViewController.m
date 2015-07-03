@@ -35,6 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.backgroundColor =myColor(239, 239, 239);
     
      //设置导航栏内容
     [self setupNavigationBar];

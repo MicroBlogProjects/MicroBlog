@@ -15,6 +15,8 @@
 #import <Foundation/Foundation.h>
 //cell 的边框宽度
 #define kStatusCellBorderWidth 10
+//cell 之间的间距
+#define kStatusCellMargin 15
 //昵称字体
 #define  kStatusCellNameFont  [UIFont systemFontOfSize:15]
 //时间字体

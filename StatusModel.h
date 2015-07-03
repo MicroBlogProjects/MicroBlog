@@ -21,8 +21,16 @@
 @property (nonatomic , copy)  NSString  *source ;
 /** 被转发的原微博信息字段，当该微博为转发微博时返回*/
 @property (nonatomic , strong) StatusModel *retweeted_status;
-/**微博配图地址，多图时返回多图连接，无配图时返回“[]”*/
+/**微博配图地址，多图时返回多图连接，无配图时返回“[]” */
 @property (nonatomic , strong) NSArray *pic_urls ;
+
+/** 转发数*/
+@property (nonatomic , assign)  int reposts_count ;
+/** 评论数*/
+@property (nonatomic , assign)  int comments_count;
+/** 点赞数*/
+@property (nonatomic , assign)  int attitudes_count ;
+
 
 
 //+(instancetype)statusWithDict:(NSDictionary *)dict ; 

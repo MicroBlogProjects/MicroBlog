@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "UserModel.h"
 #import "photoModel.h"
+#import "ToolBar.h"
 
 @interface StatusCell ()
 
@@ -45,7 +46,7 @@
 
 
 /** 工具条*/
-@property (nonatomic , weak) UIView *toolbar;
+@property (nonatomic , weak) ToolBar *toolbar;
 
 
 @end
@@ -75,6 +76,11 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
+        self.backgroundColor = [UIColor clearColor];
+//        self.selectionStyle = UITableViewCellEditingStyleNone; //点击cell不变色
+//        UIView *view = [[ UIView alloc]init];
+//       view.backgroundColor = [UIColor blueColor];
+//        self.selectedBackgroundView = view ;              //设置选中cell时显示的颜色
         
        //初始化原创微博模块
         [self setupOriginal];
@@ -91,8 +97,7 @@
  *  初始化微博工具条 (转发 评论 点赞)
  */
 -(void)setupToolBar{
-    UIView *toolBar = [[UIView alloc]init] ;
-    toolBar.backgroundColor = [UIColor redColor];
+    ToolBar *toolBar = [[ToolBar alloc]init] ; 
     [self.contentView addSubview:toolBar];
     self.toolbar = toolBar ;
     
@@ -128,6 +133,7 @@
 -(void)setupOriginal{
     /**原创微博框架容器*/
     UIView *originalView  = [[UIView alloc]init];
+    originalView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:originalView];
     self.originalView = originalView;
     
@@ -264,9 +270,14 @@
     
     /**  工具条 */
     self.toolbar.frame = statusFrameModel.toolBarF ;
+    self.toolbar.statusModel = statusFrameModel.statusModel;
     
     
 }
+
+
+
+
 
 @end
 
