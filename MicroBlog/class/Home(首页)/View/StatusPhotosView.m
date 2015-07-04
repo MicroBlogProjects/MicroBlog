@@ -7,8 +7,10 @@
 //
 
 #import "StatusPhotosView.h"
+#import "StatusPhotoView.h"
 #import "PhotoModel.h"
-#import "UIImageView+WebCache.h"
+
+
 #define StatusPhotoWH 70  //图片宽高
 #define StatusPhotoMargin 10  //图片间距
 #define StatusMaxPhotoCols(count) ((count==4)?2:3)
@@ -31,17 +33,16 @@
     
     //创建足够数量的图片控件，因为当前拿到的Cell由于重新利用，可能当前的View已经存在之前的imageView
     while (self.subviews.count < photos.count ) {
-        UIImageView *imageview = [[UIImageView alloc]init] ;
+        StatusPhotoView *imageview = [[StatusPhotoView alloc]init] ;
         [self addSubview: imageview];
     }
     
     //遍历图片，设置1-9张图片内容
     for(int i=0 ; i<self.subviews.count ; i++){
-        UIImageView *photoView = self.subviews[i];
+        StatusPhotoView *photoView = self.subviews[i];
         
         if(i < photos.count ){ //只显示图片个数的imageView
-            PhotoModel *photoModel = photos[i];  //取出数据模型
-            [photoView sd_setImageWithURL:[NSURL URLWithString:photoModel.thumbnail_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+            photoView.photoModel = photos[i];  //取出数据模型
             photoView.hidden = NO;
         }else{ //隐藏多余的imageView
             photoView.hidden = YES;
@@ -58,7 +59,7 @@
     //设置图片的尺寸和位置
     int photosCount = (int)self.photos.count  ;
     for(int i =0 ; i<photosCount ; i++){
-        UIImageView *photoView = self.subviews[i];
+        StatusPhotoView *photoView = self.subviews[i];
         
         int col = i % StatusMaxPhotoCols(photosCount);
         photoView.x = col *(StatusPhotoWH  + StatusPhotoMargin);

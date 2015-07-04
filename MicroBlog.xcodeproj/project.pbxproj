@@ -44,6 +44,8 @@
 		2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7863521B3CEFED00DC74C4 /* Images.xcassets */; };
 		2B7863621B3CEFED00DC74C4 /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7863611B3CEFED00DC74C4 /* __Tests.m */; };
 		2B83A9AC1B47746700E0F351 /* StatusPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9AB1B47746700E0F351 /* StatusPhotosView.m */; };
+		2B83A9B21B4788DF00E0F351 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9B11B4788DF00E0F351 /* PhotoModel.m */; };
+		2B83A9B81B47AAEE00E0F351 /* StatusPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9B71B47AAEE00E0F351 /* StatusPhotoView.m */; };
 		2BC7C10C1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */; };
 		2BC823971B4772AA009018D4 /* StatusFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823861B4772AA009018D4 /* StatusFrameModel.m */; };
 		2BC823981B4772AA009018D4 /* StatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823881B4772AA009018D4 /* StatusModel.m */; };
@@ -172,6 +174,10 @@
 		2B7863611B3CEFED00DC74C4 /* __Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __Tests.m; sourceTree = "<group>"; };
 		2B83A9AA1B47746700E0F351 /* StatusPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusPhotosView.h; sourceTree = "<group>"; };
 		2B83A9AB1B47746700E0F351 /* StatusPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusPhotosView.m; sourceTree = "<group>"; };
+		2B83A9B01B4788DF00E0F351 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
+		2B83A9B11B4788DF00E0F351 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
+		2B83A9B61B47AAEE00E0F351 /* StatusPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusPhotoView.h; sourceTree = "<group>"; };
+		2B83A9B71B47AAEE00E0F351 /* StatusPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusPhotoView.m; sourceTree = "<group>"; };
 		2BC7C10A1B3D6F77005636CE /* UIBarButtonItem+DIYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DIYButton.h"; sourceTree = "<group>"; };
 		2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DIYButton.m"; sourceTree = "<group>"; };
 		2BC823851B4772AA009018D4 /* StatusFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusFrameModel.h; sourceTree = "<group>"; };
@@ -440,6 +446,8 @@
 				2BC823881B4772AA009018D4 /* StatusModel.m */,
 				2BC823891B4772AA009018D4 /* UserModel.h */,
 				2BC8238A1B4772AA009018D4 /* UserModel.m */,
+				2B83A9B01B4788DF00E0F351 /* PhotoModel.h */,
+				2B83A9B11B4788DF00E0F351 /* PhotoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -465,6 +473,8 @@
 				2BC823951B4772AA009018D4 /* ToolBar.m */,
 				2B83A9AA1B47746700E0F351 /* StatusPhotosView.h */,
 				2B83A9AB1B47746700E0F351 /* StatusPhotosView.m */,
+				2B83A9B61B47AAEE00E0F351 /* StatusPhotoView.h */,
+				2B83A9B71B47AAEE00E0F351 /* StatusPhotoView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -848,6 +858,7 @@
 				2BD0358D1B40DEF400E5A0F7 /* AFURLConnectionOperation.m in Sources */,
 				2BDE74CD1B3D343500E540AF /* DiscoverViewController.m in Sources */,
 				2B6539081B41671500FD9893 /* AccountModel.m in Sources */,
+				2B83A9B81B47AAEE00E0F351 /* StatusPhotoView.m in Sources */,
 				2BC823971B4772AA009018D4 /* StatusFrameModel.m in Sources */,
 				2BDE74D51B3D343500E540AF /* ProfileViewController.m in Sources */,
 				2BC8239C1B4772AA009018D4 /* StatusCell.m in Sources */,
@@ -880,6 +891,7 @@
 				2B6332481B43ACF7006D2840 /* MJMethod.m in Sources */,
 				2B63321B1B4386AF006D2840 /* SDWebImageDownloaderOperation.m in Sources */,
 				2BCCDB691B3ECD3200E407CC /* SearchBar.m in Sources */,
+				2B83A9B21B4788DF00E0F351 /* PhotoModel.m in Sources */,
 				2BCE710D1B46EA8500E8A3D9 /* NSString+Extention.m in Sources */,
 				2B63324D1B43ACF7006D2840 /* NSObject+MJMember.m in Sources */,
 				2B5F28731B3FD91D00C36B97 /* TabBar.m in Sources */,
