@@ -25,11 +25,11 @@
     
     //添加图片到scrollView中去
     CGFloat scrollW = scrollView.width;
-    CGFloat scrollH = scrollView.heigt;
+    CGFloat scrollH = scrollView.height;
     for(int i =0 ; i<kNewFeaturePictureCount ; i++){
         UIImageView *imageView  = [[ UIImageView alloc]init] ;
         imageView.width = scrollW ;
-        imageView.heigt = scrollH;
+        imageView.height = scrollH;
         imageView.y = 0 ;
         imageView.x = i*imageView.width ;
         NSString *name  = [NSString stringWithFormat:@"new_feature_%d",i+1];
@@ -89,9 +89,9 @@
     [shareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     shareButton.titleLabel.font = [UIFont systemFontOfSize:15];
     shareButton.width = 120;
-    shareButton.heigt = 35  ;
+    shareButton.height = 35  ;
     shareButton.centerX = imageView.width * 0.5;
-    shareButton.centerY = imageView.heigt * 0.65;
+    shareButton.centerY = imageView.height * 0.65;
     shareButton.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0); //图片和文字距离10
     [shareButton addTarget:self action:@selector(shareClick:) forControlEvents:UIControlEventTouchUpInside];
     [imageView addSubview:shareButton];
@@ -102,7 +102,7 @@
     [startButton setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button_highlighted"] forState:UIControlStateHighlighted ];
     startButton.size = startButton.currentBackgroundImage.size;
     startButton.centerX = shareButton.centerX ;
-    startButton.centerY = imageView.heigt * 0.75 ;
+    startButton.centerY = imageView.height * 0.75 ;
     [startButton setTitle:@"开始微博" forState:UIControlStateNormal];
     [startButton addTarget:self action:@selector(startClick) forControlEvents:UIControlEventTouchUpInside];
     [imageView addSubview:startButton];

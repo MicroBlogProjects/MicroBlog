@@ -68,10 +68,10 @@
         photoView.y = row * (StatusPhotoWH + StatusPhotoMargin);
         
         photoView.width = StatusPhotoWH ;
-        photoView.heigt = StatusPhotoWH ;
+        photoView.height = StatusPhotoWH ;
         if(photosCount == 1 ){ //只有单张图片的时候长宽都是两倍大小
             photoView.width = StatusPhotoWH*2 ;
-            photoView.heigt = StatusPhotoWH*2 ;
+            photoView.height = StatusPhotoWH*2 ;
         }
             
         

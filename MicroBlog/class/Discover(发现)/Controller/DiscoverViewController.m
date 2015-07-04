@@ -22,7 +22,7 @@
     
     SearchBar *searchBar = [SearchBar searchBar];
     searchBar.width = 300 ;
-    searchBar.heigt = 35 ;
+    searchBar.height = 35 ;
   
     self.navigationItem.titleView = searchBar;
 }

@@ -27,9 +27,9 @@
 
 }
 
--(void)setHeigt:(CGFloat)heigt {
+-(void)setHeight:(CGFloat)height {
     CGRect frame = self.frame ;
-    frame.size.height = heigt;
+    frame.size.height = height;
     self.frame = frame ;
 }
 
@@ -69,7 +69,7 @@
 -(CGFloat)y{
     return self.frame.origin.y ;
 }
--(CGFloat)heigt{
+-(CGFloat)height{
     return  self.frame.size.height;
 }
 -(CGFloat)width{

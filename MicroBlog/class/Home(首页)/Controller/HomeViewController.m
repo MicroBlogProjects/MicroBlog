@@ -116,7 +116,7 @@
  *  下拉刷新
  */
 -(void)loadNewStatus:(UIRefreshControl *)control{
-
+    NSLog(@"下啦刷新");
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
@@ -133,7 +133,6 @@
     
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-      
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
@@ -173,6 +172,7 @@
  *   上拉加载更多微博
  */
 -(void)loadMoreStatus{
+ 
     /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -203,7 +203,6 @@
             [newsFrames addObject:f];
         }
         
-        
         //将微博添加到微博数组最后面
         [self.statusFrameModels addObjectsFromArray:newsFrames];
         
@@ -212,6 +211,7 @@
         
         //结束刷新后，隐藏Footer
         self.tableView.tableFooterView.hidden = YES;
+ 
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"请求失败 - %@",error);
@@ -235,7 +235,7 @@
     UILabel *label = [[UILabel alloc]init] ;
     label.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_new_status_background"]];
     label.width = [UIScreen mainScreen].bounds.size.width;
-    label.heigt =35 ;
+    label.height =35 ;
     
     if(count == 0){
         label.text = @"没有新的微博数据，稍后再试";
@@ -253,12 +253,12 @@
     //动画效果
     CGFloat duration = 1.0 ;
     [UIView animateWithDuration:duration animations:^{
-        //label.y+=label.heigt; //这句话实现效果跟下面的一样，不过推荐使用下面的语句 label.transform来实现
-        label.transform = CGAffineTransformMakeTranslation(0, label.heigt);
+        //label.y+=label.height; //这句话实现效果跟下面的一样，不过推荐使用下面的语句 label.transform来实现
+        label.transform = CGAffineTransformMakeTranslation(0, label.height);
     } completion:^(BOOL finished) {
         CGFloat delay = 2.0;
          [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveLinear animations:^{ 
-             //label.y  -=label.heigt ;
+             //label.y  -=label.height ;
              label.transform = CGAffineTransformIdentity; //回到动画的原点
          } completion:^(BOOL finished) {
              [label removeFromSuperview];
@@ -336,7 +336,7 @@
     DropDownMenu *menu = [DropDownMenu menu];
     //设置下拉菜单的内容
     MenuTableViewController *menuTable = [[MenuTableViewController alloc]init];
-    menuTable.view.heigt =44*3 ;
+    menuTable.view.height =44*3 ;
     menuTable.view.width =217 ;
     menu.contentController =  menuTable ;
     menu.delegate = self ;
@@ -440,7 +440,7 @@
     
      CGFloat offsetY = scrollView.contentOffset.y;
     // 当最后一个cell完全显示在眼前时，contentOffset的y值
-    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.heigt - self.tableView.tableFooterView.heigt;
+    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.height - self.tableView.tableFooterView.height;
     if (offsetY >= judgeOffsetY) { // 最后一个cell完全进入视野范围内
         // 显示footer
         self.tableView.tableFooterView.hidden = NO;

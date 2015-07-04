@@ -14,6 +14,7 @@
 #import "NavigationController.h"
 #import "TabBar.h"
 #import "MBProgressHUD+MJ.h"
+#import "ComposeViewController.h"
 @interface MainTabbarViewController () <TabBarDelegate>
 
 @end
@@ -41,6 +42,7 @@
     TabBar *tabBar = [[TabBar alloc]init];
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
+   
 }
 
 
@@ -81,17 +83,12 @@
 
 #pragma mark - TabBarDelegate代理方法
 
-#warning 这是要实现点击“+”按钮后跳出View  ，实现发微博的功能
+#warning doing 发微博的功能
 -(void)tabBarClickPlusButton:(TabBar *)tabBar{
     
-    
-    [MBProgressHUD showSuccess:@"发微博功能块，施工中"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUD];
-    });
-//    UIViewController *vc = [[UIViewController alloc]init] ;
-//    vc.view.backgroundColor  = [UIColor redColor];
-//    [self presentViewController:vc animated:YES completion:nil];
+    ComposeViewController *compose = [[ComposeViewController alloc]init];
+    NavigationController *nav = [[NavigationController alloc]initWithRootViewController:compose];
+    [self presentViewController:nav animated:YES completion:nil];
 
 }
 

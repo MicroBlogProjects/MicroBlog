@@ -40,7 +40,7 @@
 
     
     //下拉菜单容器的高 比 容器中组件的高多10
-    self.containerView.heigt = CGRectGetMaxY(content.frame) +11 ;
+    self.containerView.height = CGRectGetMaxY(content.frame) +11 ;
     //下拉菜单容器的宽 比 容器中组件的宽多10
     self.containerView.width = CGRectGetMaxX(content.frame) + 10 ;
     //添加内容到灰色图片中

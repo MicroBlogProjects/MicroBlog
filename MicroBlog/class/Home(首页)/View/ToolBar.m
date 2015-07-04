@@ -51,13 +51,13 @@
     //设置按钮的frame
     int count = (int)self.buttons.count ;
     CGFloat buttonW = self.width/count ;
-    CGFloat buttonH = self.heigt;
+    CGFloat buttonH = self.height;
     for(int i=0 ; i<count ; i++){
         UIButton *button = self.buttons[i];
         button.x = i*buttonW;
         button.y=0;
         button.width = buttonW ;
-        button.heigt = buttonH ;
+        button.height = buttonH ;
     }
     
     //设置分割线frame
@@ -67,7 +67,7 @@
         divider.x = (i+1)*buttonW ;
         divider.y =  0 ;
         divider.width = 1;
-        divider.heigt = buttonH;
+        divider.height = buttonH;
     }
 }
 

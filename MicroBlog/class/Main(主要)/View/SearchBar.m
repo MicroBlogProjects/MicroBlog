@@ -21,7 +21,7 @@
         UIImageView *searchIcon = [[UIImageView alloc]init];
         searchIcon.image = [UIImage imageNamed:@"searchbar_textfield_search_icon"];
         searchIcon.width = 30 ;
-        searchIcon.heigt = 30 ;
+        searchIcon.height = 30 ;
         searchIcon.contentMode = UIViewContentModeCenter;
         
         self.leftView = searchIcon;

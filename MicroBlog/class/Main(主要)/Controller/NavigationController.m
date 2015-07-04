@@ -22,13 +22,13 @@
     //设置普通状态(按钮可点击状态时为橙色)
     NSMutableDictionary *textAttribute = [NSMutableDictionary dictionary];
     textAttribute[NSForegroundColorAttributeName] =  [ UIColor orangeColor];
-    textAttribute[NSFontAttributeName] = [UIFont systemFontOfSize:14];
+    textAttribute[NSFontAttributeName] = [UIFont systemFontOfSize:15];
     [item setTitleTextAttributes:textAttribute forState:UIControlStateNormal];
     
     //设置不可用状态(按钮不可点击状态时为灰色）
     NSMutableDictionary *disableTextAttribute = [NSMutableDictionary dictionary];
     disableTextAttribute[NSForegroundColorAttributeName] = myColor(200, 200, 200);
-    disableTextAttribute[NSFontAttributeName] = [UIFont systemFontOfSize:14];
+    disableTextAttribute[NSFontAttributeName] = textAttribute[NSFontAttributeName];
     [item setTitleTextAttributes:disableTextAttribute forState:UIControlStateDisabled];
     
     
@@ -38,7 +38,7 @@
 /*
 **
  *  重写这个方法的目的是：能够拦截所有push进来的控制器 
-    （拦截目的：在控制器的左上角和右上角添加按钮 ）
+    （拦截目的：在控制器的左上角和右上角添加按钮 ） 
  *
  *  @param viewController 即将push进来的控制器
  */

@@ -46,6 +46,8 @@
 		2B83A9AC1B47746700E0F351 /* StatusPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9AB1B47746700E0F351 /* StatusPhotosView.m */; };
 		2B83A9B21B4788DF00E0F351 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9B11B4788DF00E0F351 /* PhotoModel.m */; };
 		2B83A9B81B47AAEE00E0F351 /* StatusPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9B71B47AAEE00E0F351 /* StatusPhotoView.m */; };
+		2B83A9BB1B47B92800E0F351 /* IconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9BA1B47B92800E0F351 /* IconView.m */; };
+		2B83A9C01B47C90900E0F351 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9BF1B47C90900E0F351 /* ComposeViewController.m */; };
 		2BC7C10C1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */; };
 		2BC823971B4772AA009018D4 /* StatusFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823861B4772AA009018D4 /* StatusFrameModel.m */; };
 		2BC823981B4772AA009018D4 /* StatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823881B4772AA009018D4 /* StatusModel.m */; };
@@ -178,6 +180,10 @@
 		2B83A9B11B4788DF00E0F351 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		2B83A9B61B47AAEE00E0F351 /* StatusPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusPhotoView.h; sourceTree = "<group>"; };
 		2B83A9B71B47AAEE00E0F351 /* StatusPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusPhotoView.m; sourceTree = "<group>"; };
+		2B83A9B91B47B92800E0F351 /* IconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconView.h; sourceTree = "<group>"; };
+		2B83A9BA1B47B92800E0F351 /* IconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconView.m; sourceTree = "<group>"; };
+		2B83A9BE1B47C90900E0F351 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		2B83A9BF1B47C90900E0F351 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		2BC7C10A1B3D6F77005636CE /* UIBarButtonItem+DIYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DIYButton.h"; sourceTree = "<group>"; };
 		2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DIYButton.m"; sourceTree = "<group>"; };
 		2BC823851B4772AA009018D4 /* StatusFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusFrameModel.h; sourceTree = "<group>"; };
@@ -423,6 +429,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2B83A9BC1B47C8CA00E0F351 /* Compose(发微博) */ = {
+			isa = PBXGroup;
+			children = (
+				2B83A9BD1B47C8E700E0F351 /* Controller */,
+			);
+			path = "Compose(发微博)";
+			sourceTree = "<group>";
+		};
+		2B83A9BD1B47C8E700E0F351 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2B83A9BE1B47C90900E0F351 /* ComposeViewController.h */,
+				2B83A9BF1B47C90900E0F351 /* ComposeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		2BC8237C1B477144009018D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,6 +590,7 @@
 		2BDE746E1B3CF34F00E540AF /* class */ = {
 			isa = PBXGroup;
 			children = (
+				2B83A9BC1B47C8CA00E0F351 /* Compose(发微博) */,
 				2BD0356F1B40CE6800E5A0F7 /* OAuth(授权) */,
 				2BDE749D1B3D343500E540AF /* Discover(发现) */,
 				2BDE74A31B3D343500E540AF /* Home(首页) */,
@@ -697,6 +721,8 @@
 				2B64E57F1B3F154B008574DB /* DropDownMenu.m */,
 				2B5F28711B3FD91D00C36B97 /* TabBar.h */,
 				2B5F28721B3FD91D00C36B97 /* TabBar.m */,
+				2B83A9B91B47B92800E0F351 /* IconView.h */,
+				2B83A9BA1B47B92800E0F351 /* IconView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -871,6 +897,7 @@
 				2BD0358C1B40DEF400E5A0F7 /* AFSecurityPolicy.m in Sources */,
 				2B6332241B4386AF006D2840 /* UIView+WebCacheOperation.m in Sources */,
 				2BD035881B40DEF400E5A0F7 /* AFHTTPRequestOperation.m in Sources */,
+				2B83A9BB1B47B92800E0F351 /* IconView.m in Sources */,
 				2B6332441B43ACF7006D2840 /* MJConst.m in Sources */,
 				2B6332191B4386AF006D2840 /* SDWebImageDecoder.m in Sources */,
 				2B6332491B43ACF7006D2840 /* MJType.m in Sources */,
@@ -902,6 +929,7 @@
 				2B6332161B4386AF006D2840 /* NSData+ImageContentType.m in Sources */,
 				2BD0358A1B40DEF400E5A0F7 /* AFHTTPSessionManager.m in Sources */,
 				2BDE74CF1B3D343500E540AF /* UIView+Extention.m in Sources */,
+				2B83A9C01B47C90900E0F351 /* ComposeViewController.m in Sources */,
 				2B5F28771B4006E200C36B97 /* NewFeatureViewController.m in Sources */,
 				2B63324C1B43ACF7006D2840 /* NSObject+MJKeyValue.m in Sources */,
 				2B6332211B4386AF006D2840 /* UIImage+WebP.m in Sources */,

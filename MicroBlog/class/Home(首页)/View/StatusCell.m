@@ -15,6 +15,7 @@
 #import "PhotoModel.h"
 #import "ToolBar.h"
 #import "StatusPhotosView.h"
+#import "IconView.h"
 
 @interface StatusCell ()
 
@@ -22,7 +23,7 @@
 /**原创微博容器*/
 @property (nonatomic , weak) UIView *originalView ;
 /** 头像*/
-@property (nonatomic , weak) UIImageView *iconView ;
+@property (nonatomic , weak) IconView *iconView ;
 /** 会员图标*/
 @property (nonatomic , weak) UIImageView *vipView ;
 /** 微博配图*/
@@ -139,7 +140,7 @@
     self.originalView = originalView;
     
     /** 头像*/
-    UIImageView *iconView = [[UIImageView alloc]init];
+    IconView *iconView = [[IconView alloc]init];
     [self.originalView addSubview:iconView];
     self.iconView = iconView ;
     
@@ -194,7 +195,7 @@
     
     /* 头像*/
     self.iconView.frame = statusFrameModel.iconViewF ;
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:userModel.profile_image_url] placeholderImage:[UIImage imageNamed:@"avatar_default_small"]];
+    self.iconView.userModel = userModel ;
     
     
     /* 会员图标*/
@@ -233,7 +234,7 @@
     self.timeLabel.text = time;
     
     /* 来源 ，需要每次刷新的时候计算是因为参照物是时间，时间会变*/
-    CGFloat sourceX = CGRectGetMaxX(statusFrameModel.timeLabelF) + kStatusCellBorderWidth;
+    CGFloat sourceX = CGRectGetMaxX(self.timeLabel.frame) + kStatusCellBorderWidth;
     CGFloat sourceY = timeY ;
     CGSize  sourceSize = [statusModel.source sizeWithFont:kStatusCellTimeFont  ];
     self.sourceLabel.frame =CGRectMake(sourceX, sourceY, sourceSize.width, sourceSize.height);

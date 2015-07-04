@@ -19,10 +19,10 @@
 @property (nonatomic , assign)  int mbtype;
 /** 会员等级*/
 @property (nonatomic , assign)  int mbrank;
-
+/** 判断是否vip*/
 @property (nonatomic , assign , getter=isVip)  BOOL vip;
-
-
+/** 是否加v用户*/
+@property (nonatomic , assign)  BOOL verified;
 //+(instancetype) UserWithDict: (NSDictionary *)dict ;
 
 @end

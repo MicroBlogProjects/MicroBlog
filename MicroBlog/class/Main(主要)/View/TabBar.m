@@ -46,7 +46,7 @@
     
     //设置"+"的按钮位置
     self.plusBtn.centerX = self.width *0.5 ;
-    self.plusBtn.centerY = self.heigt *0.5 ;
+    self.plusBtn.centerY = self.height *0.5 ;
     
     //设置其他tabbarButton的位置和尺寸
     CGFloat tabbarButtonWidth = self.width/5 ;  //把Tabbar五等分
