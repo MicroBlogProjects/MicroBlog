@@ -49,7 +49,7 @@
     [super layoutSubviews];
     
     //设置按钮的frame
-    int count = self.buttons.count ;
+    int count = (int)self.buttons.count ;
     CGFloat buttonW = self.width/count ;
     CGFloat buttonH = self.heigt;
     for(int i=0 ; i<count ; i++){
@@ -61,7 +61,7 @@
     }
     
     //设置分割线frame
-    int divideCount = self.dividers.count;
+    int divideCount = (int)self.dividers.count;
     for(int i=0 ; i<divideCount ; i++){
         UIImageView *divider  = self.dividers[i];
         divider.x = (i+1)*buttonW ;

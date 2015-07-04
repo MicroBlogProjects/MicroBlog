@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "UIView+Extention.h"
 #import "UIWindow+Extention.h"
-
+#import "NSString+Extention.h"
 //设置随机颜色
 #define myRandomColor   [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0]
 //RBG颜色的简写

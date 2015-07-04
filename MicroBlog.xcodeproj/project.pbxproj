@@ -55,6 +55,7 @@
 		2BCCDB701B3ED31000E407CC /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCCDB6C1B3ED31000E407CC /* MBProgressHUD+MJ.m */; };
 		2BCCDB711B3ED31000E407CC /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BCCDB6D1B3ED31000E407CC /* MBProgressHUD.bundle */; };
 		2BCCDB721B3ED31000E407CC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCCDB6F1B3ED31000E407CC /* MBProgressHUD.m */; };
+		2BCE710D1B46EA8500E8A3D9 /* NSString+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCE710C1B46EA8500E8A3D9 /* NSString+Extention.m */; };
 		2BD035731B40CE8400E5A0F7 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035721B40CE8400E5A0F7 /* OAuthViewController.m */; };
 		2BD035881B40DEF400E5A0F7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035761B40DEF400E5A0F7 /* AFHTTPRequestOperation.m */; };
 		2BD035891B40DEF400E5A0F7 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035781B40DEF400E5A0F7 /* AFHTTPRequestOperationManager.m */; };
@@ -192,6 +193,8 @@
 		2BCCDB6D1B3ED31000E407CC /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		2BCCDB6E1B3ED31000E407CC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2BCCDB6F1B3ED31000E407CC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		2BCE710B1B46EA8500E8A3D9 /* NSString+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extention.h"; sourceTree = "<group>"; };
+		2BCE710C1B46EA8500E8A3D9 /* NSString+Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extention.m"; sourceTree = "<group>"; };
 		2BD035711B40CE8400E5A0F7 /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
 		2BD035721B40CE8400E5A0F7 /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
 		2BD035751B40DEF400E5A0F7 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -599,6 +602,8 @@
 				2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */,
 				2B65390D1B417E7C00FD9893 /* UIWindow+Extention.h */,
 				2B65390E1B417E7C00FD9893 /* UIWindow+Extention.m */,
+				2BCE710B1B46EA8500E8A3D9 /* NSString+Extention.h */,
+				2BCE710C1B46EA8500E8A3D9 /* NSString+Extention.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -876,6 +881,7 @@
 				2B6332481B43ACF7006D2840 /* MJMethod.m in Sources */,
 				2B63321B1B4386AF006D2840 /* SDWebImageDownloaderOperation.m in Sources */,
 				2BCCDB691B3ECD3200E407CC /* SearchBar.m in Sources */,
+				2BCE710D1B46EA8500E8A3D9 /* NSString+Extention.m in Sources */,
 				2B63324D1B43ACF7006D2840 /* NSObject+MJMember.m in Sources */,
 				2B5F28731B3FD91D00C36B97 /* TabBar.m in Sources */,
 				2B63321E1B4386AF006D2840 /* UIButton+WebCache.m in Sources */,

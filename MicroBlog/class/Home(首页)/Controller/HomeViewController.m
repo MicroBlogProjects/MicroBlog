@@ -86,9 +86,6 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"请求失败-%@",error);
     }];
-    
-    
-    
 }
 
 /**
@@ -136,7 +133,6 @@
     
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
       
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
@@ -148,6 +144,7 @@
             f.statusModel = statusModel ;
             [newsFrames addObject:f];
         }
+        
         
         //把最新的微博数组，添加到总数组的最前面
         NSRange range = NSMakeRange(0, newStatuses.count);
@@ -166,7 +163,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //菊花停止转动
         [control endRefreshing];
-        NSLog(@"%@",error);
+         NSLog(@"%@",error);
     }];
  
 }
@@ -194,7 +191,7 @@
     }
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject );
         //将“微博字典”数组 转为 “微博模型”数组
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         

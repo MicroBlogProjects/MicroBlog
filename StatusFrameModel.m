@@ -35,7 +35,7 @@
     /* 昵称*/
     CGFloat nameX = CGRectGetMaxX(self.iconViewF) + kStatusCellBorderWidth;
     CGFloat nameY = iconY;
-    CGSize nameSize = [self sizeWithText:user.name font:kStatusCellNameFont];
+    CGSize nameSize = [user.name sizeWithFont:kStatusCellNameFont];
     self.nameLabelF = CGRectMake(nameX, nameY, nameSize.width, nameSize.height);
     
     /* 会员图标*/
@@ -52,13 +52,13 @@
     /* 时间（微博发布时间）*/
     CGFloat timeX = nameX ;
     CGFloat timeY = CGRectGetMaxY(self.nameLabelF) + kStatusCellBorderWidth ;
-    CGSize timeSize = [self sizeWithText:statusModel.created_at font:kStatusCellTimeFont  ];
+    CGSize timeSize = [statusModel.created_at sizeWithFont:kStatusCellTimeFont  ];
     self.timeLabelF = CGRectMake(timeX, timeY, timeSize.width, timeSize.height);
     
     /* 来源 */
     CGFloat sourceX = CGRectGetMaxX(self.timeLabelF) + kStatusCellBorderWidth;
     CGFloat sourceY = timeY ;
-    CGSize  sourceSize = [self sizeWithText:statusModel.source font:kStatusCellTimeFont  ];
+    CGSize  sourceSize = [statusModel.source sizeWithFont:kStatusCellTimeFont  ];
     self.sourceLabelF = CGRectMake(sourceX, sourceY, sourceSize.width, sourceSize.height);
 
     /* 微博正文*/
@@ -66,7 +66,7 @@
     CGFloat contentX = iconX ;
     CGFloat contentY = MAX(CGRectGetMaxY(self.iconViewF), CGRectGetMaxY(self.timeLabelF))+kStatusCellBorderWidth;
     CGFloat MaxWidth = cellW - 2*kStatusCellBorderWidth ; //微博消息的最大宽度
-    CGSize contenSize = [self sizeWithText:statusModel.text font:kStatusCellContentFont maxWidth:MaxWidth];
+    CGSize contenSize = [statusModel.text sizeWithFont:kStatusCellContentFont maxWidth:MaxWidth];
     self.contenLabelF = CGRectMake(contentX, contentY, contenSize.width, contenSize.height);
     
     /* 微博配图*/
@@ -98,7 +98,7 @@
         CGFloat retweetContentX = kStatusCellBorderWidth;
         CGFloat retweetContentY = kStatusCellBorderWidth ;
         NSString *retweetContent = [NSString stringWithFormat:@"@%@ : %@",retweeted_userModel.name , retweeted_statusModel.text];
-        CGSize retweetContenSize = [self sizeWithText:retweetContent font:kStatusCellRetweetContentFont maxWidth:MaxWidth];
+        CGSize retweetContenSize = [retweetContent sizeWithFont:kStatusCellRetweetContentFont maxWidth:MaxWidth];
         self.retweetContentLabelF = CGRectMake(retweetContentX, retweetContentY, retweetContenSize.width, retweetContenSize.height);
         
         /*被转发微博配图*/
@@ -139,20 +139,6 @@
 }
 
 
-/**
- *  计算出给定文本Text的CGsize
-
- */
--(CGSize)sizeWithText: (NSString *)text font:(UIFont* )font maxWidth:(CGFloat )maxWidth   {
-    NSMutableDictionary *attribute = [NSMutableDictionary dictionary];
-    attribute[NSFontAttributeName] = font ;
-    CGSize maxSize = CGSizeMake(maxWidth, MAXFLOAT);
-    return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil].size ;
-}
-
--(CGSize)sizeWithText: (NSString *)text font:(UIFont* )font {
-   return   [self sizeWithText:text font:font maxWidth:MAXFLOAT];
-}
 
 @end
 

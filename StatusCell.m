@@ -161,6 +161,7 @@
     /** 时间（微博发布时间）*/
     UILabel *timeLabel = [[UILabel alloc]init];
     timeLabel.font = kStatusCellTimeFont ;
+    timeLabel.textColor = [UIColor orangeColor];
     [self.originalView addSubview:timeLabel];
     self.timeLabel = timeLabel ;
     
@@ -221,15 +222,23 @@
     self.nameLabel.frame = statusFrameModel.nameLabelF;
     self.nameLabel.text = userModel.name ;
     
-#warning 时间的格式还没修改
-    /* 时间（微博发布时间）*/
-    self.timeLabel.frame = statusFrameModel.timeLabelF;
-    self.timeLabel.text = statusModel.created_at ;
     
-#warning  来源格式还没修改
-    /* 来源 */
-    self.sourceLabel.frame = statusFrameModel.sourceLabelF;
+    /* 时间（微博发布时间）, 每次刷新的时候都要重新计算一下Frame,因为时间会变，宽度就会变 */
+    NSString *time = statusModel.created_at ;
+    CGFloat timeX =  statusFrameModel.nameLabelF.origin.x ;
+    CGFloat timeY = CGRectGetMaxY(statusFrameModel.nameLabelF) + kStatusCellBorderWidth ;
+    CGSize timeSize = [time sizeWithFont:kStatusCellTimeFont  ];
+    self.timeLabel.frame = CGRectMake(timeX, timeY, timeSize.width, timeSize.height);
+    self.timeLabel.text = time;
+    
+    /* 来源 ，需要每次刷新的时候计算是因为参照物是时间，时间会变*/
+    CGFloat sourceX = CGRectGetMaxX(statusFrameModel.timeLabelF) + kStatusCellBorderWidth;
+    CGFloat sourceY = timeY ;
+    CGSize  sourceSize = [statusModel.source sizeWithFont:kStatusCellTimeFont  ];
+    self.sourceLabel.frame =CGRectMake(sourceX, sourceY, sourceSize.width, sourceSize.height);
     self.sourceLabel.text = statusModel.source ;
+ 
+  
     
     /* 微博正文*/
     self.contenLabel.frame = statusFrameModel.contenLabelF;
