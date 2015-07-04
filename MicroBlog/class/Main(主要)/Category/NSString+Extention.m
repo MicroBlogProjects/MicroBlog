@@ -23,6 +23,7 @@
  *   给定字体 计算出字符串的 CGSize
  */
 -(CGSize)sizeWithFont:(UIFont* )font {
+    
     return   [self sizeWithFont:font maxWidth:MAXFLOAT];
 }
 
