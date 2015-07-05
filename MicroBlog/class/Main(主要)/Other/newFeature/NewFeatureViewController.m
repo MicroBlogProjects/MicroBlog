@@ -53,7 +53,6 @@
     //设置pageControl的一些属性
     UIPageControl *pageControl = [[UIPageControl alloc]init] ;
     pageControl.numberOfPages = kNewFeaturePictureCount;
-    pageControl.backgroundColor = [UIColor redColor];
     pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
     pageControl.pageIndicatorTintColor = [UIColor grayColor];
     pageControl.centerX = scrollW * 0.5;

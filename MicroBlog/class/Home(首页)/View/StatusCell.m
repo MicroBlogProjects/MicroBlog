@@ -109,6 +109,7 @@
  *  初始化转发微博模块
  */
 -(void)setupRetweet{
+    
   /** 转发微博整体*/
     UIView *retweetView = [[UIView alloc]init] ;
     retweetView.backgroundColor =myColor(245, 245, 245);

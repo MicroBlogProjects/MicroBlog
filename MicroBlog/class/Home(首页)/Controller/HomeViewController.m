@@ -103,6 +103,7 @@
  *  集成下拉刷新控件
  */
 -(void)setupDownRefresh{
+    
     UIRefreshControl *fresh = [[UIRefreshControl alloc]init];
     [fresh addTarget:self action:@selector(loadNewStatus:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:fresh];
@@ -116,12 +117,12 @@
  *  下拉刷新
  */
 -(void)loadNewStatus:(UIRefreshControl *)control{
-    NSLog(@"下啦刷新");
+    
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     //2.拼接请求参数
-    AccountModel *account = [AccountTool account];
+    AccountModel *account = [AccountTool account]; //从沙盒中获取用户信息
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
     //取出最前面的微博（当前缓存数组中最新的微博，我们下拉只需要获取比缓存中更新的微博数据）
@@ -129,11 +130,27 @@
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
        params[@"since_id"] = firstStatus.statusModel.idstr;
     }
-    params[@"count"] = @5;
+//    params[@"count"] = @5;
+    /*
+     赖伟煌的迷你微博
+     access_token=2.004nnkxBNS6mBB72a37612fdviOKvD
+     uid=1799091161
+     App Key：304647707
+     App Secret：533cfea336e04f236c469931f5d40a7c
+     
+     
+     迷你微博应用
+     access_token=2.004nnkxB0hmQc1ca9521a831L5MZsB
+     uid=1799091161
+     App key : 942446141
+     App Secret : 387ea016d0c2baa3fb73ca00ac3ec049
+     
+     */
     
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
+        
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
         //将StatusModel数组 转换成 StatusFrameModel数组
@@ -173,6 +190,7 @@
  */
 -(void)loadMoreStatus{
  
+
     /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -302,6 +320,8 @@
         NSLog(@"%@",error);
     }];
     
+   
+    
 }
 
 
@@ -416,23 +436,16 @@
     StatusCell *cell = [StatusCell cellWithTablView:tableView];
 //    //取出这行cell对应的微博字典
     StatusFrameModel *statusFrameModel = self.statusFrameModels[indexPath.row];
-//    StatusModel *status = statusFrame.statusModel;
-//    UserModel *user = status.user;
-//    //取出这条微博的作者（用户）
-////    NSDictionary *user = status[@"user"];
-//    cell.textLabel.text = user.name;
-//    
-//    //设置微博具体内容
-//    cell.detailTextLabel.text = status.text;
-//    
-//    //设置微博博主头像
-//    UIImage *placeHolderImage = [UIImage imageNamed:@"avatar_default_small"];
-//    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:placeHolderImage];
+
     cell.statusFrameModel = statusFrameModel;
 
     return  cell;
 }
 
+/**
+ *  当视图滚动时调用该方法
+ *  目的：当滚动到可以看到最后一个cell的时候，获取更多的微博信息
+ */
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     // scrollView = self.tableView = self.view
     //如果tableView还没有数据，就直接返回

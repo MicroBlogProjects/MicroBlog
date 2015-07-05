@@ -10,28 +10,16 @@
 
 @interface AccountModel : NSObject <NSCoding>
 
-/**
- *  用于调用access_token，接口获取授权后的access token。
- */
+/** 用于调用access_token，接口获取授权后的access token。*/
 @property (nonatomic , copy) NSString *access_token ;
-/**
- *  access_token的生命周期，单位是秒数。
- */
+/** access_token的生命周期，单位是秒数。*/
 @property (nonatomic , copy) NSString *expires_in ;
-/**
- *  当前授权用户的UID。
- */
+/** 当前授权用户的UID。*/
 @property (nonatomic , copy) NSString *uid;
-/**
- *  access_token 创建时间 (这个不是新浪返回的数据，这是我自己创建的)
- */
+/** create_time 创建时间 (这个不是新浪返回的数据，这是我自己创建的)*/
 @property (nonatomic ,strong)NSDate *create_time;
-/**
- *  微博名
- */
+/** 微博名*/
 @property (nonatomic , copy) NSString *name ; 
-
-
 
 
 +(instancetype)accountWitDict:(NSDictionary *)dict ;

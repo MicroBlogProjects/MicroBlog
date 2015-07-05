@@ -12,6 +12,7 @@
 #import "PhotoModel.h"
 @implementation StatusModel
 
+
 -(NSDictionary *)objectClassInArray{
     
     // 告诉框架EJExtension , NSArray *pic_urls 这个数组属性里面存的类型是photoModel
