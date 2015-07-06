@@ -49,7 +49,7 @@
  
  迷你微博应用
  access_token=2.004nnkxB0hmQc1ca9521a831L5MZsB
- uid=1799091161
+ uid=1799091161d
  App key : 942446141
  App Secret : 387ea016d0c2baa3fb73ca00ac3ec049
  

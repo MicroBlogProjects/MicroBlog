@@ -73,7 +73,7 @@
     [manager GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         int unReadStatusCount = [responseObject[@"status"] intValue];
         if(unReadStatusCount ==0){ //如果未读消息数目为0，清除badgeValue , 并将应用图片数字清零
-            self.tabBarItem.badgeValue =nil ;
+            self.tabBarItem.badgeValue = nil ;
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         
         }else{
