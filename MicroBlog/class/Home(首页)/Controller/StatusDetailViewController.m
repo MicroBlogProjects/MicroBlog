@@ -6,23 +6,27 @@
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
 // 查看微博详情页面
 
+#define kOptionHeight 44
+#define kTitleViewHeiht 50
+
 #import "StatusDetailViewController.h"
-#import "DetailToolBar.h"
-#import "StatusCell.h"
-#import "StatusFrameModel.h"
-#import "StatusDetailBarView.h"
+#import "StatusDetailFrameModel.h"
 #import "AFNetworking.h"
 #import "AccountTool.h"
 #import "StatusModel.h"
 #import "StatusFrameModel.h"
 #import "MJExtension.h"
-#import "CommentCell.h"
+
+
 @interface StatusDetailViewController ()
-@property (nonatomic ,weak) DetailToolBar *detailToolBar;
-@property (nonatomic , strong) NSMutableArray *commentFrameModel ;
+@property (nonatomic , strong) StatusDetailFrameModel *statusFrameModel;
+@property (nonatomic , strong) UITableView *tableView;
 @end
 
 @implementation StatusDetailViewController
+
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,88 +43,81 @@
 }
 
 -(void)createSubViews{
+    
+    //初始化frameModel
     CGSize size = self.view.frame.size;
+    _statusFrameModel.statusModel =_statusModel;
+    
+    //1.添加tableView
+    _tableView = [[UITableView alloc]init];
+    _tableView.allowsSelection = NO ;
+    _tableView.delegate =self;
+    _tableView.dataSource = self;
+    _tableView.backgroundColor = kGlobalBg ;
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    _tableView.frame = CGRectMake(0, 0, size.width, size.height - kOptionHeight);
+    [self.view addSubview:_tableView];
+    [UIImage imageNamed:@"toolbar_background"];
+    
+    
+    //2.评论条
+    UIImageView *option = [[UIImageView alloc]init] ;
+    option.image = [UIImage stretchImageWithName:@"toolbar_background.png"];
+    option.frame = CGRectMake(0, size.height-kOptionHeight, size.width, kOptionHeight);
+    option.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:option];
+    
+    
     
 }
 
 
+#pragma mark - TabelView代理
 
-#pragma mark- tableView代理
-
-/** 块数 */
+/** 2个Section */
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
 
-/** 行数 */
+/** row*/
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(section==1)
-    {
-        return self.commentFrameModel.count;
+    if(section == 0){
+        return 1;
     }
-    return 1;
+    return 20;
 }
 
-/**  cell的高度 */
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section == 0)
-      return _statesFrameModel.cellHeightForDetailStatus;
-    return 44;
-}
 
-///** 头部Head （只显示评论部分的头部）*/
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    UIWindow *window  = [UIApplication sharedApplication].keyWindow ;
-//    StatusDetailBarView *view = [[StatusDetailBarView alloc]initWithFrame:CGRectMake(0, 0,window.width-100  , 36)];
-//
-//    
-//    view.statsModel = _statesFrameModel.statusModel;
-//
-//    
-//    if(section == 1 ){
-//        return view;
-//    }
-//    return nil;
-//}
-//
-///** 尾部Foot （微博内容Section尾部）*/
-//-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//    if(section == 0){
-//        UIView *view =[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 20 )];
-//        view.backgroundColor = myColor(239, 239, 239);
-//        return view;
-//    }
-//    return  nil;
-//}
-//
-///** section头部高度 （如果不设置,就不会显示头部View） */
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    return 10;
-//}
-
-/////** 评论条的头部，能固定在顶部 */
-//-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
-//    if(section==1)
-//       return 36 ;
-//    return 0;
-//}
-
-
-/** 创建Cell */
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if(indexPath.section==0 &&indexPath.row==0){
-        StatusCell *cell = [StatusCell cellWithTablView:tableView Type:1];
-        cell.statusFrameModel = _statesFrameModel;
-        return cell;
+    static NSString *ID = @"Cell" ;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if(cell ==nil){
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
- 
-    CommentCell *cell = [CommentCell cellWithTablView:tableView];
-    cell.statusFrameModel = _commentFrameModel[indexPath.row];
-    
-    return  cell;
+    cell.textLabel.text =@"1111";
+    return cell;
 }
- 
+
+
+
+
+#pragma mark- 懒加载
+
+-(StatusDetailFrameModel *)statusFrameModel {
+    if(!_statusFrameModel){
+        _statusFrameModel = [[StatusDetailFrameModel alloc]init];
+    }
+    return _statusFrameModel;
+}
+
+-(UITableView *)tableView{
+    if(!_tableView){
+        _tableView = [[UITableView alloc]init] ;
+    }
+    return  _tableView;
+}
+
+
 
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class StatusModel ;
-@interface StatusDetailViewController : UIViewController<UITableViewDelegate , UITableViewDelegate>
+@interface StatusDetailViewController : UIViewController<UITableViewDelegate , UITableViewDataSource>
 
 @property(nonatomic, strong) StatusModel *statusModel;
 
