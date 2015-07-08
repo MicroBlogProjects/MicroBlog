@@ -57,14 +57,14 @@
 /**
  *  负责返回一个DIY好的Cell ,type是用来区分要现实在微博列表还是现实在微博详情页的微博，两个地方显示的微博样式有点区别。0是微博列表，1是详情页
  */
-+(instancetype )cellWithTablView:(UITableView *)tableView Type:(NSUInteger)type{
++(instancetype )cellWithTablView:(UITableView *)tableView {
     
     static NSString *ID = @"Cell" ;
     StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if(cell ==nil){
         cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    cell.type = type ;
+
     return  cell;
 }
 
@@ -87,9 +87,8 @@
        //初始化转发微博模块
         [self setupRetweet];
        //初始化工具条
-        if(self.type==0){
-           [self setupToolBar];
-        }
+         [self setupToolBar];
+    
         
         
     }
@@ -289,11 +288,11 @@
         self.retweetView.hidden = YES;
     }
     
-    if(self.type == 0){
+
         /**  工具条 */
     self.toolbar.frame = statusFrameModel.toolBarF ;
     self.toolbar.statusModel = statusFrameModel.statusModel;
-    }
+
     
     
 }

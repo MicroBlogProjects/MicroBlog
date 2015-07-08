@@ -437,11 +437,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
-    StatusFrameModel *frameModel = _statusFrameModels[indexPath.row];
-    statusDetail.statusModel = frameModel.statusModel;
-    
-    [self.navigationController pushViewController:statusDetail animated:YES] ;
+//    StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
+//    StatusFrameModel *frameModel = _statusFrameModels[indexPath.row];
+//    statusDetail.statusModel = frameModel.statusModel;
+//    
+//    [self.navigationController pushViewController:statusDetail animated:YES] ;
     
 }
 
@@ -449,7 +449,7 @@
     
     
     //获得cell
-    StatusCell *cell = [StatusCell cellWithTablView:tableView Type:0];
+    StatusCell *cell = [StatusCell cellWithTablView:tableView];
     //取出这行cell对应的微博字典
     StatusFrameModel *statusFrameModel = self.statusFrameModels[indexPath.row];
 

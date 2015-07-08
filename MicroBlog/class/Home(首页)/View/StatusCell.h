@@ -18,7 +18,7 @@
 @property (nonatomic , assign) NSUInteger type;
 
 
-+ (instancetype)cellWithTablView:(UITableView *)tableView Type:(NSUInteger)type;
++ (instancetype)cellWithTablView:(UITableView *)tableView ;
 
 
 
