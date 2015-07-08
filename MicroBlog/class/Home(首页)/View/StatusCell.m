@@ -16,7 +16,7 @@
 #import "StatusPhotosView.h"
 #import "IconView.h"
 #import "NavigationController.h"
-@interface StatusCell () <ToolBarDelegate>
+@interface StatusCell ()
 
 /*原创微博*/
 /**原创微博容器*/
@@ -106,7 +106,6 @@
 -(void)setupToolBar{
     ToolBar *toolBar = [[ToolBar alloc]init] ; 
     [self.contentView addSubview:toolBar];
-    toolBar.delegate = self;
     self.toolbar = toolBar ;
     
 }
@@ -299,23 +298,22 @@
 
 
 #warning todo 点击微博转发、评论 、点赞
-
-
-#pragma mark- toolBarDelegate 点击转发、评论、点赞
--(void)toolBar:(ToolBar *)tooBar clickButton:(UIButton *)button{
-    if(button.tag == ToolBarButtonTypeAgree){
-  
-       
-    }
-    if(button.tag == ToolBarButtonTypeComment){
-        UIWindow *window = [UIApplication sharedApplication].keyWindow;
-      
-    }
-    if(button.tag == ToolBarButtonTypeRetweet){
-          NSLog(@"转发");
-    }
-    
-}
+//
+//
+//#pragma mark- toolBarDelegate 点击转发、评论、点赞
+//-(void)toolBar:(ToolBar *)tooBar clickButton:(UIButton *)button{
+//    if(button.tag == ToolBarButtonTypeAgree){
+//  
+//       
+//    }
+//    if(button.tag == ToolBarButtonTypeComment){
+//      
+//    }
+//    if(button.tag == ToolBarButtonTypeRetweet){
+//          NSLog(@"转发");
+//    }
+//    
+//}
 
 
 @end

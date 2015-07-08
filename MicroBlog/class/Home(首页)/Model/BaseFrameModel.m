@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
 //
 
-#import "BaseModelFrame.h"
+#import "BaseFrameModel.h"
 #import "StatusModel.h"
 #import "UserModel.h"
 #import "StatusPhotosView.h"
@@ -15,7 +15,7 @@
 
 
 
-@implementation BaseModelFrame
+@implementation BaseFrameModel
 
 /**
  *   计算所有控件的Frame

@@ -16,11 +16,13 @@
 #import "StatusModel.h"
 #import "StatusFrameModel.h"
 #import "MJExtension.h"
+#import "StatusDetailTitleView.h"
 
 
 @interface StatusDetailViewController ()
 @property (nonatomic , strong) StatusDetailFrameModel *statusFrameModel;
 @property (nonatomic , strong) UITableView *tableView;
+@property (nonatomic , strong) StatusDetailTitleView *titleView;
 
 @end
 
@@ -75,12 +77,12 @@
 
 #pragma mark - TabelView代理
 
-/** 2个Section */
+/** 块  */
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
 
-/** row*/
+/** 行 */
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section == 0){
         return 1;
@@ -88,16 +90,37 @@
     return 20;
 }
 
+/** Header (评论头部的工具条) */
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(section ==1 ){
+        if(_titleView == nil){
+            CGRect frame = CGRectMake(0, 0,tableView.frame.size.width, kTitleViewHeiht );
+            _titleView = [[StatusDetailTitleView alloc]initWithFrame:frame];
+            _titleView.statusModel = _statusModel ;
+        }
+        return _titleView ;
+    }
 
+    return nil;
+}
+
+
+/**  Cell  */
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
     static NSString *ID = @"Cell" ;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if(cell ==nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    cell.textLabel.text =@"1111";
+    
+    cell.textLabel.text = @"111";
     return cell;
+    
+ 
 }
+
 
 
 

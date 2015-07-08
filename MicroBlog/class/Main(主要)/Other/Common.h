@@ -22,3 +22,12 @@
 #define   kStatusCellRetweetContentFont [UIFont systemFontOfSize:13]
 
 
+
+
+
+/** 微博详情页面 */
+
+// tableView边框的宽度
+#define kTableBorderWidth 5
+
+

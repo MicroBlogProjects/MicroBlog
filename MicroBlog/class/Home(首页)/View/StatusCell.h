@@ -14,10 +14,6 @@
 @property (nonatomic , strong) StatusFrameModel *statusFrameModel;
 
 
-/**  用来标记这个微博是要显示在微博列表还是微博详情页 ， 0是微博列表，1是详情页 */
-@property (nonatomic , assign) NSUInteger type;
-
-
 + (instancetype)cellWithTablView:(UITableView *)tableView ;
 
 
