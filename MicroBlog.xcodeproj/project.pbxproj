@@ -57,7 +57,6 @@
 		2BB4F1C81B4B62A000126F91 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4F1C21B4B62A000126F91 /* SDBrowserImageView.m */; };
 		2BB4F1C91B4B62A000126F91 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4F1C41B4B62A000126F91 /* SDPhotoBrowser.m */; };
 		2BB4F1CA1B4B62A000126F91 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4F1C71B4B62A000126F91 /* SDWaitingView.m */; };
-		2BB4F1CD1B4B775A00126F91 /* StatusDetailBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4F1CC1B4B775A00126F91 /* StatusDetailBarView.m */; };
 		2BC7C10C1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */; };
 		2BC823971B4772AA009018D4 /* StatusFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823861B4772AA009018D4 /* StatusFrameModel.m */; };
 		2BC823981B4772AA009018D4 /* StatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823881B4772AA009018D4 /* StatusModel.m */; };
@@ -214,8 +213,6 @@
 		2BB4F1C51B4B62A000126F91 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		2BB4F1C61B4B62A000126F91 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
 		2BB4F1C71B4B62A000126F91 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
-		2BB4F1CB1B4B775A00126F91 /* StatusDetailBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailBarView.h; sourceTree = "<group>"; };
-		2BB4F1CC1B4B775A00126F91 /* StatusDetailBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailBarView.m; sourceTree = "<group>"; };
 		2BC7C10A1B3D6F77005636CE /* UIBarButtonItem+DIYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DIYButton.h"; sourceTree = "<group>"; };
 		2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DIYButton.m"; sourceTree = "<group>"; };
 		2BC823851B4772AA009018D4 /* StatusFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusFrameModel.h; sourceTree = "<group>"; };
@@ -567,8 +564,6 @@
 				2B83A9B71B47AAEE00E0F351 /* StatusPhotoView.m */,
 				2BD76F241B4AA2F100A1B4CB /* DetailToolBar.h */,
 				2BD76F251B4AA2F100A1B4CB /* DetailToolBar.m */,
-				2BB4F1CB1B4B775A00126F91 /* StatusDetailBarView.h */,
-				2BB4F1CC1B4B775A00126F91 /* StatusDetailBarView.m */,
 				2BB2F93B1B4C04E800981B91 /* CommentCell.h */,
 				2BB2F93C1B4C04E800981B91 /* CommentCell.m */,
 			);
@@ -967,7 +962,6 @@
 				2BD0358E1B40DEF400E5A0F7 /* AFURLRequestSerialization.m in Sources */,
 				2BD753E31B4D04E300D80133 /* BaseModelFrame.m in Sources */,
 				2BD0358D1B40DEF400E5A0F7 /* AFURLConnectionOperation.m in Sources */,
-				2BB4F1CD1B4B775A00126F91 /* StatusDetailBarView.m in Sources */,
 				2BDE74CD1B3D343500E540AF /* DiscoverViewController.m in Sources */,
 				2B6539081B41671500FD9893 /* AccountModel.m in Sources */,
 				2B83A9B81B47AAEE00E0F351 /* StatusPhotoView.m in Sources */,

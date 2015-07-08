@@ -4,7 +4,7 @@
 //
 //  Created by lai on 15/7/6.
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
-// 查看微博详情页面
+//  微博详情页面
 
 #define kOptionHeight 44
 #define kTitleViewHeiht 50
@@ -21,6 +21,7 @@
 @interface StatusDetailViewController ()
 @property (nonatomic , strong) StatusDetailFrameModel *statusFrameModel;
 @property (nonatomic , strong) UITableView *tableView;
+
 @end
 
 @implementation StatusDetailViewController

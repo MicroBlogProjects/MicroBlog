@@ -435,13 +435,14 @@
     return frame.cellHeight ;
 }
 
+/** 点击微博 跳转到 微博详情页 */
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
-//    StatusFrameModel *frameModel = _statusFrameModels[indexPath.row];
-//    statusDetail.statusModel = frameModel.statusModel;
-//    
-//    [self.navigationController pushViewController:statusDetail animated:YES] ;
+    StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
+    StatusFrameModel *frameModel = _statusFrameModels[indexPath.row];
+    statusDetail.statusModel = frameModel.statusModel;
+    
+    [self.navigationController pushViewController:statusDetail animated:YES] ;
     
 }
 
