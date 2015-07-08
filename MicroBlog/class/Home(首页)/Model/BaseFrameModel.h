@@ -1,5 +1,5 @@
 //
-//  BaseModelFrame.h
+//  BaseFrameModel.h
 //  MicroBlog
 //
 //  Created by lai on 15/7/8.
@@ -10,7 +10,7 @@
 
 @class  StatusModel;
 
-@interface BaseModelFrame : NSObject {
+@interface BaseFrameModel : NSObject {
     CGFloat _cellHeight;
     CGRect _retweetViewF  ;
 }
@@ -49,7 +49,6 @@
 
 /** 底部工具条*/
 @property (nonatomic , assign) CGRect toolBarF;
-
 
 /** cell的高度*/
 @property (nonatomic , assign) CGFloat cellHeight;

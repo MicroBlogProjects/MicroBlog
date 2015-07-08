@@ -21,6 +21,8 @@
 
 @implementation MainTabbarViewController
 
+/**  自动装换成单例的函数 */
+singleton_implementation(MainTabbarViewController)
 - (void)viewDidLoad {
     [super viewDidLoad];
     

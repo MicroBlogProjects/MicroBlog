@@ -15,8 +15,11 @@
 #import "AccountTool.h"
 #import "StatusModel.h"
 #import "StatusFrameModel.h"
+#import "StatusModel.h"
 #import "MJExtension.h"
 #import "StatusDetailTitleView.h"
+#import "StatusDetailCell.h"
+
 
 
 @interface StatusDetailViewController ()
@@ -39,9 +42,7 @@
     
     //2.添加View的子控制器
     [self createSubViews];
-    
-    
- 
+
     
 }
 
@@ -70,6 +71,14 @@
     option.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.view addSubview:option];
     
+    
+    
+}
+
+-(void)setStatusModel:(StatusModel *)statusModel{
+    _statusModel =statusModel ;
+    
+    self.statusFrameModel.statusModel = statusModel ;
     
     
 }
@@ -104,21 +113,54 @@
     return nil;
 }
 
+/**  Cell的高度 */
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(indexPath.section == 0){
+        return  _statusFrameModel.cellHeight;
+     
+    }
+    return 44;
+}
+
+/** Header的高 */
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if(section == 1){
+        return kTitleViewHeiht;
+    }
+    return 0;
+}
 
 /**  Cell  */
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    if(indexPath.section == 0 ){
+        static NSString *ID = @"StatusDetailCell" ;
+        StatusDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if(cell ==nil){
+            cell = [[StatusDetailCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.baseFrameModel  = _statusFrameModel ;
+        
+        return cell ;
     
-    static NSString *ID = @"Cell" ;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if(cell ==nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+//        static NSString *ID = @"Cell1" ;
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+//        if(cell ==nil){
+//            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+//        }
+//          cell.textLabel.text = @"32432423";
+//         return  cell ;
+    }else{
+
+        static NSString *ID = @"UITableViewCell" ;
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if(cell ==nil){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.textLabel.text  = [NSString stringWithFormat:@"ceshi - %d",indexPath.row];
+        return cell;
     }
-    
-    cell.textLabel.text = @"111";
-    return cell;
-    
- 
 }
 
 

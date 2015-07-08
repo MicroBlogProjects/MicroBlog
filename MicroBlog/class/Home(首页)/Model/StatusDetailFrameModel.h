@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
 //
 
-#import "BaseModelFrame.h"
+#import "BaseFrameModel.h"
 
-@interface StatusDetailFrameModel : BaseModelFrame
+@interface StatusDetailFrameModel : BaseFrameModel
 
 @end

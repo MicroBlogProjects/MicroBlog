@@ -24,10 +24,26 @@
 
 
 
-
 /** 微博详情页面 */
 
 // tableView边框的宽度
 #define kTableBorderWidth 5
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// tableView第一个cell的间距
+#define kTableTopBorderWidth 5
+// tableView每个cell的间距
+#define kTableViewCellMargin 5

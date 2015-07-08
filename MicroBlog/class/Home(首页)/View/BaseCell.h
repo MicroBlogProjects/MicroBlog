@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class BaseModelFrame ;
-@interface BaseCell : UITableViewCell
+@class BaseFrameModel ;
+@interface BaseCell : UITableViewCell{
+    
+    BaseFrameModel *_baseFrameModel;
+}
 
+/** 转发微博容器*/
+@property (nonatomic , weak) UIView *retweetView ;
 
-@property (nonatomic , strong) BaseModelF
+@property (nonatomic , strong)BaseFrameModel *baseFrameModel;
 
 @end

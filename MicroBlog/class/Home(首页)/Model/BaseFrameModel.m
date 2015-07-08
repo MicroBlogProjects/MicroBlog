@@ -1,5 +1,5 @@
 //
-//  BaseModelFrame.m
+//  BaseFrameModel.m
 //  MicroBlog
 //
 //  Created by lai on 15/7/8.
@@ -21,6 +21,7 @@
  *   计算所有控件的Frame
  */
 -(void)setStatusModel:(StatusModel *)statusModel{
+    
     
     _statusModel  = statusModel ;
     UserModel *user= statusModel.user;

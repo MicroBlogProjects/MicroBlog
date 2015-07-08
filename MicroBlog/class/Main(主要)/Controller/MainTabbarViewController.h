@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Singleton.h"
 
 @interface MainTabbarViewController : UITabBarController
 
+/** 自动转换成单例的函数 */
+singleton_interface(MainTabbarViewController)
 @end

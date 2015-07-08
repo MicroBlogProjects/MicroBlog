@@ -12,8 +12,8 @@
      3、存放着一个数据模型StatusModel
  */
 
-#import "BaseModelFrame.h"
+#import "BaseFrameModel.h"
 
-@interface StatusFrameModel :BaseModelFrame
+@interface StatusFrameModel :BaseFrameModel
 
 @end

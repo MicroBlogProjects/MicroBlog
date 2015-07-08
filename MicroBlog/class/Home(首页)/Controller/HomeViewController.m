@@ -448,14 +448,13 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    static NSString *ID = @"StatusCell" ;
+    StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if(cell ==nil){
+        cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    cell.baseFrameModel = _statusFrameModels[indexPath.row];
     
-    //获得cell
-    StatusCell *cell = [StatusCell cellWithTablView:tableView];
-    //取出这行cell对应的微博字典
-    StatusFrameModel *statusFrameModel = self.statusFrameModels[indexPath.row];
-
-    cell.statusFrameModel = statusFrameModel;
-
     return  cell;
 }
 

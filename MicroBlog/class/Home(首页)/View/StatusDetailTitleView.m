@@ -38,9 +38,9 @@
         _bg = [[UIImageView alloc]init ] ;
         _bg.userInteractionEnabled =YES ;
         _bg.image = [UIImage stretchImageWithName:@"statusdetail_comment_top_background"];
-        CGFloat bgX = kTableBorderWidth ;
+        CGFloat bgX = 0 ;
         CGFloat bgY = 10 ;
-        CGFloat bgWidth = frame.size.width -2*bgX ;
+        CGFloat bgWidth = frame.size.width ;
         CGFloat bgHeight = frame.size.height - bgY ;
         _bg.frame = CGRectMake(bgX, bgY, bgWidth, bgHeight);
         [self addSubview:_bg];
