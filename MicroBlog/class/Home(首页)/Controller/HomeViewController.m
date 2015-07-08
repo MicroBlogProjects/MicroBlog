@@ -21,6 +21,7 @@
 #import "LoadMoreFootView.h"
 #import "StatusCell.h"
 #import "StatusFrameModel.h"
+#import "StatusDetailViewController.h"
 
 
 @interface HomeViewController () <DropDownMenuDelegate >
@@ -120,6 +121,8 @@
     
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+
+    
     
     //2.拼接请求参数
     AccountModel *account = [AccountTool account]; //从沙盒中获取用户信息
@@ -130,7 +133,7 @@
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
        params[@"since_id"] = firstStatus.statusModel.idstr;
     }
-//    params[@"count"] = @5;
+    params[@"count"] = @2;
     /*
      赖伟煌的迷你微博
      access_token=2.004nnkxBNS6mBB72a37612fdviOKvD
@@ -150,6 +153,7 @@
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
+       
         
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
@@ -166,6 +170,8 @@
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
+        
+      
         
         //刷新表格
         [self.tableView reloadData];
@@ -320,7 +326,7 @@
         NSLog(@"%@",error);
     }];
     
-   
+
     
 }
 
@@ -425,16 +431,26 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     StatusFrameModel * frame = self.statusFrameModels[indexPath.row];
+    
     return frame.cellHeight ;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
+    StatusFrameModel *frameModel = _statusFrameModels[indexPath.row];
+    statusDetail.statusModel = frameModel.statusModel;
+    
+    [self.navigationController pushViewController:statusDetail animated:YES] ;
+    
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
     //获得cell
-    StatusCell *cell = [StatusCell cellWithTablView:tableView];
-//    //取出这行cell对应的微博字典
+    StatusCell *cell = [StatusCell cellWithTablView:tableView Type:0];
+    //取出这行cell对应的微博字典
     StatusFrameModel *statusFrameModel = self.statusFrameModels[indexPath.row];
 
     cell.statusFrameModel = statusFrameModel;

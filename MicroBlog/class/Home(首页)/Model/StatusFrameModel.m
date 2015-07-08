@@ -121,6 +121,7 @@
         self.retweetViewF = CGRectMake(retweetViewX, retweetViewY, retweetViewW, retweetViewH);
         toolbarY = CGRectGetMaxY(self.retweetViewF); //有转发，则toolBar参照物为转发微博
         
+        
     }else{ //没有转发微博
         toolbarY = CGRectGetMaxY(self.originalViewF);
     }
@@ -135,6 +136,8 @@
     
     
     self.cellHeight = CGRectGetMaxY(self.toolBarF);
+    self.cellHeightForDetailStatus = toolbarY;
+    
     
 }
 

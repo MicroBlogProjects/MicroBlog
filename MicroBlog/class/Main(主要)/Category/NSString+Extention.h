@@ -4,8 +4,7 @@
 //
 //  Created by lai on 15/7/4.
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
-//
-
+//     给定字体大小，计算size
 #import <Foundation/Foundation.h>
 
 @interface NSString (Extention)

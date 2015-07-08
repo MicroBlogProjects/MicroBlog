@@ -11,13 +11,12 @@
 #import "UserModel.h"
 #import "StatusFrameModel.h"
 #import "UIImageView+WebCache.h"
-#import "UserModel.h"
 #import "PhotoModel.h"
 #import "ToolBar.h"
 #import "StatusPhotosView.h"
 #import "IconView.h"
-
-@interface StatusCell ()
+#import "NavigationController.h"
+@interface StatusCell () <ToolBarDelegate>
 
 /*原创微博*/
 /**原创微博容器*/
@@ -46,10 +45,8 @@
 /** 转发配图*/
 @property (nonatomic , weak) StatusPhotosView *retweetphotosView ;
 
-
 /** 工具条*/
 @property (nonatomic , weak) ToolBar *toolbar;
-
 
 @end
 
@@ -58,15 +55,16 @@
 @implementation StatusCell
 
 /**
- *  负责返回一个DIY好的Cell
+ *  负责返回一个DIY好的Cell ,type是用来区分要现实在微博列表还是现实在微博详情页的微博，两个地方显示的微博样式有点区别。0是微博列表，1是详情页
  */
-+(instancetype )cellWithTablView:(UITableView *)tableView{
++(instancetype )cellWithTablView:(UITableView *)tableView Type:(NSUInteger)type{
     
     static NSString *ID = @"Cell" ;
     StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if(cell ==nil){
         cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
+    cell.type = type ;
     return  cell;
 }
 
@@ -89,18 +87,27 @@
        //初始化转发微博模块
         [self setupRetweet];
        //初始化工具条
-        [self setupToolBar];
+        if(self.type==0){
+           [self setupToolBar];
+        }
         
         
     }
     return self ;
 }
+
+
+
+
+
+#pragma mark- 初始化微博框架
 /**
  *  初始化微博工具条 (转发 评论 点赞)
  */
 -(void)setupToolBar{
     ToolBar *toolBar = [[ToolBar alloc]init] ; 
     [self.contentView addSubview:toolBar];
+    toolBar.delegate = self;
     self.toolbar = toolBar ;
     
 }
@@ -134,6 +141,7 @@
  *  初始化原创微博模块
  */
 -(void)setupOriginal{
+    
     /**原创微博框架容器*/
     UIView *originalView  = [[UIView alloc]init];
     originalView.backgroundColor = [UIColor whiteColor];
@@ -152,6 +160,7 @@
     
     /** 微博配图*/
     StatusPhotosView *photosView = [[StatusPhotosView alloc]init];
+   
     [self.originalView addSubview:photosView];
     self.photosView = photosView ;
     
@@ -280,15 +289,34 @@
         self.retweetView.hidden = YES;
     }
     
-    /**  工具条 */
+    if(self.type == 0){
+        /**  工具条 */
     self.toolbar.frame = statusFrameModel.toolBarF ;
     self.toolbar.statusModel = statusFrameModel.statusModel;
+    }
     
     
 }
 
 
+#warning todo 点击微博转发、评论 、点赞
 
+
+#pragma mark- toolBarDelegate 点击转发、评论、点赞
+-(void)toolBar:(ToolBar *)tooBar clickButton:(UIButton *)button{
+    if(button.tag == ToolBarButtonTypeAgree){
+  
+       
+    }
+    if(button.tag == ToolBarButtonTypeComment){
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+      
+    }
+    if(button.tag == ToolBarButtonTypeRetweet){
+          NSLog(@"转发");
+    }
+    
+}
 
 
 @end

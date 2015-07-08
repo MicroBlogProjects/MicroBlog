@@ -1,15 +1,15 @@
 //
-//  ToolBar.m
+//  detailToolBar.m
 //  MicroBlog
 //
-//  Created by lai on 15/7/3.
+//  Created by lai on 15/7/6.
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
-//
+//  查看微博详情页面的下方工具栏
 
-#import "ToolBar.h"
+#import "DetailToolBar.h"
 #import "StatusModel.h"
 
-@interface ToolBar ()
+@interface DetailToolBar ()
 /**里面存放所有的按钮*/
 @property (nonatomic , strong) NSMutableArray *buttons ;
 /**里面存放所有的分割线*/
@@ -19,7 +19,7 @@
 @property (nonatomic, weak) UIButton *attitudeBtn; //点赞按钮
 @end
 
-@implementation ToolBar
+@implementation DetailToolBar
 
 +(instancetype)toobar {
     return  [[self alloc] init];
@@ -28,15 +28,15 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
         
-      //设置ToolBar的背景颜色
-      self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
-      //添加按钮
-        self.repostBtn   =  [self setupButtonWithTitle:@"转发" icon:@"timeline_icon_retweet" type:ToolBarButtonTypeRetweet];
-        self.commentBtn  =  [self setupButtonWithTitle:@"评论" icon:@"timeline_icon_comment" type:ToolBarButtonTypeComment];
-        self.attitudeBtn =  [self setupButtonWithTitle:@"赞" icon:@"timeline_icon_unlike" type:ToolBarButtonTypeAgree];
-      //添加分割线
-      [self setupDevider];
-      [self setupDevider];
+        //设置ToolBar的背景颜色
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
+        //添加按钮
+        self.repostBtn   =  [self setupButtonWithTitle:@"转发" icon:@"timeline_icon_retweet" type:DetailToolBarButtonTypeRetweet];
+        self.commentBtn  =  [self setupButtonWithTitle:@"评论" icon:@"timeline_icon_comment" type:DetailToolBarButtonTypeComment];
+        self.attitudeBtn =  [self setupButtonWithTitle:@"赞" icon:@"timeline_icon_unlike" type:DetailToolBarButtonTypeAgree];
+        //添加分割线
+        [self setupDevider];
+        [self setupDevider];
     }
     return self;
 }
@@ -87,7 +87,7 @@
  *  @param title 按钮文字
  *  @param icon  按钮图标
  */
--(UIButton *)setupButtonWithTitle:(NSString *)title icon:(NSString *)icon type:(ToolBarButtonType)type{
+-(UIButton *)setupButtonWithTitle:(NSString *)title icon:(NSString *)icon type:(DetailToolBarButtonType)type{
     
     UIButton *btn  = [[UIButton alloc]init ] ;
     btn.tag = type;
@@ -121,10 +121,8 @@
     [self setupButtonCount:statusModel.comments_count button:self.commentBtn title:@"评论"];
     [self setupButtonCount:statusModel.attitudes_count button:self.attitudeBtn title:@"赞"];
     
-   
+    
 }
-
-
 
 /**
  *  设置 (评论 转发 点赞) 的个数
