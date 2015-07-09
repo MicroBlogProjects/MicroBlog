@@ -53,6 +53,8 @@
 		2B6903E91B42BE9100629696 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6903E81B42BE9100629696 /* Foundation+Log.m */; };
 		2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7863521B3CEFED00DC74C4 /* Images.xcassets */; };
 		2B7863621B3CEFED00DC74C4 /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7863611B3CEFED00DC74C4 /* __Tests.m */; };
+		2B7D1B841B4E263900EE8921 /* CommentFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D1B831B4E263900EE8921 /* CommentFrameModel.m */; };
+		2B7D1B871B4E264400EE8921 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D1B861B4E264400EE8921 /* CommentModel.m */; };
 		2B83A9AC1B47746700E0F351 /* StatusPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9AB1B47746700E0F351 /* StatusPhotosView.m */; };
 		2B83A9B21B4788DF00E0F351 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9B11B4788DF00E0F351 /* PhotoModel.m */; };
 		2B83A9B81B47AAEE00E0F351 /* StatusPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9B71B47AAEE00E0F351 /* StatusPhotoView.m */; };
@@ -213,6 +215,10 @@
 		2B78635B1B3CEFED00DC74C4 /* MicroBlogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MicroBlogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7863601B3CEFED00DC74C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B7863611B3CEFED00DC74C4 /* __Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = __Tests.m; sourceTree = "<group>"; };
+		2B7D1B821B4E263900EE8921 /* CommentFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentFrameModel.h; sourceTree = "<group>"; };
+		2B7D1B831B4E263900EE8921 /* CommentFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentFrameModel.m; sourceTree = "<group>"; };
+		2B7D1B851B4E264400EE8921 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		2B7D1B861B4E264400EE8921 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		2B83A9AA1B47746700E0F351 /* StatusPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusPhotosView.h; sourceTree = "<group>"; };
 		2B83A9AB1B47746700E0F351 /* StatusPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusPhotosView.m; sourceTree = "<group>"; };
 		2B83A9B01B4788DF00E0F351 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
@@ -581,6 +587,10 @@
 				2BD753E21B4D04E300D80133 /* BaseFrameModel.m */,
 				2BA761951B4D0C4F001167F1 /* StatusDetailFrameModel.h */,
 				2BA761961B4D0C4F001167F1 /* StatusDetailFrameModel.m */,
+				2B7D1B821B4E263900EE8921 /* CommentFrameModel.h */,
+				2B7D1B831B4E263900EE8921 /* CommentFrameModel.m */,
+				2B7D1B851B4E264400EE8921 /* CommentModel.h */,
+				2B7D1B861B4E264400EE8921 /* CommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1108,6 +1118,8 @@
 				2B65390C1B41728600FD9893 /* AccountTool.m in Sources */,
 				2B6332231B4386AF006D2840 /* UIImageView+WebCache.m in Sources */,
 				2BD0358F1B40DEF400E5A0F7 /* AFURLResponseSerialization.m in Sources */,
+				2B7D1B871B4E264400EE8921 /* CommentModel.m in Sources */,
+				2B7D1B841B4E263900EE8921 /* CommentFrameModel.m in Sources */,
 				2BCA7DEA1B3F95D000CF0003 /* MenuTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

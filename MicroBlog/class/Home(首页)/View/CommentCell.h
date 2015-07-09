@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class StatusFrameModel ;
+@class BaseFrameModel ;
 @interface CommentCell : UITableViewCell
 
-@property (nonatomic , strong) StatusFrameModel *statusFrameModel;
+@property (nonatomic , strong) BaseFrameModel *statusFrameModel;
 
 + (instancetype)cellWithTablView:(UITableView *)tableView ;
 

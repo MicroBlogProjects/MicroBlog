@@ -38,6 +38,7 @@
        //与baseCell不一样的东西在这里设置
         [self addOtherObject];
         
+        /* 为转发部分设置手势 */
         self.retweetView.userInteractionEnabled = YES ;
         [self.retweetView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(retweetClick) ]];
     }
@@ -46,8 +47,6 @@
 
 
 -(void)retweetClick{
-    NSLog(@"121212");
-#warning  todo 这里转换还有点不清楚
     NavigationController *nav = (NavigationController *)[MainTabbarViewController sharedMainTabbarViewController].selectedViewController;
     StatusDetailViewController *detail = [[StatusDetailViewController alloc]init ] ;
     detail.statusModel = self.baseFrameModel.statusModel.retweeted_status;

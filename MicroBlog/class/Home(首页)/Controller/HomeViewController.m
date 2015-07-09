@@ -121,7 +121,7 @@
     
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-
+    
     
     
     //2.拼接请求参数
@@ -131,7 +131,7 @@
     //取出最前面的微博（当前缓存数组中最新的微博，我们下拉只需要获取比缓存中更新的微博数据）
     StatusFrameModel *firstStatus = [self.statusFrameModels firstObject];
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
-       params[@"since_id"] = firstStatus.statusModel.idstr;
+        params[@"since_id"] = firstStatus.statusModel.idstr;
     }
     params[@"count"] = @2;
     /*
@@ -153,7 +153,7 @@
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
-       
+        
         
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
@@ -171,7 +171,7 @@
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
         
-      
+        
         
         //刷新表格
         [self.tableView reloadData];
@@ -185,7 +185,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //菊花停止转动
         [control endRefreshing];
-         NSLog(@"%@",error);
+        NSLog(@"%@",error);
     }];
  
 }
