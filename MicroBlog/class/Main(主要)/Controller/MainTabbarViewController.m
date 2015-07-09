@@ -42,6 +42,9 @@
     TabBar *tabBar = [[TabBar alloc]init];
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
+
+#warning todo 
+    self.selectedIndex =3 ;
    
 }
 
