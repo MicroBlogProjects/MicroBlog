@@ -21,6 +21,7 @@
 #import "LoadMoreFootView.h"
 #import "StatusCell.h"
 #import "StatusFrameModel.h"
+#import "StatusDetailViewController.h"
 
 
 @interface HomeViewController () <DropDownMenuDelegate >
@@ -71,7 +72,7 @@
     [manager GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         int unReadStatusCount = [responseObject[@"status"] intValue];
         if(unReadStatusCount ==0){ //如果未读消息数目为0，清除badgeValue , 并将应用图片数字清零
-            self.tabBarItem.badgeValue =nil ;
+            self.tabBarItem.badgeValue = nil ;
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         
         }else{
@@ -119,6 +120,8 @@
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
+    
+    
     //2.拼接请求参数
     AccountModel *account = [AccountTool account]; //从沙盒中获取用户信息
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
@@ -126,9 +129,9 @@
     //取出最前面的微博（当前缓存数组中最新的微博，我们下拉只需要获取比缓存中更新的微博数据）
     StatusFrameModel *firstStatus = [self.statusFrameModels firstObject];
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
-       params[@"since_id"] = firstStatus.statusModel.idstr;
+        params[@"since_id"] = firstStatus.statusModel.idstr;
     }
-//    params[@"count"] = @5;
+    params[@"count"] = @2;
     /*
      赖伟煌的迷你微博
      access_token=2.004nnkxBNS6mBB72a37612fdviOKvD
@@ -149,6 +152,7 @@
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         
+        
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
         //将StatusModel数组 转换成 StatusFrameModel数组
@@ -165,6 +169,8 @@
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
         
+        
+        
         //刷新表格
         [self.tableView reloadData];
         
@@ -177,7 +183,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //菊花停止转动
         [control endRefreshing];
-         NSLog(@"%@",error);
+        NSLog(@"%@",error);
     }];
  
 }
@@ -318,7 +324,7 @@
         NSLog(@"%@",error);
     }];
     
-   
+
     
 }
 
@@ -423,20 +429,30 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     StatusFrameModel * frame = self.statusFrameModels[indexPath.row];
+    
     return frame.cellHeight ;
 }
 
+/** 点击微博 跳转到 微博详情页 */
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
+    StatusFrameModel *frameModel = _statusFrameModels[indexPath.row];
+    statusDetail.statusModel = frameModel.statusModel;
+    
+    [self.navigationController pushViewController:statusDetail animated:YES] ;
+    
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    static NSString *ID = @"StatusCell" ;
+    StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if(cell ==nil){
+        cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    cell.baseFrameModel = _statusFrameModels[indexPath.row];
     
-    //获得cell
-    StatusCell *cell = [StatusCell cellWithTablView:tableView];
-//    //取出这行cell对应的微博字典
-    StatusFrameModel *statusFrameModel = self.statusFrameModels[indexPath.row];
-
-    cell.statusFrameModel = statusFrameModel;
-
     return  cell;
 }
 
