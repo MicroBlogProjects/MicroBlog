@@ -1,16 +1,15 @@
 //
-//  ToolBarCell.h
+//  ToolBarCellController.h
 //  MicroBlog
 //
-//  Created by guanliyuan on 15/7/8.
+//  Created by guanliyuan on 15/7/9.
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "ProfileUserModel.h"
-#import "ToolBarCellController.h"
-
-@interface ToolBarCell : UITableViewCell
+#import "ProfileStasusController.h"
+#import "NavigationController.h"
 //粉丝数量按钮的tag
 #define fanButtonTag 1003
 //关注数量按钮的tag;
@@ -23,7 +22,10 @@
 #define  kStatusCellNameFont  [UIFont systemFontOfSize:15]
 
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
--(void)setProfileUserModel:(ProfileUserModel *) profileUserModel andToolBarCell: (ToolBarCellController *)toolBarcell;
 
+@interface ToolBarCellController : UIViewController
+//加载微博界面
+@property (nonatomic,strong)ProfileStasusController * profileStasus;
+
+-(void)setProfileUserModel:(ProfileUserModel *) profileUserModel;
 @end

@@ -30,6 +30,8 @@
 @property (nonatomic , assign)  BOOL verified;
 //cell的高度
 @property (nonatomic , assign) double cellHight;
-
-
+//就职于
+@property (nonatomic , strong) NSString * work;
+@property (nonatomic , strong) NSString * school;
+@property (nonatomic , strong) NSString * location;
 @end

@@ -16,12 +16,14 @@
 #import "AddFriendTableViewController.h"
 #import "ToolBarCell.h"
 #import "PersonalInformationViewController.h"
+#import "ToolBarCellController.h"
 
 
 @interface ProfileViewController ()<UITableViewDelegate,PersonInfoDelegate>
 
 
 @property (nonatomic , strong)ProfileUserModel * userModel;
+@property (nonatomic , strong)ToolBarCellController * toolBarCell;
 
 @end
 
@@ -86,6 +88,7 @@
     self.userModel.mbrank = [[responseObject objectForKey:@"mbrank"] integerValue];
     //是否为加V用户
     self.userModel.verified = [[responseObject objectForKey:@"verified"] boolValue];
+    self.userModel.location = [responseObject objectForKey:@"location"];
 }
 /**
  *  设置navigationBar的2个按钮
@@ -174,10 +177,12 @@
     else if (indexPath.section == 1){
         static NSString * ID = @"toolCell";
         cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        self.toolBarCell = [[ToolBarCellController alloc]init];
         if (cell == nil ) {
             cell = [[ToolBarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         }
-        [(ToolBarCell *)cell setProfileUserModel:self.userModel];
+//        [(ToolBarCell *)cell setProfileUserModel:self.userModel];
+        [(ToolBarCell*)cell setProfileUserModel:self.userModel andToolBarCell:self.toolBarCell];
     }
     else
     {

@@ -10,21 +10,15 @@
 
 @implementation ProfileToolButtonCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andDIYsegment:(DIYSegmentViewController *)segment;
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
         //toolButton
-        self.segmentView = [[DIYSegmentViewController alloc]init];
+        self.segmentView = segment;
         [self addSubview:self.segmentView.view];
     }
     return self;
 }
-
-//-(void) setCell:(DIYSegmentViewController *)segmentView
-//{
-//    segmentView = [[DIYSegmentViewController alloc]init];
-//    [self addSubview:segmentView.view];
-//}
 @end

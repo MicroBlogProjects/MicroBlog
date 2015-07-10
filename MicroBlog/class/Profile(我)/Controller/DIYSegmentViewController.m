@@ -20,8 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"self.View %@",self.view);
-    //self.view.backgroundColor = [UIColor redColor];
     self.currIndex = 2;
     //主页按钮
     CGRect homePageFram = CGRectMake(ButtonWidth, 0, ButtonWidth, ButtonHight);
@@ -66,11 +64,13 @@
     NSInteger tag = button.tag - 10000;
     if (tag != self.currIndex) {
         self.currIndex = tag;
-        [UIView animateWithDuration:0.5f animations:^{
+        [UIView animateWithDuration:0.3f animations:^{
             CGRect fram = self.orangeLineLabel.frame;
             fram.origin.x = tag * ButtonWidth;
             self.orangeLineLabel.frame = fram;
         } completion:^(BOOL finished) {
+            self.DIYsegmentdelegate = self.personInfoController;
+            [self.DIYsegmentdelegate exchangeView:tag];
         }];
     }
 }

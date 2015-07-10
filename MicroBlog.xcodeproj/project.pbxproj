@@ -86,6 +86,7 @@
 		2BDE74D81B3D343500E540AF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74CB1B3D343500E540AF /* TestViewController.m */; };
 		2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDE74CC1B3D343500E540AF /* TestViewController.xib */; };
 		A514C2691B4E007900F6B10F /* ProfileToolButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A514C2681B4E007900F6B10F /* ProfileToolButtonCell.m */; };
+		A546FACC1B4E932800545435 /* ToolBarCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = A546FACB1B4E932800545435 /* ToolBarCellController.m */; };
 		A5B2496A1B4B6ED80059EF0C /* EditingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B249681B4B6ED80059EF0C /* EditingTableViewController.m */; };
 		A5B2496B1B4B6ED80059EF0C /* EditingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B249691B4B6ED80059EF0C /* EditingTableViewController.xib */; };
 		A5B249741B4B74690059EF0C /* AddFriendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B249721B4B74690059EF0C /* AddFriendTableViewController.m */; };
@@ -97,6 +98,7 @@
 		A5C1C4851B4CCA7000D97B37 /* ToolBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C1C4841B4CCA7000D97B37 /* ToolBarCell.m */; };
 		A5C1C4881B4CFA2900D97B37 /* PersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C1C4871B4CFA2900D97B37 /* PersonalInformationViewController.m */; };
 		A5C1C48B1B4CFADB00D97B37 /* PersonInformationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C1C48A1B4CFADB00D97B37 /* PersonInformationViewCell.m */; };
+		A5D1CC4A1B4F4B2500E8B26C /* ProfileStasusController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CC491B4F4B2500E8B26C /* ProfileStasusController.m */; };
 		A5EBF4ED1B4D44B90098BADA /* DIYSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EBF4EC1B4D44B90098BADA /* DIYSegmentViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -270,6 +272,8 @@
 		2BDE74CC1B3D343500E540AF /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		A514C2671B4E007900F6B10F /* ProfileToolButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileToolButtonCell.h; sourceTree = "<group>"; };
 		A514C2681B4E007900F6B10F /* ProfileToolButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileToolButtonCell.m; sourceTree = "<group>"; };
+		A546FACA1B4E932800545435 /* ToolBarCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBarCellController.h; sourceTree = "<group>"; };
+		A546FACB1B4E932800545435 /* ToolBarCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBarCellController.m; sourceTree = "<group>"; };
 		A5B249671B4B6ED80059EF0C /* EditingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingTableViewController.h; sourceTree = "<group>"; };
 		A5B249681B4B6ED80059EF0C /* EditingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingTableViewController.m; sourceTree = "<group>"; };
 		A5B249691B4B6ED80059EF0C /* EditingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditingTableViewController.xib; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 		A5C1C4871B4CFA2900D97B37 /* PersonalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationViewController.m; sourceTree = "<group>"; };
 		A5C1C4891B4CFADB00D97B37 /* PersonInformationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInformationViewCell.h; sourceTree = "<group>"; };
 		A5C1C48A1B4CFADB00D97B37 /* PersonInformationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInformationViewCell.m; sourceTree = "<group>"; };
+		A5D1CC481B4F4B2500E8B26C /* ProfileStasusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileStasusController.h; sourceTree = "<group>"; };
+		A5D1CC491B4F4B2500E8B26C /* ProfileStasusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileStasusController.m; sourceTree = "<group>"; };
 		A5EBF4EB1B4D44B90098BADA /* DIYSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIYSegmentViewController.h; sourceTree = "<group>"; };
 		A5EBF4EC1B4D44B90098BADA /* DIYSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIYSegmentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -785,6 +791,10 @@
 				A5C1C4871B4CFA2900D97B37 /* PersonalInformationViewController.m */,
 				A5EBF4EB1B4D44B90098BADA /* DIYSegmentViewController.h */,
 				A5EBF4EC1B4D44B90098BADA /* DIYSegmentViewController.m */,
+				A546FACA1B4E932800545435 /* ToolBarCellController.h */,
+				A546FACB1B4E932800545435 /* ToolBarCellController.m */,
+				A5D1CC481B4F4B2500E8B26C /* ProfileStasusController.h */,
+				A5D1CC491B4F4B2500E8B26C /* ProfileStasusController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1003,6 +1013,7 @@
 				2BC8239D1B4772AA009018D4 /* TitleButton.m in Sources */,
 				2BD035891B40DEF400E5A0F7 /* AFHTTPRequestOperationManager.m in Sources */,
 				2B63321D1B4386AF006D2840 /* SDWebImagePrefetcher.m in Sources */,
+				A546FACC1B4E932800545435 /* ToolBarCellController.m in Sources */,
 				2B6332201B4386AF006D2840 /* UIImage+MultiFormat.m in Sources */,
 				2B6332461B43ACF7006D2840 /* MJIvar.m in Sources */,
 				2B6332181B4386AF006D2840 /* SDWebImageCompat.m in Sources */,
@@ -1013,6 +1024,7 @@
 				2BDE74D31B3D343500E540AF /* main.m in Sources */,
 				2BDE74D41B3D343500E540AF /* MessageViewController.m in Sources */,
 				2BDE74CE1B3D343500E540AF /* HomeViewController.m in Sources */,
+				A5D1CC4A1B4F4B2500E8B26C /* ProfileStasusController.m in Sources */,
 				2BD0358B1B40DEF400E5A0F7 /* AFNetworkReachabilityManager.m in Sources */,
 				2B63324A1B43ACF7006D2840 /* MJTypeEncoding.m in Sources */,
 				A5B2497A1B4BA3F40059EF0C /* ProfileIconView.m in Sources */,

@@ -46,8 +46,6 @@
     //集成下拉刷新控件 (刚打开APP的时候 模拟下拉一次来获取数据)
     [self setupDownRefresh];
     
-    //集成上拉刷新控件
-    [self setupUpRefresh];
     
     //定时获取未读消息数目，显示在badge上
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(setupUnReadCount) userInfo:nil repeats:YES];
