@@ -109,14 +109,14 @@
 		2BDE74D71B3D343500E540AF /* Test2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDE74C91B3D343500E540AF /* Test2ViewController.xib */; };
 		2BDE74D81B3D343500E540AF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74CB1B3D343500E540AF /* TestViewController.m */; };
 		2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDE74CC1B3D343500E540AF /* TestViewController.xib */; };
-<<<<<<< HEAD
+
 		2BEC52001B4D1D87002965E6 /* StatusDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC51FF1B4D1D87002965E6 /* StatusDetailTitleView.m */; };
 		2BEC52031B4D20CB002965E6 /* statusdetail_comment_top_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52011B4D20CB002965E6 /* statusdetail_comment_top_background.png */; };
 		2BEC52041B4D20CB002965E6 /* statusdetail_comment_top_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52021B4D20CB002965E6 /* statusdetail_comment_top_background@2x.png */; };
 		2BEC52071B4D21F5002965E6 /* statusdetail_comment_top_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52051B4D21F5002965E6 /* statusdetail_comment_top_arrow.png */; };
 		2BEC52081B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52061B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png */; };
 		2BEC520B1B4D3AF0002965E6 /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC520A1B4D3AF0002965E6 /* BaseCell.m */; };
-=======
+
 		C352B2331B4CAD480005071C /* EmotionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2321B4CAD480005071C /* EmotionTextView.m */; };
 		C352B2361B4CB06A0005071C /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2351B4CB06A0005071C /* UITextView+Extension.m */; };
 		C352B24C1B4D20310005071C /* EmotionAttachmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B24B1B4D20310005071C /* EmotionAttachmentModel.m */; };
@@ -135,7 +135,7 @@
 		C3A49C771B4AB7ED0071DB7B /* EmotionKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C761B4AB7ED0071DB7B /* EmotionKeyboard.m */; };
 		C3A49C7A1B4AB9600071DB7B /* EmotionTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */; };
 		C3A49C7D1B4ABA0D0071DB7B /* EmotionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */; };
->>>>>>> 陈新的Branch（7-10）
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -346,7 +346,7 @@
 		2BDE74CA1B3D343500E540AF /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		2BDE74CB1B3D343500E540AF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		2BDE74CC1B3D343500E540AF /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
-<<<<<<< HEAD
+
 		2BEC51FE1B4D1D87002965E6 /* StatusDetailTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailTitleView.h; sourceTree = "<group>"; };
 		2BEC51FF1B4D1D87002965E6 /* StatusDetailTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailTitleView.m; sourceTree = "<group>"; };
 		2BEC52011B4D20CB002965E6 /* statusdetail_comment_top_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusdetail_comment_top_background.png; sourceTree = "<group>"; };
@@ -355,7 +355,7 @@
 		2BEC52061B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statusdetail_comment_top_arrow@2x.png"; sourceTree = "<group>"; };
 		2BEC52091B4D3AF0002965E6 /* BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCell.h; sourceTree = "<group>"; };
 		2BEC520A1B4D3AF0002965E6 /* BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCell.m; sourceTree = "<group>"; };
-=======
+
 		C352B2311B4CAD480005071C /* EmotionTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionTextView.h; sourceTree = "<group>"; };
 		C352B2321B4CAD480005071C /* EmotionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTextView.m; sourceTree = "<group>"; };
 		C352B2341B4CB06A0005071C /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
@@ -390,7 +390,7 @@
 		C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTabBar.m; sourceTree = "<group>"; };
 		C3A49C7B1B4ABA0D0071DB7B /* EmotionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionListView.h; sourceTree = "<group>"; };
 		C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionListView.m; sourceTree = "<group>"; };
->>>>>>> 陈新的Branch（7-10）
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -540,11 +540,11 @@
 		2B7863451B3CEFED00DC74C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+
 				2BA7619B1B4D1248001167F1 /* image */,
-=======
+
 				C37784E51B4B7B460040F1CA /* EmotionIcons */,
->>>>>>> 陈新的Branch（7-10）
+
 				2B7863461B3CEFED00DC74C4 /* Info.plist */,
 				2BDE74741B3CF55400E540AF /* MicroBlog-Prefix.pch */,
 			);
@@ -854,15 +854,14 @@
 		2BDE74AB1B3D343500E540AF /* Category */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
+
 				2BA761A01B4D144A001167F1 /* NSString+File.h */,
 				2BA761A11B4D144A001167F1 /* NSString+File.m */,
 				2BA761981B4D11D6001167F1 /* UIImage+Image.h */,
 				2BA761991B4D11D6001167F1 /* UIImage+Image.m */,
-=======
+
 				C3A3493E1B4BD64400F6C263 /* NSString+Emoji.h */,
 				C3A3493F1B4BD64400F6C263 /* NSString+Emoji.m */,
->>>>>>> 陈新的Branch（7-10）
 				2B6903E81B42BE9100629696 /* Foundation+Log.m */,
 				2BDE74AC1B3D343500E540AF /* UIView+Extention.h */,
 				2BDE74AD1B3D343500E540AF /* UIView+Extention.m */,
@@ -1124,12 +1123,12 @@
 				2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */,
 				2BCCDB711B3ED31000E407CC /* MBProgressHUD.bundle in Resources */,
 				2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */,
-<<<<<<< HEAD
+
 				2B087D261B4D5BCC00B9F0C2 /* statusdetail_icon_comment.png in Resources */,
-=======
+
 				C3A349481B4BDF2300F6C263 /* EmotionPopView.xib in Resources */,
 				C37784E61B4B7B460040F1CA /* EmotionIcons in Resources */,
->>>>>>> 陈新的Branch（7-10）
+
 				2BDE74D71B3D343500E540AF /* Test2ViewController.xib in Resources */,
 				2BEC52031B4D20CB002965E6 /* statusdetail_comment_top_background.png in Resources */,
 				2B087D1E1B4D5A1300B9F0C2 /* statusdetail_icon_highlighted.png in Resources */,
@@ -1209,12 +1208,12 @@
 				2BC823981B4772AA009018D4 /* StatusModel.m in Sources */,
 				2B6332151B4386AF006D2840 /* MKAnnotationView+WebCache.m in Sources */,
 				2B6332481B43ACF7006D2840 /* MJMethod.m in Sources */,
-<<<<<<< HEAD
+
 				2BB4F1C91B4B62A000126F91 /* SDPhotoBrowser.m in Sources */,
-=======
+
 				C3A349461B4BDF1000F6C263 /* EmotionPopView.m in Sources */,
 				C3A49C7A1B4AB9600071DB7B /* EmotionTabBar.m in Sources */,
->>>>>>> 陈新的Branch（7-10）
+
 				2B63321B1B4386AF006D2840 /* SDWebImageDownloaderOperation.m in Sources */,
 				2BCCDB691B3ECD3200E407CC /* SearchBar.m in Sources */,
 				2B83A9B21B4788DF00E0F351 /* PhotoModel.m in Sources */,
