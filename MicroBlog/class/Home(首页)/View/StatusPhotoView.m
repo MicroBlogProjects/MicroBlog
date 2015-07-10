@@ -33,16 +33,10 @@
         //使用图片原始比例自适应，并将超出边框的部分裁减掉
         self.contentMode = UIViewContentModeScaleAspectFill ;
         self.clipsToBounds =YES;
-        self.userInteractionEnabled = YES ;
-        
-//        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(photoClick)];
-//        [self addGestureRecognizer:tapGesture];
        
     }
     return self;
 }
-
-
 
 
 -(void)layoutSubviews{

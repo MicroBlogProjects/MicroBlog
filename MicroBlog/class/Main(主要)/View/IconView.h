@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @class UserModel ;
-
 @interface IconView : UIImageView
 
 @property (nonatomic , strong) UserModel *userModel;

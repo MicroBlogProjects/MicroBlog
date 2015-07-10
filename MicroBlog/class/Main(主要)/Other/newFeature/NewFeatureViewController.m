@@ -121,7 +121,6 @@
 -(void)startClick{
     UIWindow *window = [UIApplication sharedApplication ].keyWindow ;
     window.rootViewController = [[MainTabbarViewController alloc]init];
-  
 }
 
 @end

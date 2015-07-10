@@ -7,23 +7,9 @@
 //
 
 #import "ProfileViewController.h"
-#import "AFNetworking.h"
-#import "AccountModel.h"
-#import "AccountTool.h"
-#import "ProfileUserModel.h"
-#import "profileTableViewCell.h"
-#import "EditingTableViewController.h"
-#import "AddFriendTableViewController.h"
-#import "ToolBarCell.h"
-#import "PersonalInformationViewController.h"
-#import "ToolBarCellController.h"
 
 
-@interface ProfileViewController ()<UITableViewDelegate,PersonInfoDelegate>
-
-
-@property (nonatomic , strong)ProfileUserModel * userModel;
-@property (nonatomic , strong)ToolBarCellController * toolBarCell;
+@interface ProfileViewController ()
 
 @end
 
@@ -31,253 +17,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor =myColor(239, 239, 239);
-    //设置代理
-    //设置navigationBar
-    [self setupNavigationBar];
-    //获取用户信息
-    [self setUpUserInfo];
-
-}
-/**
- *  获取用户信息
- */
-
--(void)setUpUserInfo
-{
-    /** 1请求管理者*/
-    AFHTTPRequestOperationManager * manager = [AFHTTPRequestOperationManager manager];
-    /** 2 拼接参数*/
-    AccountModel *account = [AccountTool account];
-    NSMutableDictionary *params= [NSMutableDictionary dictionary];
-    params[@"access_token"] = account.access_token;
-    params[@"uid"] = account.uid;
-    //创建一个
-    //3发送请求
-    [manager GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
-        //设置得到的数据
-        [self setU:responseObject];
-        [self.tableView reloadData];
-        
-    }failure:^(AFHTTPRequestOperation * operation, NSError * error){
-        NSLog(@"%@",error);
-     }];
-}
-
-/**
- *  设置userModel
- */
--(void)setU:(id)responseObject
-{
-    self.userModel = [[ProfileUserModel alloc]init];
-    //昵称
-    self.userModel.screen_name = [responseObject objectForKey:@"screen_name"];
-    //简介
-    self.userModel.descrip = [responseObject objectForKey:@"description"];
-    //粉丝数量
-    self.userModel.followers_count = [[responseObject objectForKey:@"followers_count"] integerValue];
-    //关注数
-    self.userModel.friends_count = [[responseObject objectForKey:@"friends_count"] integerValue];
-    //微博数
-    self.userModel.statuses_count = [[responseObject objectForKey:@"statuses_count"] integerValue];
-    //图片url
-    self.userModel.avatar_large = [responseObject objectForKey:@"avatar_large"];
-    //是否为vip
-    self.userModel.mbtype = [[responseObject objectForKey:@"mbtype"] integerValue];
-    //vip登记
-    self.userModel.mbrank = [[responseObject objectForKey:@"mbrank"] integerValue];
-    //是否为加V用户
-    self.userModel.verified = [[responseObject objectForKey:@"verified"] boolValue];
-    self.userModel.location = [responseObject objectForKey:@"location"];
-}
-/**
- *  设置navigationBar的2个按钮
- */
--(void)setupNavigationBar
-{
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(editing)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"添加好友" style:UIBarButtonItemStylePlain target:self action:@selector(addFriend)];
-}
-/**
- *  点击设置键
- */
--(void)editing
-{
-    EditingTableViewController * editingTableViewController = [[EditingTableViewController alloc]init];
-    //设置头tableview高度
-    UIView * headerView = [[UIView alloc]initWithFrame:self.view.frame];
-    CGRect headerViewFram = headerView.frame;
-    headerViewFram.size.height = 10.0f;
-    headerView.frame = headerViewFram;
-    [editingTableViewController.tableView setTableHeaderView:headerView];
-    [self.navigationController pushViewController:editingTableViewController animated:YES];
     
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-/**
- *  点击添加好友键
- */
-- (void)addFriend
-{
-    AddFriendTableViewController * addFriendTableViewConTroller = [[AddFriendTableViewController alloc]init];
-    UIView * headerView = [[UIView alloc]initWithFrame:self.view.frame];
-    CGRect headerViewFram = headerView.frame;
-    headerViewFram.size.height = 55.0f;
-    headerView.frame = headerViewFram;
-    [addFriendTableViewConTroller.tableView setTableHeaderView:headerView];
-    [self.navigationController pushViewController:addFriendTableViewConTroller animated:YES];
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-//有几节
+#pragma mark - Table view data source
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 7;
-}
-//每节多少块
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return 1;
-            break;
-        case 2:
-            return 2;
-            break;
-        case 3:
-            return 3;
-            break;
-        case 4:
-            return 2;
-            break;
-        case 5:
-            return 1;
-        default:
-            return 1;
-            break;
-    }
+ 
+    // Return the number of sections.
     return 0;
 }
-//每块到cell怎么摆放
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell * cell;
-    if (indexPath.section ==0) {
-        static NSString * ID = @"Cell";
-        cell = [tableView dequeueReusableCellWithIdentifier:ID];
-        if (cell == nil) {
-            cell = [[profileTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        }
-        //下载图片
-        [(profileTableViewCell * )cell setProfileUserModel:self.userModel];
-    }
-    else if (indexPath.section == 1){
-        static NSString * ID = @"toolCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:ID];
-        self.toolBarCell = [[ToolBarCellController alloc]init];
-        if (cell == nil ) {
-            cell = [[ToolBarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        }
-//        [(ToolBarCell *)cell setProfileUserModel:self.userModel];
-        [(ToolBarCell*)cell setProfileUserModel:self.userModel andToolBarCell:self.toolBarCell];
-    }
-    else
-    {
-        static NSString * ID = @"Celll";
-        cell = [tableView dequeueReusableCellWithIdentifier:ID];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc]init];
-        }
-        if (indexPath.section == 2) {
-            if (indexPath.row == 0) {
-                cell.imageView.image = [UIImage imageNamed:@"new_friend"];
-                cell.textLabel.text = @"新的好友";
-            }
-            else{
-                cell.imageView.image = [UIImage imageNamed:@"collect"];
-                cell.textLabel.text = @"微博等级";
-            }
-        }
-        else if (indexPath.section == 3){
-            if (indexPath.row == 0) {
-                cell.imageView.image = [UIImage imageNamed:@"album"];
-                cell.textLabel.text = @"我的相册";
-            }
-            else if (indexPath.row == 1){
-                cell.imageView.image = [UIImage imageNamed:@"collect"];
-                cell.textLabel.text = @"我的点评";
-            }
-            else{
-                cell.imageView.image = [UIImage imageNamed:@"like"];
-                cell.textLabel.text = @"我的赞";
-            }
-        }
-        else if (indexPath.section == 4){
-            if (indexPath.row == 0) {
-                cell.imageView.image = [UIImage imageNamed:@"pay"];
-                cell.textLabel.text = @"微博支付";
-            }
-            else if (indexPath.row == 1){
-                cell.imageView.image = [UIImage imageNamed:@"vip"];
-                cell.textLabel.text = @"微博会员";
-            }
-            
-        }
-        else if(indexPath.section == 5)
-        {
-            cell.textLabel.text = @"草稿箱";
-        }
-        else{
-            cell.textLabel.text = @"更多";
-        }
-    }
-    cell.backgroundColor = [UIColor whiteColor];
-    if (indexPath.section != 1) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    return cell;
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+ 
+    // Return the number of rows in the section.
+    return 0;
 }
-//header的高度
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == 0 || section == 1) {
-        return 0.0f;
-    }
-    return 10.0f;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0) {
-        if (self.userModel.cellHight == 0) {
-            return 90;
-        }
-        else return self.userModel.cellHight;
-    }
-    else if (indexPath.section ==1)
-    {
-        if (self.userModel.cellHight == 0) {
-            return 50;
-        }
-        else return self.userModel.cellHight;
-    }
-    return 44.0f;
-}
-//代理传值
--(ProfileUserModel *)passValue
-{
-    return self.userModel;
-}
-//点击cell函数
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //第一个cell
-    if (indexPath.section == 0) {
-        PersonalInformationViewController * personalInfoView = [[PersonalInformationViewController alloc]init];
-        personalInfoView.personInfoDelegate = self;
-        [self.navigationController pushViewController:personalInfoView animated:YES];
-    }
-}
+
 @end

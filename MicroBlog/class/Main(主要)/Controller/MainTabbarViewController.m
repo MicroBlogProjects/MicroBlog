@@ -16,12 +16,11 @@
 #import "MBProgressHUD+MJ.h"
 #import "ComposeViewController.h"
 @interface MainTabbarViewController () <TabBarDelegate>
+
 @end
 
 @implementation MainTabbarViewController
 
-/**  自动装换成单例的函数 */
-singleton_implementation(MainTabbarViewController)
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -43,9 +42,6 @@ singleton_implementation(MainTabbarViewController)
     TabBar *tabBar = [[TabBar alloc]init];
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
-
-//#warning todo 
-//    self.selectedIndex =3 ;
    
 }
 
@@ -91,7 +87,7 @@ singleton_implementation(MainTabbarViewController)
 -(void)tabBarClickPlusButton:(TabBar *)tabBar{
     
     ComposeViewController *compose = [[ComposeViewController alloc]init];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:compose];
+    NavigationController *nav = [[NavigationController alloc]initWithRootViewController:compose];
     [self presentViewController:nav animated:YES completion:nil];
 
 }
