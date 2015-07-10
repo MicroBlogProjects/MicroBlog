@@ -152,7 +152,7 @@
     //表情选中通知
     [NotificationCenter addObserver:self selector:@selector(emotionDidSelect:)   name:EmotionDidSelectNotification object:nil];
     
-    //表情选中通知
+    //表情删除通知
     [NotificationCenter addObserver:self selector:@selector(emotionDidDelete)   name:EmotionDidDeleteNotification object:nil];
     
 }
@@ -232,7 +232,9 @@
     //2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"]     = [AccountTool account].access_token;
+    
     params[@"status"] = self.textView.fullText;
+    
     [manager POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //拼接文件数据
         UIImage *image=[self.photosView.photos firstObject];
