@@ -157,13 +157,12 @@
     else{
         //微博页面的cell
         if (self.buttonTag == 2) {
-            
-            static NSString *ID = @"PesonalInforCell" ;
+            //获得cell
+            static NSString *ID = @"profileInformationCell" ;
             StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
             if(cell ==nil){
                 cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
             }
-            
             //    //取出这行cell对应的微博字典
             StatusFrameModel *statusFrameModel = self.statusFrameModels[indexPath.row];
             cell.baseFrameModel = statusFrameModel;

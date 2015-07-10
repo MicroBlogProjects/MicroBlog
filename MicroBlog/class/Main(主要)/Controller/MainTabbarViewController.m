@@ -8,7 +8,7 @@
 
 #import "MainTabbarViewController.h"
 #import "MessageViewController.h"
-#import "ProfileStasusControlle.h"
+#import "ProfileViewController.h"
 #import "DiscoverViewController.h"
 #import "HomeViewController.h"
 #import "NavigationController.h"
@@ -35,7 +35,7 @@ singleton_implementation(MainTabbarViewController)
     DiscoverViewController *discover = [[DiscoverViewController alloc ]init ] ;
     [self addChildVC:discover Title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
     
-    ProfileStasusController *profile = [[ProfileStasusController alloc]init];
+    ProfileViewController  *profile = [[ProfileViewController alloc]init];
     [self addChildVC:profile Title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
     
     //把tabBarViewController 自带的tabBar(就是下方工具条) 换成 自定义的tabBar(为了添加那个“+”按钮)

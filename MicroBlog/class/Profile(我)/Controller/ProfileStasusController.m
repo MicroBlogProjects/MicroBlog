@@ -107,7 +107,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    
-    static NSString *ID = @"Profilecell" ;
+    static NSString *ID = @"ProfileCell" ;
     StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if(cell ==nil){
         cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
