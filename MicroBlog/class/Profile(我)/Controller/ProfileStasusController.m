@@ -106,12 +106,14 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * ID = @"cell";
-    StatusCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [StatusCell cellWithTablView:tableView];
+   
+    static NSString *ID = @"ProfileCell" ;
+    StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if(cell ==nil){
+        cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    cell.statusFrameModel =  self.statusFrameModels[indexPath.row];
+    
+    cell.baseFrameModel =  self.statusFrameModels[indexPath.row];
     return  cell;
 }
 

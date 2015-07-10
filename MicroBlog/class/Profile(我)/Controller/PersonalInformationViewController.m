@@ -158,10 +158,14 @@
         //微博页面的cell
         if (self.buttonTag == 2) {
             //获得cell
-            StatusCell *cell = [StatusCell cellWithTablView:tableView];
+            static NSString *ID = @"profileInformationCell" ;
+            StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+            if(cell ==nil){
+                cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+            }
             //    //取出这行cell对应的微博字典
             StatusFrameModel *statusFrameModel = self.statusFrameModels[indexPath.row];
-            cell.statusFrameModel = statusFrameModel;
+            cell.baseFrameModel = statusFrameModel;
             return  cell;
         }
         //主页页面的cell

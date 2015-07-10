@@ -23,15 +23,14 @@
     NSMutableDictionary *textAttribute = [NSMutableDictionary dictionary];
     textAttribute[NSForegroundColorAttributeName] =  [ UIColor orangeColor];
     textAttribute[NSFontAttributeName] = [UIFont systemFontOfSize:15];
-    [item setTitleTextAttributes:textAttribute forState:UIControlStateNormal];
-    
+     [item setTitleTextAttributes:textAttribute forState:UIControlStateNormal];
+//
     //设置不可用状态(按钮不可点击状态时为灰色）
     NSMutableDictionary *disableTextAttribute = [NSMutableDictionary dictionary];
     disableTextAttribute[NSForegroundColorAttributeName] = myColor(200, 200, 200);
-    disableTextAttribute[NSFontAttributeName] = textAttribute[NSFontAttributeName];
+    disableTextAttribute[NSFontAttributeName] = [UIFont systemFontOfSize:15];
     [item setTitleTextAttributes:disableTextAttribute forState:UIControlStateDisabled];
-    
-    
+   
 }
 
 
@@ -65,6 +64,7 @@
 -(void)more{
     [self popToRootViewControllerAnimated:YES];
 }
+
 
 
 @end

@@ -16,11 +16,12 @@
 #import "MBProgressHUD+MJ.h"
 #import "ComposeViewController.h"
 @interface MainTabbarViewController () <TabBarDelegate>
-
 @end
 
 @implementation MainTabbarViewController
 
+/**  自动装换成单例的函数 */
+singleton_implementation(MainTabbarViewController)
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -34,7 +35,7 @@
     DiscoverViewController *discover = [[DiscoverViewController alloc ]init ] ;
     [self addChildVC:discover Title:@"发现" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];
     
-    ProfileViewController *profile = [[ProfileViewController alloc]init];
+    ProfileViewController  *profile = [[ProfileViewController alloc]init];
     [self addChildVC:profile Title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
     
     //把tabBarViewController 自带的tabBar(就是下方工具条) 换成 自定义的tabBar(为了添加那个“+”按钮)
@@ -42,9 +43,6 @@
     TabBar *tabBar = [[TabBar alloc]init];
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
-
-#warning todo 
-    self.selectedIndex =3 ;
    
 }
 
@@ -90,7 +88,7 @@
 -(void)tabBarClickPlusButton:(TabBar *)tabBar{
     
     ComposeViewController *compose = [[ComposeViewController alloc]init];
-    NavigationController *nav = [[NavigationController alloc]initWithRootViewController:compose];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:compose];
     [self presentViewController:nav animated:YES completion:nil];
 
 }

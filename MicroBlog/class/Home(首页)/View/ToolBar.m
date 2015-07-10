@@ -31,9 +31,9 @@
       //设置ToolBar的背景颜色
       self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
       //添加按钮
-      self.repostBtn   =  [self setupButtonWithTitle:@"转发" icon:@"timeline_icon_retweet"];
-      self.commentBtn  =  [self setupButtonWithTitle:@"评论" icon:@"timeline_icon_comment"];
-      self.attitudeBtn =  [self setupButtonWithTitle:@"赞" icon:@"timeline_icon_unlike"];
+        self.repostBtn   =  [self setupButtonWithTitle:@"转发" icon:@"timeline_icon_retweet"  ];
+        self.commentBtn  =  [self setupButtonWithTitle:@"评论" icon:@"timeline_icon_comment"  ];
+        self.attitudeBtn =  [self setupButtonWithTitle:@"赞" icon:@"timeline_icon_unlike"  ];
       //添加分割线
       [self setupDevider];
       [self setupDevider];
@@ -71,9 +71,7 @@
     }
 }
 
-/**
- *  添加分割线
- */
+/** 添加分割线 */
 -(void)setupDevider{
     UIImageView *diver = [[UIImageView alloc]init] ;
     diver.image = [UIImage imageNamed:@"timeline_card_bottom_line"];
@@ -81,13 +79,8 @@
     [self.dividers addObject:diver];
 }
 
-/**
- *  初始化一个按钮
- *
- *  @param title 按钮文字
- *  @param icon  按钮图标
- */
--(UIButton *)setupButtonWithTitle:(NSString *)title icon:(NSString *)icon{
+/** 初始化一个按钮*/
+-(UIButton *)setupButtonWithTitle:(NSString *)title icon:(NSString *)icon  {
     
     UIButton *btn  = [[UIButton alloc]init ] ;
     [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
@@ -96,11 +89,21 @@
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"timeline_card_bottom_background_highlighted"] forState:UIControlStateHighlighted];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
-    
+//    [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     [self.buttons addObject:btn];
     return btn;
 }
+
+///**
+// *  点击工具条上的按钮事件
+// */
+//-(void)buttonClick:(UIButton*)button{
+//    if([self.delegate respondsToSelector:@selector(toolBar:clickButton:)]){
+//        [self.delegate toolBar:self clickButton:button ];
+//        
+//    }
+//}
 
 
 -(void)setStatusModel:(StatusModel *)statusModel{
@@ -112,6 +115,8 @@
     
    
 }
+
+
 
 /**
  *  设置 (评论 转发 点赞) 的个数

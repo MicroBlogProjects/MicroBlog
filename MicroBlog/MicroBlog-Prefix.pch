@@ -13,12 +13,27 @@
 #import "UIView+Extention.h"
 #import "UIWindow+Extention.h"
 #import "NSString+Extention.h"
+#import "UIImage+Image.h"
+#import "NSString+File.h"
+
+#import "Common.h"
+
+#import "NSString+Emoji.h"
+#import "UITextView+Extension.h"
+//通知
+//表情选中的通知
+#define EmotionDidDeleteNotification @"EmotionDidDeleteNotification"
+//通知
+//表情删除的通知
+#define EmotionDidSelectNotification @"EmotionDidSelectNotification"
+#define SelectEmotionKey @"SelectEmotionKey"
+
 //设置随机颜色
 #define myRandomColor   [UIColor colorWithRed:arc4random_uniform(256)/255.0 green:arc4random_uniform(256)/255.0 blue:arc4random_uniform(256)/255.0 alpha:1.0]
 //RBG颜色的简写
 #define myColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
 
-
+#define NotificationCenter [NSNotificationCenter defaultCenter]
 #endif
 
 
@@ -29,3 +44,14 @@
 #else
 #define NSLog(...)
 #endif
+
+
+// 全局统一背景
+#define kGlobalBg [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]
+
+// 判断是否为iPhone5
+#define iPhone5 ([UIScreen mainScreen].bounds.size.height == 568)
+
+
+
+
