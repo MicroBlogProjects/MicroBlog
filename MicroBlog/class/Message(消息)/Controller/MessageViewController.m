@@ -10,18 +10,22 @@
 
 #import "MessageViewController.h"
 #import "TestViewController.h"
+#import "MessageModel.h"
 @interface MessageViewController ()
-
+@property (nonatomic,strong)NSMutableArray *messageArray;
 @end
 
 @implementation MessageViewController
-
+-(NSMutableArray *)messageArray {
+    if (_messageArray==nil) {
+        NSString *path=[[NSBundle mainBundle] pathForResource:@"Message.plist" ofType:nil];
+        _messageArray = [NSMutableArray arrayWithContentsOfFile:path];
+    }
+    return _messageArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"写私信" style:UIBarButtonItemStylePlain target:self action:@selector(writeMessage)];
-   
-
 }
 /**
  *  点击"写私信"按钮时调用该方法
@@ -42,7 +46,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.messageArray.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

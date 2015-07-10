@@ -65,7 +65,6 @@
     photosView.height=self.view.height;
     photosView.y=100;
     photosView.x=0;
-    photosView.backgroundColor=[UIColor redColor];
     [self.textView addSubview:photosView];
    
     self.photosView=photosView;
