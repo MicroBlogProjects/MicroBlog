@@ -20,6 +20,7 @@
 #import "StatusDetailTitleView.h"
 #import "StatusDetailCell.h"
 #import "CommentCell.h"
+#import "CommentFrameModel.h"
 
 
 
@@ -128,7 +129,7 @@
         //将StatusModel数组 转换成 StatusFrameModel数组
         NSMutableArray *newsFrames = [NSMutableArray array];
         for(StatusModel *statusModel in newStatuses){
-            StatusFrameModel *f = [[StatusFrameModel alloc]init];
+            CommentFrameModel *f = [[CommentFrameModel alloc]init];
             f.statusModel = statusModel ;
             [newsFrames addObject:f];
         }
@@ -177,7 +178,10 @@
     if(section == 0){
         return 1;
     }
-    NSLog(@"%d",_commentFrameModels.count);
+    //当没有评论时候，只显示一行cell (显示内容是“没有评论内容”)
+    if(_commentFrameModels.count == 0 )
+        return  1;
+
     return _commentFrameModels.count;
 }
 
@@ -201,8 +205,12 @@
     if(indexPath.section == 0){
         return  _statusFrameModel.cellHeight;
     }
-    StatusFrameModel *frameModel = _commentFrameModels [indexPath.row];
-    return frameModel.cellHeight;
+     //当没有评论时候 ， 高度为100;
+    if(_commentFrameModels.count == 0)
+        return  120 ;
+    
+    CommentFrameModel *commentFrameModel = _commentFrameModels [indexPath.row];
+    return commentFrameModel.cellHeight;
 }
 
 /** Header的高 */
@@ -226,13 +234,25 @@
         
         return cell ;
 
-    }else{
-
+    }
+    //如果评论为0，显示一个空白的cell
+    if(_commentFrameModels.count ==0 ){
+        static NSString *ID = @"SpaceCell" ;
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if(cell ==nil){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.textLabel.text = @"                    还没有人评论";
+        cell.textLabel.x =200;
+        return cell;
+    }
+    
         CommentCell *cell =  [CommentCell cellWithTablView:tableView];
         cell.commentFrameModel = _commentFrameModels[indexPath.row];
         return cell;
-    }
+    
 }
+
 
 
 #pragma mark- 懒加载

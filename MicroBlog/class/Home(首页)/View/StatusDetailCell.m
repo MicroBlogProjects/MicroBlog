@@ -49,10 +49,10 @@
     CGFloat toolBarHeight = kStatusOptionBarHeight;
     CGFloat toolBarWidth = 200;
     CGFloat toolBarY = self.retweetView.frame.size.height - toolBarHeight;
-    CGFloat toolBarX = retweetWidth - toolBarWidth - 20;
+    CGFloat toolBarX = retweetWidth - toolBarWidth +20;
     CGRect frame = CGRectMake(toolBarX , toolBarY, toolBarWidth, toolBarHeight);
     _toolBar = [[StatusDetailRetweetToolBar alloc] initWithFrame:frame];
-    _toolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    _toolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin  ;
     [self.retweetView addSubview:_toolBar];
     
 }

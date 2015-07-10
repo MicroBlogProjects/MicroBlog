@@ -11,7 +11,6 @@
 #import "StatusModel.h"
 #import "UserModel.h"
 #import "CommentFrameModel.h"
-#import "CommentModel.h"
 #import "UIImageView+WebCache.h"
 #import "IconView.h"
 
@@ -92,7 +91,7 @@
     
     _commentFrameModel = commentFrameModel ;
     
-    CommentModel *commentModel = _commentFrameModel.commentModel ;
+    StatusModel *commentModel = _commentFrameModel.statusModel ;
     UserModel *userModel = commentModel.user  ;
     
     
@@ -115,16 +114,24 @@
     
     //名字
     self.name.frame = commentFrameModel.nameLabelF ;
+    self.name.font = kCommentCellNameFont;
     self.name.text = userModel.name ;
     
     
     /* 时间（微博发布时间）, 每次刷新的时候都要重新计算一下Frame,因为时间会变，宽度就会变 */
     NSString *time = commentModel.created_at ;
+    NSLog(@"%@",time);
     CGFloat timeX =  commentFrameModel.nameLabelF.origin.x ;
-    CGFloat timeY = CGRectGetMaxY(commentFrameModel.nameLabelF) + kStatusCellBorderWidth ;
+    CGFloat timeY = CGRectGetMaxY(commentFrameModel.nameLabelF) + kStatusCellBorderWidth/2 ;
     CGSize timeSize = [time sizeWithFont:kCommentCellTimeFont  ];
     self.time.frame = CGRectMake(timeX, timeY, timeSize.width, timeSize.height);
+    self.time.font = kCommentCellTimeFont;
     self.time.text = time;
+    
+    //评论内容
+    self.commentContent.frame = commentFrameModel.contenLabelF ;
+    self.commentContent.text = commentFrameModel.statusModel.text;
+    self.commentContent.font = kCommentCellContentFont;
     
 }
 

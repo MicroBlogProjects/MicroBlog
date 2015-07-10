@@ -7,9 +7,8 @@
 //
 
 
-
 #import "CommentFrameModel.h"
-#import "CommentModel.h"
+#import "StatusModel.h"
 #import "UserModel.h"
 
 @implementation CommentFrameModel
@@ -19,10 +18,10 @@
 /**
  *   计算所有控件的Frame
  */
--(void)setCommentModel:(CommentModel *)commentModel{
+-(void)setStatusModel:(StatusModel *)statusModel{
     
-    _commentModel =commentModel ;
-    UserModel *user= commentModel.user;
+    _statusModel = statusModel ;
+    UserModel *user= statusModel.user;
     
     //cell的宽度
     CGFloat cellW = [UIScreen mainScreen].bounds.size.width ;
@@ -55,7 +54,7 @@
     /* 时间（微博发布时间）*/
     CGFloat timeX = nameX ;
     CGFloat timeY = CGRectGetMaxY(self.nameLabelF) + kCommentCellBorderWidth ;
-    CGSize timeSize = [commentModel.created_at sizeWithFont:kCommentCellTimeFont  ];
+    CGSize timeSize = [statusModel.created_at sizeWithFont:kCommentCellTimeFont  ];
     self.timeLabelF = CGRectMake(timeX, timeY, timeSize.width, timeSize.height);
     
    
@@ -65,7 +64,7 @@
     CGFloat contentX = timeX ;
     CGFloat contentY =  CGRectGetMaxY(self.timeLabelF)+kCommentCellBorderWidth;
     CGFloat MaxWidth = cellW - 3*kCommentCellBorderWidth- kIconImageWidth;
-    CGSize contenSize = [commentModel.text sizeWithFont:kCommentCellTimeFont maxWidth:MaxWidth];
+    CGSize contenSize = [statusModel.text sizeWithFont:kCommentCellContentFont maxWidth:MaxWidth];
     self.contenLabelF = CGRectMake(contentX, contentY, contenSize.width, contenSize.height);
     
     

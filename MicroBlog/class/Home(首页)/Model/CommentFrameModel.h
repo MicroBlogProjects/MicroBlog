@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-@class CommentModel;
+@class StatusModel;
 @interface CommentFrameModel : NSObject
 
 /** 评论数据 */
-@property (nonatomic , strong) CommentModel *commentModel;
+@property (nonatomic , strong) StatusModel *statusModel;
 /** 头像*/
 @property (nonatomic , assign) CGRect iconViewF ;
 /** 会员图标*/
