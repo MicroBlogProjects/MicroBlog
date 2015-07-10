@@ -16,8 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
     
 }
 
@@ -49,10 +47,7 @@
         default:
             break;
     }
-
-    cell.textLabel.textColor = [UIColor whiteColor];
     
-    cell.backgroundColor = [UIColor clearColor];
     return  cell;
 }
 

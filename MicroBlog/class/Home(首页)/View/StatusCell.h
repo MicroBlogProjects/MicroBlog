@@ -6,9 +6,14 @@
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
 //
 
-#import "BaseCell.h"
+#import <UIKit/UIKit.h>
+@class StatusFrameModel ;
 
-@interface StatusCell : BaseCell
+@interface StatusCell : UITableViewCell
 
+@property (nonatomic , strong) StatusFrameModel *statusFrameModel;
+
+
++ (instancetype)cellWithTablView:(UITableView *)tableView;
 
 @end
