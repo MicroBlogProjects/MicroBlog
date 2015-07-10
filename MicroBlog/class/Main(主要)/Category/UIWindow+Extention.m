@@ -29,6 +29,7 @@
         self.rootViewController = [[NewFeatureViewController alloc]init];
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:@"CFBundleVersion"];
         [[NSUserDefaults standardUserDefaults]synchronize]; //马上进行同步,这样才会马上写入沙盒中
+    
     }
     
     

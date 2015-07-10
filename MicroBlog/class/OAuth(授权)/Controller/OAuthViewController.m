@@ -33,7 +33,7 @@
      client_id	 	申请应用时分配的AppKey。 304647707
      redirect_uri	授权回调地址，站外应用需与设置的回调地址一致，站内应用需填写canvas page的地址。
     */
-    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=304647707&redirect_uri=http://"];
+    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=1589673142&redirect_uri=http://"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 
@@ -49,10 +49,16 @@
  
  迷你微博应用
  access_token=2.004nnkxB0hmQc1ca9521a831L5MZsB
- uid=1799091161
+ uid=1799091161d
  App key : 942446141
  App Secret : 387ea016d0c2baa3fb73ca00ac3ec049
  
+ 
+ App Key：
+ 1589673142
+ 
+ App Secret：
+ 5ea2a3deb5f39a16215ffc6ebf4fcfeb
  */
 
 /**
@@ -67,8 +73,8 @@
     AFHTTPRequestOperationManager *manager  = [AFHTTPRequestOperationManager  manager];
     //2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"client_id"]     = @"304647707" ;
-    params[@"client_secret"] = @"533cfea336e04f236c469931f5d40a7c";
+    params[@"client_id"]     = @"1589673142" ;
+    params[@"client_secret"] = @"5ea2a3deb5f39a16215ffc6ebf4fcfeb";
     params[@"grant_type"]    = @"authorization_code";
     params[@"code"]          = code ;
     params[@"redirect_uri"]  = @"http://";
