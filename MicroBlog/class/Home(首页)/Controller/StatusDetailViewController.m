@@ -200,9 +200,9 @@
     
     if(indexPath.section == 0){
         return  _statusFrameModel.cellHeight;
-     
     }
-    return ;
+    StatusFrameModel *frameModel = _commentFrameModels [indexPath.row];
+    return frameModel.cellHeight;
 }
 
 /** Header的高 */
@@ -228,9 +228,8 @@
 
     }else{
 
-        static NSString *Id = @"UITableViewCell" ;
         CommentCell *cell =  [CommentCell cellWithTablView:tableView];
-        cell.statusFrameModel = _commentFrameModels[indexPath.row];
+        cell.commentFrameModel = _commentFrameModels[indexPath.row];
         return cell;
     }
 }

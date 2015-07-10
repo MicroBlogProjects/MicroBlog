@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class CommentModel;
 @interface CommentFrameModel : NSObject
 
-/*原创微博控件的Frame数据*/
-
-/**原创微博框架容器*/
-
+/** 评论数据 */
+@property (nonatomic , strong) CommentModel *commentModel;
 /** 头像*/
 @property (nonatomic , assign) CGRect iconViewF ;
 /** 会员图标*/
@@ -23,7 +21,7 @@
 /** 时间（微博发布时间）*/
 @property (nonatomic , assign) CGRect timeLabelF ;
 
-/** 微博正文*/
+/** 评论正文*/
 @property (nonatomic , assign) CGRect contenLabelF ;
 
 /** cell的高度*/

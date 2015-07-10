@@ -10,7 +10,8 @@
 #import "StatusCell.h"
 #import "StatusModel.h"
 #import "UserModel.h"
-#import "StatusFrameModel.h"
+#import "CommentFrameModel.h"
+#import "CommentModel.h"
 #import "UIImageView+WebCache.h"
 #import "IconView.h"
 
@@ -52,7 +53,7 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         
-        self.backgroundColor = [UIColor redColor];
+        self.backgroundColor = [UIColor whiteColor];
 
         [self initContent];
     }
@@ -87,19 +88,23 @@
     [self.contentView addSubview:commentContent];
 }
 
--(void)setStatusFrameModel:(StatusFrameModel *)statusFrameModel{
-    _statusFrameModel = statusFrameModel ;
-//    NSLog(@"%@",statusFrameModel);
-    StatusModel * statusModel = statusFrameModel.statusModel ;
-    UserModel *userModel = statusModel.user  ;
+-(void)setCommentFrameModel:(CommentFrameModel *)commentFrameModel{
     
-    self.iconView.frame = statusFrameModel.iconViewF ;
+    _commentFrameModel = commentFrameModel ;
+    
+    CommentModel *commentModel = _commentFrameModel.commentModel ;
+    UserModel *userModel = commentModel.user  ;
+    
+    
+    //头像
+    self.iconView.frame = commentFrameModel.iconViewF ;
     self.iconView.userModel = userModel ;
 //    NSLog(@"%@",userModel);
     
+    //vip
     if(userModel.isVip){
         self.vipView.hidden = NO ;
-        self.vipView.frame = statusFrameModel.vipViewF;
+        self.vipView.frame = commentFrameModel.vipViewF;
         self.name.textColor = [UIColor orangeColor];
         NSString *vipString = [NSString stringWithFormat:@"common_icon_membership_level%d",userModel.mbrank];
         self.vipView.image = [UIImage imageNamed:vipString];
@@ -108,6 +113,18 @@
         self.name.textColor = [UIColor blackColor];
     }
     
+    //名字
+    self.name.frame = commentFrameModel.nameLabelF ;
+    self.name.text = userModel.name ;
+    
+    
+    /* 时间（微博发布时间）, 每次刷新的时候都要重新计算一下Frame,因为时间会变，宽度就会变 */
+    NSString *time = commentModel.created_at ;
+    CGFloat timeX =  commentFrameModel.nameLabelF.origin.x ;
+    CGFloat timeY = CGRectGetMaxY(commentFrameModel.nameLabelF) + kStatusCellBorderWidth ;
+    CGSize timeSize = [time sizeWithFont:kCommentCellTimeFont  ];
+    self.time.frame = CGRectMake(timeX, timeY, timeSize.width, timeSize.height);
+    self.time.text = time;
     
 }
 

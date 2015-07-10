@@ -18,12 +18,4 @@
 @property (nonatomic , copy)  NSString  *created_at;
 
 
-/** 转发数*/
-@property (nonatomic , assign)  int reposts_count ;
-/** 评论数*/
-@property (nonatomic , assign)  int comments_count;
-/** 点赞数*/
-@property (nonatomic , assign)  int attitudes_count ;
-
-
 @end
