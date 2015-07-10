@@ -110,6 +110,7 @@
 		2BDE74D81B3D343500E540AF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74CB1B3D343500E540AF /* TestViewController.m */; };
 		2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDE74CC1B3D343500E540AF /* TestViewController.xib */; };
 
+<<<<<<< HEAD
 		2BEC52001B4D1D87002965E6 /* StatusDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC51FF1B4D1D87002965E6 /* StatusDetailTitleView.m */; };
 		2BEC52031B4D20CB002965E6 /* statusdetail_comment_top_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52011B4D20CB002965E6 /* statusdetail_comment_top_background.png */; };
 		2BEC52041B4D20CB002965E6 /* statusdetail_comment_top_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52021B4D20CB002965E6 /* statusdetail_comment_top_background@2x.png */; };
@@ -117,6 +118,8 @@
 		2BEC52081B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52061B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png */; };
 		2BEC520B1B4D3AF0002965E6 /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC520A1B4D3AF0002965E6 /* BaseCell.m */; };
 
+=======
+>>>>>>> 陈新的Branch（7-10）
 		C352B2331B4CAD480005071C /* EmotionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2321B4CAD480005071C /* EmotionTextView.m */; };
 		C352B2361B4CB06A0005071C /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2351B4CB06A0005071C /* UITextView+Extension.m */; };
 		C352B24C1B4D20310005071C /* EmotionAttachmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B24B1B4D20310005071C /* EmotionAttachmentModel.m */; };
@@ -136,6 +139,25 @@
 		C3A49C7A1B4AB9600071DB7B /* EmotionTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */; };
 		C3A49C7D1B4ABA0D0071DB7B /* EmotionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */; };
 
+<<<<<<< HEAD
+=======
+		A514C2691B4E007900F6B10F /* ProfileToolButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A514C2681B4E007900F6B10F /* ProfileToolButtonCell.m */; };
+		A546FACC1B4E932800545435 /* ToolBarCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = A546FACB1B4E932800545435 /* ToolBarCellController.m */; };
+		A5B2496A1B4B6ED80059EF0C /* EditingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B249681B4B6ED80059EF0C /* EditingTableViewController.m */; };
+		A5B2496B1B4B6ED80059EF0C /* EditingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B249691B4B6ED80059EF0C /* EditingTableViewController.xib */; };
+		A5B249741B4B74690059EF0C /* AddFriendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B249721B4B74690059EF0C /* AddFriendTableViewController.m */; };
+		A5B249751B4B74690059EF0C /* AddFriendTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5B249731B4B74690059EF0C /* AddFriendTableViewController.xib */; };
+		A5B249771B4BA3720059EF0C /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B249761B4BA3720059EF0C /* ProfileViewController.m */; };
+		A5B2497A1B4BA3F40059EF0C /* ProfileIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B249791B4BA3F40059EF0C /* ProfileIconView.m */; };
+		A5B5F1731B4A517D001F2EF1 /* profileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B5F1721B4A517C001F2EF1 /* profileTableViewCell.m */; };
+		A5B5F1811B4A6FDF001F2EF1 /* ProfileUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B5F1801B4A6FDF001F2EF1 /* ProfileUserModel.m */; };
+		A5C1C4851B4CCA7000D97B37 /* ToolBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C1C4841B4CCA7000D97B37 /* ToolBarCell.m */; };
+		A5C1C4881B4CFA2900D97B37 /* PersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C1C4871B4CFA2900D97B37 /* PersonalInformationViewController.m */; };
+		A5C1C48B1B4CFADB00D97B37 /* PersonInformationViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C1C48A1B4CFADB00D97B37 /* PersonInformationViewCell.m */; };
+		A5D1CC4A1B4F4B2500E8B26C /* ProfileStasusController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CC491B4F4B2500E8B26C /* ProfileStasusController.m */; };
+		A5EBF4ED1B4D44B90098BADA /* DIYSegmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5EBF4EC1B4D44B90098BADA /* DIYSegmentViewController.m */; };
+
+>>>>>>> 陈新的Branch（7-10）
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -347,6 +369,7 @@
 		2BDE74CB1B3D343500E540AF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		2BDE74CC1B3D343500E540AF /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 
+<<<<<<< HEAD
 		2BEC51FE1B4D1D87002965E6 /* StatusDetailTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailTitleView.h; sourceTree = "<group>"; };
 		2BEC51FF1B4D1D87002965E6 /* StatusDetailTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailTitleView.m; sourceTree = "<group>"; };
 		2BEC52011B4D20CB002965E6 /* statusdetail_comment_top_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusdetail_comment_top_background.png; sourceTree = "<group>"; };
@@ -356,6 +379,8 @@
 		2BEC52091B4D3AF0002965E6 /* BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCell.h; sourceTree = "<group>"; };
 		2BEC520A1B4D3AF0002965E6 /* BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCell.m; sourceTree = "<group>"; };
 
+=======
+>>>>>>> 陈新的Branch（7-10）
 		C352B2311B4CAD480005071C /* EmotionTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionTextView.h; sourceTree = "<group>"; };
 		C352B2321B4CAD480005071C /* EmotionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTextView.m; sourceTree = "<group>"; };
 		C352B2341B4CB06A0005071C /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
@@ -391,6 +416,37 @@
 		C3A49C7B1B4ABA0D0071DB7B /* EmotionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionListView.h; sourceTree = "<group>"; };
 		C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionListView.m; sourceTree = "<group>"; };
 
+<<<<<<< HEAD
+=======
+		A514C2671B4E007900F6B10F /* ProfileToolButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileToolButtonCell.h; sourceTree = "<group>"; };
+		A514C2681B4E007900F6B10F /* ProfileToolButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileToolButtonCell.m; sourceTree = "<group>"; };
+		A546FACA1B4E932800545435 /* ToolBarCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBarCellController.h; sourceTree = "<group>"; };
+		A546FACB1B4E932800545435 /* ToolBarCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBarCellController.m; sourceTree = "<group>"; };
+		A5B249671B4B6ED80059EF0C /* EditingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingTableViewController.h; sourceTree = "<group>"; };
+		A5B249681B4B6ED80059EF0C /* EditingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingTableViewController.m; sourceTree = "<group>"; };
+		A5B249691B4B6ED80059EF0C /* EditingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditingTableViewController.xib; sourceTree = "<group>"; };
+		A5B249711B4B74690059EF0C /* AddFriendTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendTableViewController.h; sourceTree = "<group>"; };
+		A5B249721B4B74690059EF0C /* AddFriendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFriendTableViewController.m; sourceTree = "<group>"; };
+		A5B249731B4B74690059EF0C /* AddFriendTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddFriendTableViewController.xib; sourceTree = "<group>"; };
+		A5B249761B4BA3720059EF0C /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		A5B249781B4BA3F40059EF0C /* ProfileIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileIconView.h; sourceTree = "<group>"; };
+		A5B249791B4BA3F40059EF0C /* ProfileIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileIconView.m; sourceTree = "<group>"; };
+		A5B5F1711B4A517C001F2EF1 /* profileTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profileTableViewCell.h; sourceTree = "<group>"; };
+		A5B5F1721B4A517C001F2EF1 /* profileTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = profileTableViewCell.m; sourceTree = "<group>"; };
+		A5B5F17F1B4A6FDF001F2EF1 /* ProfileUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileUserModel.h; sourceTree = "<group>"; };
+		A5B5F1801B4A6FDF001F2EF1 /* ProfileUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileUserModel.m; sourceTree = "<group>"; };
+		A5C1C4831B4CCA7000D97B37 /* ToolBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBarCell.h; sourceTree = "<group>"; };
+		A5C1C4841B4CCA7000D97B37 /* ToolBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBarCell.m; sourceTree = "<group>"; };
+		A5C1C4861B4CFA2900D97B37 /* PersonalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInformationViewController.h; sourceTree = "<group>"; };
+		A5C1C4871B4CFA2900D97B37 /* PersonalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationViewController.m; sourceTree = "<group>"; };
+		A5C1C4891B4CFADB00D97B37 /* PersonInformationViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonInformationViewCell.h; sourceTree = "<group>"; };
+		A5C1C48A1B4CFADB00D97B37 /* PersonInformationViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonInformationViewCell.m; sourceTree = "<group>"; };
+		A5D1CC481B4F4B2500E8B26C /* ProfileStasusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileStasusController.h; sourceTree = "<group>"; };
+		A5D1CC491B4F4B2500E8B26C /* ProfileStasusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileStasusController.m; sourceTree = "<group>"; };
+		A5EBF4EB1B4D44B90098BADA /* DIYSegmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIYSegmentViewController.h; sourceTree = "<group>"; };
+		A5EBF4EC1B4D44B90098BADA /* DIYSegmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIYSegmentViewController.m; sourceTree = "<group>"; };
+
+>>>>>>> 陈新的Branch（7-10）
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -990,6 +1046,10 @@
 			path = temp;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
+=======
+
+>>>>>>> 陈新的Branch（7-10）
 		C352B24D1B4D3C3B0005071C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,10 +1066,24 @@
 				C37784E91B4B7E110040F1CA /* EmotionModel.m */,
 				C352B24A1B4D20310005071C /* EmotionAttachmentModel.h */,
 				C352B24B1B4D20310005071C /* EmotionAttachmentModel.m */,
+<<<<<<< HEAD
+=======
+
+		A52CDBE51B4A1B9100271AE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A5B5F17F1B4A6FDF001F2EF1 /* ProfileUserModel.h */,
+				A5B5F1801B4A6FDF001F2EF1 /* ProfileUserModel.m */,
+
+>>>>>>> 陈新的Branch（7-10）
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
+=======
+
+>>>>>>> 陈新的Branch（7-10）
 		C3A49C6E1B4A69200071DB7B /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1034,6 +1108,30 @@
 				C38E04B51B4BEC630011B21A /* EmotionButton.m */,
 				C352B2311B4CAD480005071C /* EmotionTextView.h */,
 				C352B2321B4CAD480005071C /* EmotionTextView.m */,
+<<<<<<< HEAD
+=======
+
+		A52CDBE61B4A1B9100271AE4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A5B5F1711B4A517C001F2EF1 /* profileTableViewCell.h */,
+				A5B5F1721B4A517C001F2EF1 /* profileTableViewCell.m */,
+				A5C1C4831B4CCA7000D97B37 /* ToolBarCell.h */,
+				A5C1C4841B4CCA7000D97B37 /* ToolBarCell.m */,
+				A514C2671B4E007900F6B10F /* ProfileToolButtonCell.h */,
+				A514C2681B4E007900F6B10F /* ProfileToolButtonCell.m */,
+				A5C1C4891B4CFADB00D97B37 /* PersonInformationViewCell.h */,
+				A5C1C48A1B4CFADB00D97B37 /* PersonInformationViewCell.m */,
+				A5B249671B4B6ED80059EF0C /* EditingTableViewController.h */,
+				A5B249681B4B6ED80059EF0C /* EditingTableViewController.m */,
+				A5B249691B4B6ED80059EF0C /* EditingTableViewController.xib */,
+				A5B249711B4B74690059EF0C /* AddFriendTableViewController.h */,
+				A5B249721B4B74690059EF0C /* AddFriendTableViewController.m */,
+				A5B249731B4B74690059EF0C /* AddFriendTableViewController.xib */,
+				A5B249781B4BA3F40059EF0C /* ProfileIconView.h */,
+				A5B249791B4BA3F40059EF0C /* ProfileIconView.m */,
+
+>>>>>>> 陈新的Branch（7-10）
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1226,7 +1324,15 @@
 				2B63321E1B4386AF006D2840 /* UIButton+WebCache.m in Sources */,
 				C3A3493D1B4BC39200F6C263 /* EmotionPageView.m in Sources */,
 				2BDE74D61B3D343500E540AF /* Test2ViewController.m in Sources */,
+<<<<<<< HEAD
 				C38E04B61B4BEC630011B21A /* EmotionButton.m in Sources */,
+=======
+
+				C38E04B61B4BEC630011B21A /* EmotionButton.m in Sources */,
+
+				A5B249741B4B74690059EF0C /* AddFriendTableViewController.m in Sources */,
+
+>>>>>>> 陈新的Branch（7-10）
 				2B63321A1B4386AF006D2840 /* SDWebImageDownloader.m in Sources */,
 				2B6332161B4386AF006D2840 /* NSData+ImageContentType.m in Sources */,
 				2BD0358A1B40DEF400E5A0F7 /* AFHTTPSessionManager.m in Sources */,
@@ -1239,7 +1345,15 @@
 				2B6332211B4386AF006D2840 /* UIImage+WebP.m in Sources */,
 				2B6332471B43ACF7006D2840 /* MJMember.m in Sources */,
 				2B64E5801B3F154B008574DB /* DropDownMenu.m in Sources */,
+<<<<<<< HEAD
 				C3A49C7D1B4ABA0D0071DB7B /* EmotionListView.m in Sources */,
+=======
+
+				C3A49C7D1B4ABA0D0071DB7B /* EmotionListView.m in Sources */,
+
+				A5B2496A1B4B6ED80059EF0C /* EditingTableViewController.m in Sources */,
+
+>>>>>>> 陈新的Branch（7-10）
 				2BC8239D1B4772AA009018D4 /* TitleButton.m in Sources */,
 				2BD035891B40DEF400E5A0F7 /* AFHTTPRequestOperationManager.m in Sources */,
 				2B63321D1B4386AF006D2840 /* SDWebImagePrefetcher.m in Sources */,
@@ -1257,7 +1371,15 @@
 				2B087D1B1B4D53B800B9F0C2 /* StatusDetailRetweetToolBar.m in Sources */,
 				2BB4F1C81B4B62A000126F91 /* SDBrowserImageView.m in Sources */,
 				2BDE74CE1B3D343500E540AF /* HomeViewController.m in Sources */,
+<<<<<<< HEAD
 				C3A49C6D1B4A42E20071DB7B /* TextView.m in Sources */,
+=======
+
+				C3A49C6D1B4A42E20071DB7B /* TextView.m in Sources */,
+
+				A5D1CC4A1B4F4B2500E8B26C /* ProfileStasusController.m in Sources */,
+
+>>>>>>> 陈新的Branch（7-10）
 				2BD0358B1B40DEF400E5A0F7 /* AFNetworkReachabilityManager.m in Sources */,
 				2B63324A1B43ACF7006D2840 /* MJTypeEncoding.m in Sources */,
 				2B65390C1B41728600FD9893 /* AccountTool.m in Sources */,

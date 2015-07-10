@@ -5,7 +5,15 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
+<<<<<<< HEAD
 	<string>E8541797-B992-44D0-93DF-A8E3E8634EE9</string>
+=======
+<<<<<<< HEAD
+	<string>964CB72C-F2FE-40E6-9D69-B9502EE72C31</string>
+=======
+	<string>BEDFF72F-498D-4189-A014-13D4C7E4CACB</string>
+>>>>>>> 陈嘉的branch(7-10)
+>>>>>>> 陈新的Branch（7-10）
 	<key>IDESourceControlProjectName</key>
 	<string>MicroBlog</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
