@@ -109,12 +109,33 @@
 		2BDE74D71B3D343500E540AF /* Test2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDE74C91B3D343500E540AF /* Test2ViewController.xib */; };
 		2BDE74D81B3D343500E540AF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74CB1B3D343500E540AF /* TestViewController.m */; };
 		2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDE74CC1B3D343500E540AF /* TestViewController.xib */; };
+<<<<<<< HEAD
 		2BEC52001B4D1D87002965E6 /* StatusDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC51FF1B4D1D87002965E6 /* StatusDetailTitleView.m */; };
 		2BEC52031B4D20CB002965E6 /* statusdetail_comment_top_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52011B4D20CB002965E6 /* statusdetail_comment_top_background.png */; };
 		2BEC52041B4D20CB002965E6 /* statusdetail_comment_top_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52021B4D20CB002965E6 /* statusdetail_comment_top_background@2x.png */; };
 		2BEC52071B4D21F5002965E6 /* statusdetail_comment_top_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52051B4D21F5002965E6 /* statusdetail_comment_top_arrow.png */; };
 		2BEC52081B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52061B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png */; };
 		2BEC520B1B4D3AF0002965E6 /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC520A1B4D3AF0002965E6 /* BaseCell.m */; };
+=======
+		C352B2331B4CAD480005071C /* EmotionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2321B4CAD480005071C /* EmotionTextView.m */; };
+		C352B2361B4CB06A0005071C /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2351B4CB06A0005071C /* UITextView+Extension.m */; };
+		C352B24C1B4D20310005071C /* EmotionAttachmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B24B1B4D20310005071C /* EmotionAttachmentModel.m */; };
+		C352B2501B4D3C6B0005071C /* EmotionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B24F1B4D3C6B0005071C /* EmotionTool.m */; };
+		C37784E41B4B6F460040F1CA /* EmotionTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C37784E31B4B6F460040F1CA /* EmotionTabBarButton.m */; };
+		C37784E61B4B7B460040F1CA /* EmotionIcons in Resources */ = {isa = PBXBuildFile; fileRef = C37784E51B4B7B460040F1CA /* EmotionIcons */; };
+		C37784EA1B4B7E110040F1CA /* EmotionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C37784E91B4B7E110040F1CA /* EmotionModel.m */; };
+		C38E04B61B4BEC630011B21A /* EmotionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C38E04B51B4BEC630011B21A /* EmotionButton.m */; };
+		C3A3493D1B4BC39200F6C263 /* EmotionPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A3493C1B4BC39200F6C263 /* EmotionPageView.m */; };
+		C3A349401B4BD64400F6C263 /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A3493F1B4BD64400F6C263 /* NSString+Emoji.m */; };
+		C3A349461B4BDF1000F6C263 /* EmotionPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A349451B4BDF1000F6C263 /* EmotionPopView.m */; };
+		C3A349481B4BDF2300F6C263 /* EmotionPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A349471B4BDF2300F6C263 /* EmotionPopView.xib */; };
+		C3A49C6D1B4A42E20071DB7B /* TextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C6C1B4A42E20071DB7B /* TextView.m */; };
+		C3A49C711B4A69600071DB7B /* ComposeToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C701B4A69600071DB7B /* ComposeToolbar.m */; };
+		C3A49C741B4A92CD0071DB7B /* ComposePhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C731B4A92CD0071DB7B /* ComposePhotosView.m */; };
+		C3A49C771B4AB7ED0071DB7B /* EmotionKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C761B4AB7ED0071DB7B /* EmotionKeyboard.m */; };
+		C3A49C7A1B4AB9600071DB7B /* EmotionTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */; };
+		C3A49C7D1B4ABA0D0071DB7B /* EmotionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */; };
+>>>>>>> 陈新的Branch（7-10）
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -325,6 +346,7 @@
 		2BDE74CA1B3D343500E540AF /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		2BDE74CB1B3D343500E540AF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		2BDE74CC1B3D343500E540AF /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		2BEC51FE1B4D1D87002965E6 /* StatusDetailTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailTitleView.h; sourceTree = "<group>"; };
 		2BEC51FF1B4D1D87002965E6 /* StatusDetailTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailTitleView.m; sourceTree = "<group>"; };
 		2BEC52011B4D20CB002965E6 /* statusdetail_comment_top_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusdetail_comment_top_background.png; sourceTree = "<group>"; };
@@ -333,6 +355,42 @@
 		2BEC52061B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statusdetail_comment_top_arrow@2x.png"; sourceTree = "<group>"; };
 		2BEC52091B4D3AF0002965E6 /* BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCell.h; sourceTree = "<group>"; };
 		2BEC520A1B4D3AF0002965E6 /* BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCell.m; sourceTree = "<group>"; };
+=======
+		C352B2311B4CAD480005071C /* EmotionTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionTextView.h; sourceTree = "<group>"; };
+		C352B2321B4CAD480005071C /* EmotionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTextView.m; sourceTree = "<group>"; };
+		C352B2341B4CB06A0005071C /* UITextView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Extension.h"; sourceTree = "<group>"; };
+		C352B2351B4CB06A0005071C /* UITextView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Extension.m"; sourceTree = "<group>"; };
+		C352B24A1B4D20310005071C /* EmotionAttachmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionAttachmentModel.h; sourceTree = "<group>"; };
+		C352B24B1B4D20310005071C /* EmotionAttachmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionAttachmentModel.m; sourceTree = "<group>"; };
+		C352B24E1B4D3C6B0005071C /* EmotionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionTool.h; sourceTree = "<group>"; };
+		C352B24F1B4D3C6B0005071C /* EmotionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTool.m; sourceTree = "<group>"; };
+		C37784E21B4B6F460040F1CA /* EmotionTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionTabBarButton.h; sourceTree = "<group>"; };
+		C37784E31B4B6F460040F1CA /* EmotionTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTabBarButton.m; sourceTree = "<group>"; };
+		C37784E51B4B7B460040F1CA /* EmotionIcons */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EmotionIcons; sourceTree = "<group>"; };
+		C37784E81B4B7E110040F1CA /* EmotionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionModel.h; sourceTree = "<group>"; };
+		C37784E91B4B7E110040F1CA /* EmotionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionModel.m; sourceTree = "<group>"; };
+		C38E04B41B4BEC630011B21A /* EmotionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionButton.h; sourceTree = "<group>"; };
+		C38E04B51B4BEC630011B21A /* EmotionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionButton.m; sourceTree = "<group>"; };
+		C3A3493B1B4BC39200F6C263 /* EmotionPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionPageView.h; sourceTree = "<group>"; };
+		C3A3493C1B4BC39200F6C263 /* EmotionPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionPageView.m; sourceTree = "<group>"; };
+		C3A3493E1B4BD64400F6C263 /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
+		C3A3493F1B4BD64400F6C263 /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
+		C3A349441B4BDF1000F6C263 /* EmotionPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionPopView.h; sourceTree = "<group>"; };
+		C3A349451B4BDF1000F6C263 /* EmotionPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionPopView.m; sourceTree = "<group>"; };
+		C3A349471B4BDF2300F6C263 /* EmotionPopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmotionPopView.xib; sourceTree = "<group>"; };
+		C3A49C6B1B4A42E20071DB7B /* TextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextView.h; sourceTree = "<group>"; };
+		C3A49C6C1B4A42E20071DB7B /* TextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextView.m; sourceTree = "<group>"; };
+		C3A49C6F1B4A69600071DB7B /* ComposeToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeToolbar.h; sourceTree = "<group>"; };
+		C3A49C701B4A69600071DB7B /* ComposeToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeToolbar.m; sourceTree = "<group>"; };
+		C3A49C721B4A92CD0071DB7B /* ComposePhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposePhotosView.h; sourceTree = "<group>"; };
+		C3A49C731B4A92CD0071DB7B /* ComposePhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposePhotosView.m; sourceTree = "<group>"; };
+		C3A49C751B4AB7ED0071DB7B /* EmotionKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionKeyboard.h; sourceTree = "<group>"; };
+		C3A49C761B4AB7ED0071DB7B /* EmotionKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionKeyboard.m; sourceTree = "<group>"; };
+		C3A49C781B4AB9600071DB7B /* EmotionTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionTabBar.h; sourceTree = "<group>"; };
+		C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTabBar.m; sourceTree = "<group>"; };
+		C3A49C7B1B4ABA0D0071DB7B /* EmotionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionListView.h; sourceTree = "<group>"; };
+		C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionListView.m; sourceTree = "<group>"; };
+>>>>>>> 陈新的Branch（7-10）
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,7 +540,11 @@
 		2B7863451B3CEFED00DC74C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				2BA7619B1B4D1248001167F1 /* image */,
+=======
+				C37784E51B4B7B460040F1CA /* EmotionIcons */,
+>>>>>>> 陈新的Branch（7-10）
 				2B7863461B3CEFED00DC74C4 /* Info.plist */,
 				2BDE74741B3CF55400E540AF /* MicroBlog-Prefix.pch */,
 			);
@@ -509,6 +571,9 @@
 		2B83A9BC1B47C8CA00E0F351 /* Compose(发微博) */ = {
 			isa = PBXGroup;
 			children = (
+				C352B24D1B4D3C3B0005071C /* Tool */,
+				C37784E71B4B7DE00040F1CA /* Model */,
+				C3A49C6E1B4A69200071DB7B /* View */,
 				2B83A9BD1B47C8E700E0F351 /* Controller */,
 			);
 			path = "Compose(发微博)";
@@ -789,10 +854,15 @@
 		2BDE74AB1B3D343500E540AF /* Category */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				2BA761A01B4D144A001167F1 /* NSString+File.h */,
 				2BA761A11B4D144A001167F1 /* NSString+File.m */,
 				2BA761981B4D11D6001167F1 /* UIImage+Image.h */,
 				2BA761991B4D11D6001167F1 /* UIImage+Image.m */,
+=======
+				C3A3493E1B4BD64400F6C263 /* NSString+Emoji.h */,
+				C3A3493F1B4BD64400F6C263 /* NSString+Emoji.m */,
+>>>>>>> 陈新的Branch（7-10）
 				2B6903E81B42BE9100629696 /* Foundation+Log.m */,
 				2BDE74AC1B3D343500E540AF /* UIView+Extention.h */,
 				2BDE74AD1B3D343500E540AF /* UIView+Extention.m */,
@@ -802,6 +872,8 @@
 				2B65390E1B417E7C00FD9893 /* UIWindow+Extention.m */,
 				2BCE710B1B46EA8500E8A3D9 /* NSString+Extention.h */,
 				2BCE710C1B46EA8500E8A3D9 /* NSString+Extention.m */,
+				C352B2341B4CB06A0005071C /* UITextView+Extension.h */,
+				C352B2351B4CB06A0005071C /* UITextView+Extension.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -862,6 +934,8 @@
 				2B5F28721B3FD91D00C36B97 /* TabBar.m */,
 				2B83A9B91B47B92800E0F351 /* IconView.h */,
 				2B83A9BA1B47B92800E0F351 /* IconView.m */,
+				C3A49C6B1B4A42E20071DB7B /* TextView.h */,
+				C3A49C6C1B4A42E20071DB7B /* TextView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -915,6 +989,54 @@
 				2BDE74CC1B3D343500E540AF /* TestViewController.xib */,
 			);
 			path = temp;
+			sourceTree = "<group>";
+		};
+		C352B24D1B4D3C3B0005071C /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				C352B24E1B4D3C6B0005071C /* EmotionTool.h */,
+				C352B24F1B4D3C6B0005071C /* EmotionTool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		C37784E71B4B7DE00040F1CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C37784E81B4B7E110040F1CA /* EmotionModel.h */,
+				C37784E91B4B7E110040F1CA /* EmotionModel.m */,
+				C352B24A1B4D20310005071C /* EmotionAttachmentModel.h */,
+				C352B24B1B4D20310005071C /* EmotionAttachmentModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C3A49C6E1B4A69200071DB7B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3A49C6F1B4A69600071DB7B /* ComposeToolbar.h */,
+				C3A49C701B4A69600071DB7B /* ComposeToolbar.m */,
+				C3A49C721B4A92CD0071DB7B /* ComposePhotosView.h */,
+				C3A49C731B4A92CD0071DB7B /* ComposePhotosView.m */,
+				C3A49C751B4AB7ED0071DB7B /* EmotionKeyboard.h */,
+				C3A49C761B4AB7ED0071DB7B /* EmotionKeyboard.m */,
+				C3A49C781B4AB9600071DB7B /* EmotionTabBar.h */,
+				C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */,
+				C3A49C7B1B4ABA0D0071DB7B /* EmotionListView.h */,
+				C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */,
+				C37784E21B4B6F460040F1CA /* EmotionTabBarButton.h */,
+				C37784E31B4B6F460040F1CA /* EmotionTabBarButton.m */,
+				C3A3493B1B4BC39200F6C263 /* EmotionPageView.h */,
+				C3A3493C1B4BC39200F6C263 /* EmotionPageView.m */,
+				C3A349441B4BDF1000F6C263 /* EmotionPopView.h */,
+				C3A349451B4BDF1000F6C263 /* EmotionPopView.m */,
+				C3A349471B4BDF2300F6C263 /* EmotionPopView.xib */,
+				C38E04B41B4BEC630011B21A /* EmotionButton.h */,
+				C38E04B51B4BEC630011B21A /* EmotionButton.m */,
+				C352B2311B4CAD480005071C /* EmotionTextView.h */,
+				C352B2321B4CAD480005071C /* EmotionTextView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1002,7 +1124,12 @@
 				2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */,
 				2BCCDB711B3ED31000E407CC /* MBProgressHUD.bundle in Resources */,
 				2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */,
+<<<<<<< HEAD
 				2B087D261B4D5BCC00B9F0C2 /* statusdetail_icon_comment.png in Resources */,
+=======
+				C3A349481B4BDF2300F6C263 /* EmotionPopView.xib in Resources */,
+				C37784E61B4B7B460040F1CA /* EmotionIcons in Resources */,
+>>>>>>> 陈新的Branch（7-10）
 				2BDE74D71B3D343500E540AF /* Test2ViewController.xib in Resources */,
 				2BEC52031B4D20CB002965E6 /* statusdetail_comment_top_background.png in Resources */,
 				2B087D1E1B4D5A1300B9F0C2 /* statusdetail_icon_highlighted.png in Resources */,
@@ -1040,21 +1167,28 @@
 				2BDE74CD1B3D343500E540AF /* DiscoverViewController.m in Sources */,
 				2B6539081B41671500FD9893 /* AccountModel.m in Sources */,
 				2B83A9B81B47AAEE00E0F351 /* StatusPhotoView.m in Sources */,
+				C352B2331B4CAD480005071C /* EmotionTextView.m in Sources */,
 				2BC823971B4772AA009018D4 /* StatusFrameModel.m in Sources */,
 				2BA7619A1B4D11D6001167F1 /* UIImage+Image.m in Sources */,
 				2BDE74D51B3D343500E540AF /* ProfileViewController.m in Sources */,
 				2BC8239C1B4772AA009018D4 /* StatusCell.m in Sources */,
 				2B087D181B4D52BD00B9F0C2 /* StatusDetailCell.m in Sources */,
 				2B6903E91B42BE9100629696 /* Foundation+Log.m in Sources */,
+				C3A49C711B4A69600071DB7B /* ComposeToolbar.m in Sources */,
 				2BDE74D01B3D343500E540AF /* MainTabbarViewController.m in Sources */,
 				2BD035901B40DEF400E5A0F7 /* AFURLSessionManager.m in Sources */,
+				C352B2501B4D3C6B0005071C /* EmotionTool.m in Sources */,
+				C352B2361B4CB06A0005071C /* UITextView+Extension.m in Sources */,
+				C3A49C741B4A92CD0071DB7B /* ComposePhotosView.m in Sources */,
 				2BDE74D21B3D343500E540AF /* AppDelegate.m in Sources */,
 				2BD035731B40CE8400E5A0F7 /* OAuthViewController.m in Sources */,
 				2BCCDB701B3ED31000E407CC /* MBProgressHUD+MJ.m in Sources */,
 				2BD0358C1B40DEF400E5A0F7 /* AFSecurityPolicy.m in Sources */,
 				2B6332241B4386AF006D2840 /* UIView+WebCacheOperation.m in Sources */,
 				2BD035881B40DEF400E5A0F7 /* AFHTTPRequestOperation.m in Sources */,
+				C37784E41B4B6F460040F1CA /* EmotionTabBarButton.m in Sources */,
 				2B83A9BB1B47B92800E0F351 /* IconView.m in Sources */,
+				C3A49C771B4AB7ED0071DB7B /* EmotionKeyboard.m in Sources */,
 				2B6332441B43ACF7006D2840 /* MJConst.m in Sources */,
 				2B6332191B4386AF006D2840 /* SDWebImageDecoder.m in Sources */,
 				2B6332491B43ACF7006D2840 /* MJType.m in Sources */,
@@ -1075,27 +1209,38 @@
 				2BC823981B4772AA009018D4 /* StatusModel.m in Sources */,
 				2B6332151B4386AF006D2840 /* MKAnnotationView+WebCache.m in Sources */,
 				2B6332481B43ACF7006D2840 /* MJMethod.m in Sources */,
+<<<<<<< HEAD
 				2BB4F1C91B4B62A000126F91 /* SDPhotoBrowser.m in Sources */,
+=======
+				C3A349461B4BDF1000F6C263 /* EmotionPopView.m in Sources */,
+				C3A49C7A1B4AB9600071DB7B /* EmotionTabBar.m in Sources */,
+>>>>>>> 陈新的Branch（7-10）
 				2B63321B1B4386AF006D2840 /* SDWebImageDownloaderOperation.m in Sources */,
 				2BCCDB691B3ECD3200E407CC /* SearchBar.m in Sources */,
 				2B83A9B21B4788DF00E0F351 /* PhotoModel.m in Sources */,
 				2BB2F93D1B4C04E800981B91 /* CommentCell.m in Sources */,
 				2BCE710D1B46EA8500E8A3D9 /* NSString+Extention.m in Sources */,
+				C3A349401B4BD64400F6C263 /* NSString+Emoji.m in Sources */,
 				2B63324D1B43ACF7006D2840 /* NSObject+MJMember.m in Sources */,
 				2B5F28731B3FD91D00C36B97 /* TabBar.m in Sources */,
 				2BC8239E1B4772AA009018D4 /* ToolBar.m in Sources */,
 				2B63321E1B4386AF006D2840 /* UIButton+WebCache.m in Sources */,
+				C3A3493D1B4BC39200F6C263 /* EmotionPageView.m in Sources */,
 				2BDE74D61B3D343500E540AF /* Test2ViewController.m in Sources */,
+				C38E04B61B4BEC630011B21A /* EmotionButton.m in Sources */,
 				2B63321A1B4386AF006D2840 /* SDWebImageDownloader.m in Sources */,
 				2B6332161B4386AF006D2840 /* NSData+ImageContentType.m in Sources */,
 				2BD0358A1B40DEF400E5A0F7 /* AFHTTPSessionManager.m in Sources */,
+				C37784EA1B4B7E110040F1CA /* EmotionModel.m in Sources */,
 				2BDE74CF1B3D343500E540AF /* UIView+Extention.m in Sources */,
 				2B83A9C01B47C90900E0F351 /* ComposeViewController.m in Sources */,
 				2B5F28771B4006E200C36B97 /* NewFeatureViewController.m in Sources */,
 				2B63324C1B43ACF7006D2840 /* NSObject+MJKeyValue.m in Sources */,
+				C352B24C1B4D20310005071C /* EmotionAttachmentModel.m in Sources */,
 				2B6332211B4386AF006D2840 /* UIImage+WebP.m in Sources */,
 				2B6332471B43ACF7006D2840 /* MJMember.m in Sources */,
 				2B64E5801B3F154B008574DB /* DropDownMenu.m in Sources */,
+				C3A49C7D1B4ABA0D0071DB7B /* EmotionListView.m in Sources */,
 				2BC8239D1B4772AA009018D4 /* TitleButton.m in Sources */,
 				2BD035891B40DEF400E5A0F7 /* AFHTTPRequestOperationManager.m in Sources */,
 				2B63321D1B4386AF006D2840 /* SDWebImagePrefetcher.m in Sources */,
@@ -1113,6 +1258,7 @@
 				2B087D1B1B4D53B800B9F0C2 /* StatusDetailRetweetToolBar.m in Sources */,
 				2BB4F1C81B4B62A000126F91 /* SDBrowserImageView.m in Sources */,
 				2BDE74CE1B3D343500E540AF /* HomeViewController.m in Sources */,
+				C3A49C6D1B4A42E20071DB7B /* TextView.m in Sources */,
 				2BD0358B1B40DEF400E5A0F7 /* AFNetworkReachabilityManager.m in Sources */,
 				2B63324A1B43ACF7006D2840 /* MJTypeEncoding.m in Sources */,
 				2B65390C1B41728600FD9893 /* AccountTool.m in Sources */,
@@ -1224,9 +1370,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wei Feng Hou (S3RY9LN78U)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MicroBlog/MicroBlog-PreFIx.pch";
 				INFOPLIST_FILE = MicroBlog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MicroBlog;
 			};
@@ -1239,7 +1386,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MicroBlog/MicroBlog-PreFIx.pch";
 				INFOPLIST_FILE = MicroBlog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = MicroBlog;
 			};
