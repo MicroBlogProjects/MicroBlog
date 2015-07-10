@@ -33,7 +33,11 @@
      client_id	 	申请应用时分配的AppKey。 304647707
      redirect_uri	授权回调地址，站外应用需与设置的回调地址一致，站内应用需填写canvas page的地址。
     */
+<<<<<<< HEAD
     NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=1589673142&redirect_uri=http://"];
+=======
+    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=2713979731&redirect_uri=http://"];
+>>>>>>> 陈嘉的branch(7-10)
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 
@@ -53,12 +57,21 @@
  App key : 942446141
  App Secret : 387ea016d0c2baa3fb73ca00ac3ec049
  
+<<<<<<< HEAD
  
  App Key：
  1589673142
  
  App Secret：
  5ea2a3deb5f39a16215ffc6ebf4fcfeb
+=======
+ 陈嘉的微博
+ App Key：2836517650
+ App Secret：f37444f9cef6a61a2248ce97212cbb2c
+ 
+ App Key：2713979731
+ App Secret：fd88b5cf58d8ee23a90c76cf9f50f37f
+>>>>>>> 陈嘉的branch(7-10)
  */
 
 /**
@@ -73,8 +86,13 @@
     AFHTTPRequestOperationManager *manager  = [AFHTTPRequestOperationManager  manager];
     //2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
+<<<<<<< HEAD
     params[@"client_id"]     = @"1589673142" ;
     params[@"client_secret"] = @"5ea2a3deb5f39a16215ffc6ebf4fcfeb";
+=======
+    params[@"client_id"]     = @"2713979731" ;
+    params[@"client_secret"] = @"fd88b5cf58d8ee23a90c76cf9f50f37f";
+>>>>>>> 陈嘉的branch(7-10)
     params[@"grant_type"]    = @"authorization_code";
     params[@"code"]          = code ;
     params[@"redirect_uri"]  = @"http://";
