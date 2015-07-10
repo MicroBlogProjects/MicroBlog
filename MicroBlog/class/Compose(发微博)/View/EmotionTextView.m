@@ -48,4 +48,13 @@
     }];
     return fullText;
 }
+-(void)setAttributedText:(NSAttributedString *)attributedText {
+    [super setAttributedText:attributedText];
+    [self hasChange];
+}
+-(void)hasChange{
+    if([self.delegate respondsToSelector:@selector(statusHasChange)]){
+        [self.delegate statusHasChange];
+    }
+}
 @end

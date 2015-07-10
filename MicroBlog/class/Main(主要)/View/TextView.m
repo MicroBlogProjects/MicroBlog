@@ -41,6 +41,7 @@
    [self setNeedsDisplay];
 }
 -(void)setPlaceholderColor:(UIColor *)placeholderColor {
+    
     _placeholderColor = placeholderColor;
     [self setNeedsDisplay];
 }
