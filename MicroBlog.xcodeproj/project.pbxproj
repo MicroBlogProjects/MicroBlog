@@ -115,7 +115,6 @@
 		2BEC52071B4D21F5002965E6 /* statusdetail_comment_top_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52051B4D21F5002965E6 /* statusdetail_comment_top_arrow.png */; };
 		2BEC52081B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BEC52061B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png */; };
 		2BEC520B1B4D3AF0002965E6 /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC520A1B4D3AF0002965E6 /* BaseCell.m */; };
-		C34E53FA1B4FC3FB005E6203 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34E53F91B4FC3FB005E6203 /* View.xib */; };
 		C34E53FD1B4FC93C005E6203 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34E53FC1B4FC93C005E6203 /* MessageModel.m */; };
 		C34E53FF1B4FCF90005E6203 /* Message.plist in Resources */ = {isa = PBXBuildFile; fileRef = C34E53FE1B4FCF90005E6203 /* Message.plist */; };
 		C352B2331B4CAD480005071C /* EmotionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2321B4CAD480005071C /* EmotionTextView.m */; };
@@ -136,6 +135,8 @@
 		C3A49C771B4AB7ED0071DB7B /* EmotionKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C761B4AB7ED0071DB7B /* EmotionKeyboard.m */; };
 		C3A49C7A1B4AB9600071DB7B /* EmotionTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */; };
 		C3A49C7D1B4ABA0D0071DB7B /* EmotionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */; };
+		E6588B951B52677C00BF2B51 /* MessageMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6588B941B52677C00BF2B51 /* MessageMenuTableViewController.m */; };
+		E6CE1F2A1B5250610081200B /* AtMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6CE1F291B5250610081200B /* AtMeTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,7 +355,6 @@
 		2BEC52061B4D21F5002965E6 /* statusdetail_comment_top_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statusdetail_comment_top_arrow@2x.png"; sourceTree = "<group>"; };
 		2BEC52091B4D3AF0002965E6 /* BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCell.h; sourceTree = "<group>"; };
 		2BEC520A1B4D3AF0002965E6 /* BaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseCell.m; sourceTree = "<group>"; };
-		C34E53F91B4FC3FB005E6203 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = SOURCE_ROOT; };
 		C34E53FB1B4FC93C005E6203 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = SOURCE_ROOT; };
 		C34E53FC1B4FC93C005E6203 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = SOURCE_ROOT; };
 		C34E53FE1B4FCF90005E6203 /* Message.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Message.plist; sourceTree = "<group>"; };
@@ -392,6 +392,10 @@
 		C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTabBar.m; sourceTree = "<group>"; };
 		C3A49C7B1B4ABA0D0071DB7B /* EmotionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionListView.h; sourceTree = "<group>"; };
 		C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionListView.m; sourceTree = "<group>"; };
+		E6588B931B52677C00BF2B51 /* MessageMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageMenuTableViewController.h; sourceTree = "<group>"; };
+		E6588B941B52677C00BF2B51 /* MessageMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageMenuTableViewController.m; sourceTree = "<group>"; };
+		E6CE1F281B5250610081200B /* AtMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtMeTableViewController.h; sourceTree = "<group>"; };
+		E6CE1F291B5250610081200B /* AtMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtMeTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -708,7 +712,6 @@
 		2BC823A01B4772CB009018D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C34E53F91B4FC3FB005E6203 /* View.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -942,9 +945,9 @@
 		2BDE74BA1B3D343500E540AF /* Message(消息) */ = {
 			isa = PBXGroup;
 			children = (
+				2BDE74BB1B3D343500E540AF /* Controller */,
 				2BC8239F1B4772CB009018D4 /* Model */,
 				2BC823A01B4772CB009018D4 /* View */,
-				2BDE74BB1B3D343500E540AF /* Controller */,
 			);
 			path = "Message(消息)";
 			sourceTree = "<group>";
@@ -954,6 +957,10 @@
 			children = (
 				2BDE74BC1B3D343500E540AF /* MessageViewController.h */,
 				2BDE74BD1B3D343500E540AF /* MessageViewController.m */,
+				E6CE1F281B5250610081200B /* AtMeTableViewController.h */,
+				E6CE1F291B5250610081200B /* AtMeTableViewController.m */,
+				E6588B931B52677C00BF2B51 /* MessageMenuTableViewController.h */,
+				E6588B941B52677C00BF2B51 /* MessageMenuTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1118,7 +1125,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C34E53FA1B4FC3FB005E6203 /* View.xib in Resources */,
 				C34E53FF1B4FCF90005E6203 /* Message.plist in Resources */,
 				2B087D2A1B4D5BCC00B9F0C2 /* statusdetail_icon_retweet.png in Resources */,
 				2B087D281B4D5BCC00B9F0C2 /* statusdetail_icon_like.png in Resources */,
@@ -1224,6 +1230,7 @@
 				C3A3493D1B4BC39200F6C263 /* EmotionPageView.m in Sources */,
 				2BDE74D61B3D343500E540AF /* Test2ViewController.m in Sources */,
 				C38E04B61B4BEC630011B21A /* EmotionButton.m in Sources */,
+				E6CE1F2A1B5250610081200B /* AtMeTableViewController.m in Sources */,
 				2B63321A1B4386AF006D2840 /* SDWebImageDownloader.m in Sources */,
 				2B6332161B4386AF006D2840 /* NSData+ImageContentType.m in Sources */,
 				2BD0358A1B40DEF400E5A0F7 /* AFHTTPSessionManager.m in Sources */,
@@ -1250,6 +1257,7 @@
 				2BDE74D81B3D343500E540AF /* TestViewController.m in Sources */,
 				2BA761A21B4D144B001167F1 /* NSString+File.m in Sources */,
 				2BDE74D31B3D343500E540AF /* main.m in Sources */,
+				E6588B951B52677C00BF2B51 /* MessageMenuTableViewController.m in Sources */,
 				2BDE74D41B3D343500E540AF /* MessageViewController.m in Sources */,
 				2B087D1B1B4D53B800B9F0C2 /* StatusDetailRetweetToolBar.m in Sources */,
 				2BB4F1C81B4B62A000126F91 /* SDBrowserImageView.m in Sources */,

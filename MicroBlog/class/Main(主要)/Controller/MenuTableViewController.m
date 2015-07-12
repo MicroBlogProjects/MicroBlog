@@ -36,6 +36,7 @@
     if(cell ==nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
+    
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"好友";
