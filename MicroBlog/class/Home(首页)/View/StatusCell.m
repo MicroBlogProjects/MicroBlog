@@ -23,6 +23,7 @@
 #import "StatusDetailViewController.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD+MJ.h"
+#import "CommentViewController.h"
 @interface StatusCell ()  <ZZActionSheetDelegate , ToolBarDelegate>
 
 @property (nonatomic , strong) ToolBar *toolbar;
@@ -263,17 +264,24 @@
      //点击评论
     if(button.tag == ToolBarButtonTypeComment){
         
-        if(_baseFrameModel.statusModel.comments_count == 0 ){
+        if(_baseFrameModel.statusModel.comments_count == 0 ){  //还没有人评论
             
-            [MBProgressHUD showMessage:@"暂时没有评论"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUD];
-            });
+            MainTabbarViewController *mainView = [MainTabbarViewController sharedMainTabbarViewController];
+            CommentViewController *comment = [[CommentViewController alloc]init ] ;
+            comment.idstr = self.baseFrameModel.statusModel.idstr ;
+            NavigationController *nav = [[NavigationController alloc]initWithRootViewController:comment ] ;
             
-        }else{
+            [mainView presentViewController:nav animated:YES completion:^{
+                
+            }];
+            
+            
+            
+        }else{//已经有人评论
         
             NavigationController *nav = [MainTabbarViewController sharedMainTabbarViewController].viewControllers[0];
             StatusDetailViewController *detailStatus = [[StatusDetailViewController alloc] init];
+            detailStatus.isClickComent = 1; //
             detailStatus.statusModel = _baseFrameModel.statusModel ;
             
             [nav pushViewController:detailStatus animated:YES];

@@ -120,7 +120,6 @@
     
     /* 时间（微博发布时间）, 每次刷新的时候都要重新计算一下Frame,因为时间会变，宽度就会变 */
     NSString *time = commentModel.created_at ;
-    NSLog(@"%@",time);
     CGFloat timeX =  commentFrameModel.nameLabelF.origin.x ;
     CGFloat timeY = CGRectGetMaxY(commentFrameModel.nameLabelF) + kStatusCellBorderWidth/2 ;
     CGSize timeSize = [time sizeWithFont:kCommentCellTimeFont  ];

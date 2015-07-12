@@ -78,8 +78,8 @@
 		2BB4F1CA1B4B62A000126F91 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4F1C71B4B62A000126F91 /* SDWaitingView.m */; };
 		2BC6402F1B52023000743D4B /* ZZActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6402E1B52023000743D4B /* ZZActionSheet.m */; };
 		2BC640321B521A1100743D4B /* StatusDetailToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC640311B521A1100743D4B /* StatusDetailToolBar.m */; };
-		2BC6403B1B524F6500743D4B /* 1853872_c966414f30b3ebc72519946a326e4151_1436401423.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2BC6403A1B524F6500743D4B /* 1853872_c966414f30b3ebc72519946a326e4151_1436401423.jpg */; };
 		2BC6403E1B52608500743D4B /* DelayUITableview.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6403D1B52608500743D4B /* DelayUITableview.m */; };
+		2BC640411B52C78500743D4B /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC640401B52C78500743D4B /* CommentViewController.m */; };
 		2BC7C10C1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */; };
 		2BC823971B4772AA009018D4 /* StatusFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823861B4772AA009018D4 /* StatusFrameModel.m */; };
 		2BC823981B4772AA009018D4 /* StatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823881B4772AA009018D4 /* StatusModel.m */; };
@@ -296,9 +296,10 @@
 		2BC6402E1B52023000743D4B /* ZZActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZActionSheet.m; sourceTree = "<group>"; };
 		2BC640301B521A1100743D4B /* StatusDetailToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailToolBar.h; sourceTree = "<group>"; };
 		2BC640311B521A1100743D4B /* StatusDetailToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailToolBar.m; sourceTree = "<group>"; };
-		2BC6403A1B524F6500743D4B /* 1853872_c966414f30b3ebc72519946a326e4151_1436401423.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1853872_c966414f30b3ebc72519946a326e4151_1436401423.jpg; sourceTree = "<group>"; };
 		2BC6403C1B52608500743D4B /* DelayUITableview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelayUITableview.h; sourceTree = "<group>"; };
 		2BC6403D1B52608500743D4B /* DelayUITableview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayUITableview.m; sourceTree = "<group>"; };
+		2BC6403F1B52C78500743D4B /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		2BC640401B52C78500743D4B /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		2BC7C10A1B3D6F77005636CE /* UIBarButtonItem+DIYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DIYButton.h"; sourceTree = "<group>"; };
 		2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DIYButton.m"; sourceTree = "<group>"; };
 		2BC823851B4772AA009018D4 /* StatusFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusFrameModel.h; sourceTree = "<group>"; };
@@ -626,7 +627,6 @@
 		2B7863451B3CEFED00DC74C4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2BC6403A1B524F6500743D4B /* 1853872_c966414f30b3ebc72519946a326e4151_1436401423.jpg */,
 				2BA7619B1B4D1248001167F1 /* image */,
 				C37784E51B4B7B460040F1CA /* EmotionIcons */,
 				2B7863461B3CEFED00DC74C4 /* Info.plist */,
@@ -900,6 +900,8 @@
 				2BDE74A61B3D343500E540AF /* HomeViewController.m */,
 				2BD76F211B4A9ADB00A1B4CB /* StatusDetailViewController.h */,
 				2BD76F221B4A9ADB00A1B4CB /* StatusDetailViewController.m */,
+				2BC6403F1B52C78500743D4B /* CommentViewController.h */,
+				2BC640401B52C78500743D4B /* CommentViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1171,7 +1173,6 @@
 				C3A349481B4BDF2300F6C263 /* EmotionPopView.xib in Resources */,
 				C37784E61B4B7B460040F1CA /* EmotionIcons in Resources */,
 				2BDE74D71B3D343500E540AF /* Test2ViewController.xib in Resources */,
-				2BC6403B1B524F6500743D4B /* 1853872_c966414f30b3ebc72519946a326e4151_1436401423.jpg in Resources */,
 				2BC8239B1B4772AA009018D4 /* LoadMoreFootView.xib in Resources */,
 				2B4E18401B4F8D7000624C24 /* AddFriendTableViewController.xib in Resources */,
 				2BA7619E1B4D125C001167F1 /* toolbar_background.png in Resources */,
@@ -1280,6 +1281,7 @@
 				2BDE74CF1B3D343500E540AF /* UIView+Extention.m in Sources */,
 				2B83A9C01B47C90900E0F351 /* ComposeViewController.m in Sources */,
 				2B5F28771B4006E200C36B97 /* NewFeatureViewController.m in Sources */,
+				2BC640411B52C78500743D4B /* CommentViewController.m in Sources */,
 				2B63324C1B43ACF7006D2840 /* NSObject+MJKeyValue.m in Sources */,
 				C352B24C1B4D20310005071C /* EmotionAttachmentModel.m in Sources */,
 				2B6332211B4386AF006D2840 /* UIImage+WebP.m in Sources */,

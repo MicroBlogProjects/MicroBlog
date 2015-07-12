@@ -33,7 +33,7 @@
      client_id	 	申请应用时分配的AppKey。 304647707
      redirect_uri	授权回调地址，站外应用需与设置的回调地址一致，站内应用需填写canvas page的地址。
     */
-    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=2915497033&redirect_uri=http://"];
+    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=3911897486&redirect_uri=http://"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 
@@ -85,8 +85,8 @@
     AFHTTPRequestOperationManager *manager  = [AFHTTPRequestOperationManager  manager];
     //2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"client_id"]     = @"2915497033" ;
-    params[@"client_secret"] = @"84c8eda8fb9be1b8429cd9287a6fc398";
+    params[@"client_id"]     = @"3911897486" ;
+    params[@"client_secret"] = @"7e0c8ab5272a96dcdb65cf83036304b0";
     params[@"grant_type"]    = @"authorization_code";
     params[@"code"]          = code ;
     params[@"redirect_uri"]  = @"http://";

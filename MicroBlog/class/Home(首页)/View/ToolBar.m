@@ -92,7 +92,7 @@
     [btn setBackgroundImage:[UIImage imageNamed:@"timeline_card_bottom_background_highlighted"] forState:UIControlStateHighlighted];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
     btn.tag = type ;
-    [btn addTarget:self action:@selector(buttonClick:type:) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(buttonClick: ) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     [self.buttons addObject:btn];
     return btn;
@@ -101,10 +101,9 @@
 /**
  *  点击工具条上的按钮事件
  */
--(void)buttonClick:(UIButton*)button type:(ToolBarButtonType)type{
-    
+-(void)buttonClick:(UIButton*)button  {
     if([self.delegate respondsToSelector:@selector(toolBar:clickButton:type:)] ){
-        [self.delegate toolBar:self clickButton:button type:type];
+        [self.delegate toolBar:self clickButton:button type:(int)button.tag];
     }
 
 }

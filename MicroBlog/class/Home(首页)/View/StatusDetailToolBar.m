@@ -35,9 +35,9 @@
         self.backgroundColor = [UIColor whiteColor];
 
         //添加按钮
-        self.repostBtn   =  [self setupButtonWithTitle:@"转发" icon:@"timeline_icon_retweet"  ];
-        self.commentBtn  =  [self setupButtonWithTitle:@"评论" icon:@"timeline_icon_comment"  ];
-        self.attitudeBtn =  [self setupButtonWithTitle:@"赞" icon:@"timeline_icon_unlike"  ];
+        self.repostBtn   =  [self setupButtonWithTitle:@"转发" icon:@"timeline_icon_retweet" type:ToolBarButtonTypeRetweet ];
+        self.commentBtn  =  [self setupButtonWithTitle:@"评论" icon:@"timeline_icon_comment" type:ToolBarButtonTypeComment ];
+        self.attitudeBtn =  [self setupButtonWithTitle:@"赞" icon:@"timeline_icon_unlike"  type:ToolBarButtonTypeAgree];
         
         //添加分割线
         [self setupDevider];
@@ -55,8 +55,6 @@
     
     return self;
 }
-
-
 
 
 /**
@@ -99,7 +97,7 @@
 }
 
 /** 初始化一个按钮*/
--(UIButton *)setupButtonWithTitle:(NSString *)title icon:(NSString *)icon  {
+-(UIButton *)setupButtonWithTitle:(NSString *)title icon:(NSString *)icon type:(ToolBarButtonType)type {
     
     UIButton *btn  = [[UIButton alloc]init ] ;
     [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
@@ -108,10 +106,17 @@
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"timeline_card_bottom_background_highlighted"] forState:UIControlStateHighlighted];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
-    //    [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    btn.tag = type;
+    [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     [self.buttons addObject:btn];
     return btn;
+}
+
+-(void)buttonClick:(UIButton *)button{
+    if([self.delegate respondsToSelector:@selector(toolBar:clickButton:type:)] ){
+        [self.delegate toolBar:self clickButton:button type:(int)button.tag];
+    }
 }
 
 

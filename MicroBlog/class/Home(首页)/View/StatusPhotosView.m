@@ -60,7 +60,6 @@
 
 -(void)photoClick:(UITapGestureRecognizer*)getsture{
     
-    NSLog(@"%d",getsture.view.tag);
     SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
     browser.sourceImagesContainerView = self; // 原图的父控件
     browser.imageCount = self.photos.count; // 图片总数
@@ -83,7 +82,7 @@
         int col = i % StatusMaxPhotoCols(photosCount);
         photoView.x = col *(StatusPhotoWH  + StatusPhotoMargin);
         
-        int row = i/3;
+        int row = i/StatusMaxPhotoCols(photosCount);
         photoView.y = row * (StatusPhotoWH + StatusPhotoMargin);
         
         photoView.width = StatusPhotoWH ;

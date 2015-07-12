@@ -11,6 +11,7 @@
 @interface StatusDetailViewController : UIViewController<UITableViewDelegate , UITableViewDataSource>
 
 @property(nonatomic, strong) StatusModel *statusModel;
-
+/** 标记这是从点击评论按钮来到此页面，这样微博详情页在一开始就将tableView偏移到评论部分 */
+@property(nonatomic, assign) BOOL isClickComent;
 
 @end
