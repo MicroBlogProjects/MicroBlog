@@ -99,6 +99,7 @@
 		2BCCDB711B3ED31000E407CC /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BCCDB6D1B3ED31000E407CC /* MBProgressHUD.bundle */; };
 		2BCCDB721B3ED31000E407CC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCCDB6F1B3ED31000E407CC /* MBProgressHUD.m */; };
 		2BCE710D1B46EA8500E8A3D9 /* NSString+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCE710C1B46EA8500E8A3D9 /* NSString+Extention.m */; };
+		2BCF23AF1B50BB020064A409 /* HotTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF23AE1B50BB020064A409 /* HotTopCell.m */; };
 		2BD035731B40CE8400E5A0F7 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035721B40CE8400E5A0F7 /* OAuthViewController.m */; };
 		2BD035881B40DEF400E5A0F7 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035761B40DEF400E5A0F7 /* AFHTTPRequestOperation.m */; };
 		2BD035891B40DEF400E5A0F7 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035781B40DEF400E5A0F7 /* AFHTTPRequestOperationManager.m */; };
@@ -109,6 +110,7 @@
 		2BD0358E1B40DEF400E5A0F7 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035831B40DEF400E5A0F7 /* AFURLRequestSerialization.m */; };
 		2BD0358F1B40DEF400E5A0F7 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035851B40DEF400E5A0F7 /* AFURLResponseSerialization.m */; };
 		2BD035901B40DEF400E5A0F7 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD035871B40DEF400E5A0F7 /* AFURLSessionManager.m */; };
+		2BD366531B5111F2007EFA0C /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD366521B5111F2007EFA0C /* SearchViewController.m */; };
 		2BD753E31B4D04E300D80133 /* BaseFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD753E21B4D04E300D80133 /* BaseFrameModel.m */; };
 		2BD76F231B4A9ADB00A1B4CB /* StatusDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD76F221B4A9ADB00A1B4CB /* StatusDetailViewController.m */; };
 		2BDE74CD1B3D343500E540AF /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74A01B3D343500E540AF /* DiscoverViewController.m */; };
@@ -335,6 +337,8 @@
 		2BCD6E1F1B4D701700F03DA9 /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		2BCE710B1B46EA8500E8A3D9 /* NSString+Extention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extention.h"; sourceTree = "<group>"; };
 		2BCE710C1B46EA8500E8A3D9 /* NSString+Extention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extention.m"; sourceTree = "<group>"; };
+		2BCF23AD1B50BB020064A409 /* HotTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotTopCell.h; sourceTree = SOURCE_ROOT; };
+		2BCF23AE1B50BB020064A409 /* HotTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotTopCell.m; sourceTree = SOURCE_ROOT; };
 		2BD035711B40CE8400E5A0F7 /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
 		2BD035721B40CE8400E5A0F7 /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
 		2BD035751B40DEF400E5A0F7 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -356,6 +360,8 @@
 		2BD035851B40DEF400E5A0F7 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		2BD035861B40DEF400E5A0F7 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		2BD035871B40DEF400E5A0F7 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		2BD366511B5111F2007EFA0C /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		2BD366521B5111F2007EFA0C /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		2BD753E11B4D04E300D80133 /* BaseFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFrameModel.h; sourceTree = "<group>"; };
 		2BD753E21B4D04E300D80133 /* BaseFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFrameModel.m; sourceTree = "<group>"; };
 		2BD753E41B4D057D00D80133 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -723,6 +729,8 @@
 		2BC823811B477162009018D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2BCF23AD1B50BB020064A409 /* HotTopCell.h */,
+				2BCF23AE1B50BB020064A409 /* HotTopCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -888,6 +896,8 @@
 			children = (
 				2BDE749F1B3D343500E540AF /* DiscoverViewController.h */,
 				2BDE74A01B3D343500E540AF /* DiscoverViewController.m */,
+				2BD366511B5111F2007EFA0C /* SearchViewController.h */,
+				2BD366521B5111F2007EFA0C /* SearchViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1281,10 +1291,12 @@
 				2BCE710D1B46EA8500E8A3D9 /* NSString+Extention.m in Sources */,
 				C3A349401B4BD64400F6C263 /* NSString+Emoji.m in Sources */,
 				2B63324D1B43ACF7006D2840 /* NSObject+MJMember.m in Sources */,
+				2BD366531B5111F2007EFA0C /* SearchViewController.m in Sources */,
 				2B4E183E1B4F8D7000624C24 /* ProfileUserModel.m in Sources */,
 				2B5F28731B3FD91D00C36B97 /* TabBar.m in Sources */,
 				2BC8239E1B4772AA009018D4 /* ToolBar.m in Sources */,
 				2B63321E1B4386AF006D2840 /* UIButton+WebCache.m in Sources */,
+				2BCF23AF1B50BB020064A409 /* HotTopCell.m in Sources */,
 				C3A3493D1B4BC39200F6C263 /* EmotionPageView.m in Sources */,
 				2BDE74D61B3D343500E540AF /* Test2ViewController.m in Sources */,
 				C38E04B61B4BEC630011B21A /* EmotionButton.m in Sources */,

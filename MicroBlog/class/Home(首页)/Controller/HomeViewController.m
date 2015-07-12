@@ -46,6 +46,7 @@
  
     //集成下拉刷新控件 (刚打开APP的时候 模拟下拉一次来获取数据)
     [self setupDownRefresh];
+ 
     
     //集成上拉刷新控件
     [self setupUpRefresh];
@@ -121,9 +122,7 @@
     
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    
-    
+
     //2.拼接请求参数
     AccountModel *account = [AccountTool account]; //从沙盒中获取用户信息
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
@@ -134,27 +133,12 @@
         params[@"since_id"] = firstStatus.statusModel.idstr;
     }
     params[@"count"] = @2;
-    /*
-     赖伟煌的迷你微博
-     access_token=2.004nnkxBNS6mBB72a37612fdviOKvD
-     uid=1799091161
-     App Key：304647707
-     App Secret：533cfea336e04f236c469931f5d40a7c
-     
-     
-     迷你微博应用
-     access_token=2.004nnkxB0hmQc1ca9521a831L5MZsB
-     uid=1799091161
-     App key : 942446141
-     App Secret : 387ea016d0c2baa3fb73ca00ac3ec049
-     
-     */
+  
     
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
-        
-        
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
         //将StatusModel数组 转换成 StatusFrameModel数组
@@ -164,8 +148,7 @@
             f.statusModel = statusModel ;
             [newsFrames addObject:f];
         }
-        
-        
+    
         //把最新的微博数组，添加到总数组的最前面
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
@@ -407,20 +390,20 @@
 
 
 
-#pragma mark - dropDownMenuDelegate代理实现
+#pragma mark - dropDownMenuDelegate代理
 /**
  *  下拉菜单被销毁时触发，箭头方向向下
  */
 -(void)dropDownMenuDidDismiss:(DropDownMenu *)menu{
     UIButton *titleButton  = (UIButton*)self.navigationItem.titleView ;
     titleButton.selected = NO;
-    
 }
 
 
 
 
-#pragma mark - Table view data source
+#pragma mark - UITableView代理
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
