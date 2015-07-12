@@ -43,8 +43,8 @@ singleton_implementation(MainTabbarViewController)
     TabBar *tabBar = [[TabBar alloc]init];
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
-#warning todo 要删掉
-    self.selectedIndex = 2;
+
+
    
 }
 

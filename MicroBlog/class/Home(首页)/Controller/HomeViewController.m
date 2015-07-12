@@ -22,6 +22,7 @@
 #import "StatusCell.h"
 #import "StatusFrameModel.h"
 #import "StatusDetailViewController.h"
+#import "DelayUITableview.h"
 
 
 @interface HomeViewController () <DropDownMenuDelegate >
@@ -35,7 +36,13 @@
 @implementation HomeViewController
 
 - (void)viewDidLoad {
+     
     [super viewDidLoad];
+    
+    // 解决在UITableView的Cell中  按钮快速点击没有高亮的问题
+    DelayUITableview *tableView = [[DelayUITableview alloc]init];
+    self.tableView  = tableView ; 
+    
     self.tableView.backgroundColor =myColor(239, 239, 239);
     
      //设置导航栏内容
@@ -430,13 +437,28 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+ 
     
     static NSString *ID = @"StatusCell" ;
+    
     StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if(cell ==nil){
         cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     cell.baseFrameModel = _statusFrameModels[indexPath.row];
+    
+    
+//    for (id obj in cell.subviews)
+//    {
+//        if ([NSStringFromClass([obj class]) isEqualToString:@"UITableViewCellScrollView"])
+//        {
+//            UIScrollView *scroll = (UIScrollView *) obj;
+//            scroll.delaysContentTouches = NO;
+//            break;
+//        }
+//    }
+  
     
     return  cell;
 }
@@ -470,6 +492,7 @@
     
 }
 
+ 
 
 @end
 

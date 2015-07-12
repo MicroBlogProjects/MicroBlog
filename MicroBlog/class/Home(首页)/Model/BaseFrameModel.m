@@ -135,7 +135,7 @@
     /*工具条*/
     CGFloat toolbarX = 0 ;
     CGFloat toolbarW = cellW ;
-    CGFloat toolbarH = 35;
+    CGFloat toolbarH = 36;
     self.toolBarF = CGRectMake(toolbarX, toolbarY+1, toolbarW, toolbarH);
     
     

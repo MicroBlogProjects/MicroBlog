@@ -32,7 +32,6 @@
 
 -(void)retweetClick{
     
-#warning  todo 这里转换还有点不清楚
     NavigationController *nav = (NavigationController *)[MainTabbarViewController sharedMainTabbarViewController].selectedViewController;
     StatusDetailViewController *detail = [[StatusDetailViewController alloc]init ] ;
     detail.statusModel = self.baseFrameModel.statusModel.retweeted_status;

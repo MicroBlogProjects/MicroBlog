@@ -131,6 +131,7 @@
     //评论内容
     self.commentContent.frame = commentFrameModel.contenLabelF ;
     self.commentContent.text = commentFrameModel.statusModel.text;
+    self.commentContent.numberOfLines =0  ;
     self.commentContent.font = kCommentCellContentFont;
     
 }

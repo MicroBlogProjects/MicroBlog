@@ -23,7 +23,7 @@
 #import "StatusDetailViewController.h"
 #import "AFNetworking.h"
 #import "MBProgressHUD+MJ.h"
-@interface StatusCell ()  <ZZActionSheetDelegate>
+@interface StatusCell ()  <ZZActionSheetDelegate , ToolBarDelegate>
 
 @property (nonatomic , strong) ToolBar *toolbar;
 
@@ -121,6 +121,7 @@
     }
     
 }
+
 /** 收藏 */
 -(void)collection{
     
@@ -141,9 +142,6 @@
         });
         //修改收藏状态
         self.baseFrameModel.statusModel.favorited = !self.baseFrameModel.statusModel.favorited ;
-        
-        
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);
@@ -188,6 +186,8 @@
         [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow];
     });
 }
+
+
 
 
 #pragma mark  高亮设置
@@ -235,28 +235,57 @@
     /**  工具条 */
     _toolbar.frame = baseFrameModel.toolBarF ;
     _toolbar.statusModel = baseFrameModel.statusModel ;
+    _toolbar.delegate =self;
     [self.contentView addSubview:_toolbar];
     
 }
 
 
 #warning todo 点击微博转发、评论 、点赞
-//
-//
-//#pragma mark- toolBarDelegate 点击转发、评论、点赞
-//-(void)toolBar:(ToolBar *)tooBar clickButton:(UIButton *)button{
-//    if(button.tag == ToolBarButtonTypeAgree){
-//  
-//       
-//    }
-//    if(button.tag == ToolBarButtonTypeComment){
-//      
-//    }
-//    if(button.tag == ToolBarButtonTypeRetweet){
-//          NSLog(@"转发");
-//    }
-//    
-//}
+
+
+#pragma mark- toolBarDelegate 点击转发、评论、点赞
+/**
+ *  点击工具条上的按钮（转发，评论、点赞）
+ *
+ *  @param tooBar 工具条
+ *  @param button 按钮
+ *  @param type   按钮类型（区分转发、评论、点赞三个按钮）
+ */
+-(void)toolBar:(ToolBar *)tooBar clickButton:(UIButton *)button type:(ToolBarButtonType)type{
+    
+ 
+    if(button.tag == ToolBarButtonTypeAgree){
+        
+       
+    }
+    
+     //点击评论
+    if(button.tag == ToolBarButtonTypeComment){
+        
+        if(_baseFrameModel.statusModel.comments_count == 0 ){
+            
+            [MBProgressHUD showMessage:@"暂时没有评论"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUD];
+            });
+            
+        }else{
+        
+            NavigationController *nav = [MainTabbarViewController sharedMainTabbarViewController].viewControllers[0];
+            StatusDetailViewController *detailStatus = [[StatusDetailViewController alloc] init];
+            detailStatus.statusModel = _baseFrameModel.statusModel ;
+            
+            [nav pushViewController:detailStatus animated:YES];
+        }
+    }
+    
+ 
+    if(button.tag == ToolBarButtonTypeRetweet){
+          NSLog(@"转发");
+    }
+    
+}
 
 
 

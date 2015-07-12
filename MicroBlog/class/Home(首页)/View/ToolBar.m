@@ -4,10 +4,10 @@
 //
 //  Created by lai on 15/7/3.
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
-//
+//  首页中工具条（转发、评论、点赞）
 
 #import "ToolBar.h"
-#import "StatusModel.h"
+#import "StatusModel.h" 
 
 @interface ToolBar ()
 /**里面存放所有的按钮*/
@@ -27,13 +27,15 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if(self = [super initWithFrame:frame]){
+ 
         
       //设置ToolBar的背景颜色
+      
       self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_card_bottom_background"]];
       //添加按钮
-        self.repostBtn   =  [self setupButtonWithTitle:@"转发" icon:@"timeline_icon_retweet"  ];
-        self.commentBtn  =  [self setupButtonWithTitle:@"评论" icon:@"timeline_icon_comment"  ];
-        self.attitudeBtn =  [self setupButtonWithTitle:@"赞" icon:@"timeline_icon_unlike"  ];
+        self.repostBtn   =  [self setupButtonWithTitle:@"转发" icon:@"timeline_icon_retweet" type:ToolBarButtonTypeRetweet];
+        self.commentBtn  =  [self setupButtonWithTitle:@"评论" icon:@"timeline_icon_comment"  type:ToolBarButtonTypeComment];
+        self.attitudeBtn =  [self setupButtonWithTitle:@"赞" icon:@"timeline_icon_unlike" type:ToolBarButtonTypeAgree];
       //添加分割线
       [self setupDevider];
       [self setupDevider];
@@ -49,7 +51,7 @@
     [super layoutSubviews];
     
     //设置按钮的frame
-    int count = (int)self.buttons.count ;
+    int count = (int)self .buttons.count ;
     CGFloat buttonW = self.width/count ;
     CGFloat buttonH = self.height;
     for(int i=0 ; i<count ; i++){
@@ -80,7 +82,7 @@
 }
 
 /** 初始化一个按钮*/
--(UIButton *)setupButtonWithTitle:(NSString *)title icon:(NSString *)icon  {
+-(UIButton *)setupButtonWithTitle:(NSString *)title icon:(NSString *)icon type:(ToolBarButtonType)type{
     
     UIButton *btn  = [[UIButton alloc]init ] ;
     [btn setImage:[UIImage imageNamed:icon] forState:UIControlStateNormal];
@@ -89,31 +91,22 @@
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [btn setBackgroundImage:[UIImage imageNamed:@"timeline_card_bottom_background_highlighted"] forState:UIControlStateHighlighted];
     btn.titleLabel.font = [UIFont systemFontOfSize:13];
-//    [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    btn.tag = type ;
+    [btn addTarget:self action:@selector(buttonClick:type:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     [self.buttons addObject:btn];
     return btn;
 }
 
-///**
-// *  点击工具条上的按钮事件
-// */
-//-(void)buttonClick:(UIButton*)button{
-//    if([self.delegate respondsToSelector:@selector(toolBar:clickButton:)]){
-//        [self.delegate toolBar:self clickButton:button ];
-//        
-//    }
-//}
-
-
--(void)setStatusModel:(StatusModel *)statusModel{
-    _statusModel = statusModel ;
+/**
+ *  点击工具条上的按钮事件
+ */
+-(void)buttonClick:(UIButton*)button type:(ToolBarButtonType)type{
     
-    [self setupButtonCount:statusModel.reposts_count button:self.repostBtn title:@"转发"];
-    [self setupButtonCount:statusModel.comments_count button:self.commentBtn title:@"评论"];
-    [self setupButtonCount:statusModel.attitudes_count button:self.attitudeBtn title:@"赞"];
-    
-   
+    if([self.delegate respondsToSelector:@selector(toolBar:clickButton:type:)] ){
+        [self.delegate toolBar:self clickButton:button type:type];
+    }
+
 }
 
 
@@ -139,6 +132,21 @@
     }
     
     [button setTitle:title forState:UIControlStateNormal];
+}
+
+
+
+/**
+ *  设置数据
+ *
+ *  @param statusModel 微博数据模型
+ */
+-(void)setStatusModel:(StatusModel *)statusModel{
+    _statusModel = statusModel ;
+    
+    [self setupButtonCount:statusModel.reposts_count button:self.repostBtn title:@"转发"];
+    [self setupButtonCount:statusModel.comments_count button:self.commentBtn title:@"评论"];
+    [self setupButtonCount:statusModel.attitudes_count button:self.attitudeBtn title:@"赞"];
 }
 
 

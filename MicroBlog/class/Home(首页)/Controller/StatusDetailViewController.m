@@ -21,6 +21,7 @@
 #import "StatusDetailCell.h"
 #import "CommentCell.h"
 #import "CommentFrameModel.h"
+#import "StatusDetailToolBar.h"
 
 
 
@@ -76,8 +77,7 @@
     
     
     //2.评论条
-    UIImageView *option = [[UIImageView alloc]init] ;
-    option.image = [UIImage stretchImageWithName:@"toolbar_background.png"];
+    StatusDetailToolBar *option = [[StatusDetailToolBar alloc]init] ;
     option.frame = CGRectMake(0, size.height-kOptionHeight, size.width, kOptionHeight);
     option.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.view addSubview:option];
