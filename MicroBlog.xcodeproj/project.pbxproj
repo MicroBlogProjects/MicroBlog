@@ -84,6 +84,7 @@
 		2BB4F1C81B4B62A000126F91 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4F1C21B4B62A000126F91 /* SDBrowserImageView.m */; };
 		2BB4F1C91B4B62A000126F91 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4F1C41B4B62A000126F91 /* SDPhotoBrowser.m */; };
 		2BB4F1CA1B4B62A000126F91 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB4F1C71B4B62A000126F91 /* SDWaitingView.m */; };
+		2BC6402F1B52023000743D4B /* ZZActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC6402E1B52023000743D4B /* ZZActionSheet.m */; };
 		2BC7C10C1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */; };
 		2BC823971B4772AA009018D4 /* StatusFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823861B4772AA009018D4 /* StatusFrameModel.m */; };
 		2BC823981B4772AA009018D4 /* StatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC823881B4772AA009018D4 /* StatusModel.m */; };
@@ -308,6 +309,8 @@
 		2BB4F1C51B4B62A000126F91 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		2BB4F1C61B4B62A000126F91 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
 		2BB4F1C71B4B62A000126F91 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
+		2BC6402D1B52023000743D4B /* ZZActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZActionSheet.h; sourceTree = "<group>"; };
+		2BC6402E1B52023000743D4B /* ZZActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZActionSheet.m; sourceTree = "<group>"; };
 		2BC7C10A1B3D6F77005636CE /* UIBarButtonItem+DIYButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DIYButton.h"; sourceTree = "<group>"; };
 		2BC7C10B1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DIYButton.m"; sourceTree = "<group>"; };
 		2BC823851B4772AA009018D4 /* StatusFrameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusFrameModel.h; sourceTree = "<group>"; };
@@ -1009,6 +1012,8 @@
 		2BDE74B91B3D343500E540AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2BC6402D1B52023000743D4B /* ZZActionSheet.h */,
+				2BC6402E1B52023000743D4B /* ZZActionSheet.m */,
 				2BCCDB671B3ECD3200E407CC /* SearchBar.h */,
 				2BCCDB681B3ECD3200E407CC /* SearchBar.m */,
 				2B64E57E1B3F154B008574DB /* DropDownMenu.h */,
@@ -1228,6 +1233,7 @@
 				2BD0358E1B40DEF400E5A0F7 /* AFURLRequestSerialization.m in Sources */,
 				2BD753E31B4D04E300D80133 /* BaseFrameModel.m in Sources */,
 				2BD0358D1B40DEF400E5A0F7 /* AFURLConnectionOperation.m in Sources */,
+				2BC6402F1B52023000743D4B /* ZZActionSheet.m in Sources */,
 				2BDE74CD1B3D343500E540AF /* DiscoverViewController.m in Sources */,
 				2B4E18391B4F8D7000624C24 /* DIYSegmentViewController.m in Sources */,
 				2B6539081B41671500FD9893 /* AccountModel.m in Sources */,
