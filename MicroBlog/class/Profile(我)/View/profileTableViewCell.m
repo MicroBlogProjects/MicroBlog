@@ -61,20 +61,22 @@
     }
     
     //简介
+    NSString * title;
     if ([profileUserModel.descrip isEqualToString:@""]) {
-        profileUserModel.descrip = @"简介:暂无介绍";
+        title = @"简介:暂无介绍";
     }
     else{
-        profileUserModel.descrip = [NSString stringWithFormat:@"简介:%@",profileUserModel.descrip];
+        title = [NSString stringWithFormat:@"简介:%@",profileUserModel.descrip];
     }
     UILabel * descriptionLabel = [[UILabel alloc]init];
+    descriptionLabel.textColor = [UIColor whiteColor];
     descriptionLabel.backgroundColor = [UIColor whiteColor];
     descriptionLabel.font = kStatusCellNameFont;
     CGFloat desciptionX = CGRectGetMaxX(iconview.frame) + kStatusCellBorderWidth;
     CGFloat desciptionY = iconY + (iconview.height / 2);
-    CGSize desciptionSize = [profileUserModel.descrip sizeWithFont:kStatusCellNameFont];
+    CGSize desciptionSize = [title sizeWithFont:kStatusCellNameFont];
     descriptionLabel.frame = CGRectMake(desciptionX, desciptionY, desciptionSize.width, desciptionSize.height);
-    descriptionLabel.text = profileUserModel.descrip;
+    descriptionLabel.text = title ;
     descriptionLabel.textColor = myColor(205, 205, 205);
     //线
     UIImageView *line = [[UIImageView alloc]init];

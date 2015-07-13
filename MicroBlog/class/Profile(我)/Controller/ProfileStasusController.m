@@ -10,7 +10,6 @@
 
 @interface ProfileStasusController ()
 @property (nonatomic , strong) NSMutableArray *statusFrameModels;
-@property (nonatomic , strong) DiscoverViewController * discoverView;
 
 @end
 
@@ -22,8 +21,7 @@
     
     //加载第一次数据
     [self setupDownRefresh];
-    DiscoverViewController * discoverView = [[DiscoverViewController alloc]init];
-    [self.tableView addSubview:discoverView.view];
+//    NSLog(@"%ld",self.statusFrameModels.count);
 }
 
 - (void)setupDownRefresh{
@@ -44,6 +42,8 @@
 -(void)loadNewStatus:(UIRefreshControl *)control{
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    
     //2.拼接请求参数
     AccountModel *account = [AccountTool account]; //从沙盒中获取用户信息
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
@@ -55,7 +55,7 @@
         params[@"since_id"] = firstStatus.statusModel.idstr;
     }
     [manager GET:@"https://api.weibo.com/2/statuses/user_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+//        NSLog(@"%@",responseObject);
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
@@ -72,6 +72,7 @@
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
+//        NSLog(@"%ld",self.statusFrameModels.count);
         
         //刷新表格
         [self.tableView reloadData];
@@ -95,12 +96,10 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return self.statusFrameModels.count;
 }
 
@@ -116,50 +115,18 @@
     cell.baseFrameModel =  self.statusFrameModels[indexPath.row];
     return  cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    StatusFrameModel * frame = self.statusFrameModels[indexPath.row];
+    
+    return frame.cellHeight ;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+/**
+ *  statuses懒加载
+ */
+-(NSMutableArray *)statusFrameModels{
+    if(_statusFrameModels == nil){
+        _statusFrameModels = [NSMutableArray array];
+    }
+    return _statusFrameModels ;
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

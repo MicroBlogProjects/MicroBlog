@@ -137,10 +137,10 @@
         cell = [tableView dequeueReusableCellWithIdentifier:ID];
         if (cell == nil) {
             cell = [[PersonInformationViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID andPersonInfo:self.userModel];
-//            UIView *tempView = [[UIView alloc] init] ;
-//            [cell setBackgroundView:tempView];
-//            cell.backgroundColor = [UIColor clearColor];
-//            tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+            UIView *tempView = [[UIView alloc] init] ;
+            [cell setBackgroundView:tempView];
+            cell.backgroundColor = [UIColor clearColor];
+            tableView.separatorStyle = UITableViewCellSelectionStyleNone;
         }
     }
     else if (indexPath.section ==1)
