@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ProfileUserModel.h"
-#import "ToolBarCellController.h"
 
 @interface ToolBarCell : UITableViewCell
 //粉丝数量按钮的tag
@@ -22,8 +21,6 @@
 //昵称字体
 #define  kStatusCellNameFont  [UIFont systemFontOfSize:15]
 
-
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
--(void)setProfileUserModel:(ProfileUserModel *) profileUserModel andToolBarCell: (ToolBarCellController *)toolBarcell;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier andProfileUserModel:(ProfileUserModel *)profileUserModel;
 
 @end
