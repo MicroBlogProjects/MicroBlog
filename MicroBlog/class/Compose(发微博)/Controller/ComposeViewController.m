@@ -273,6 +273,7 @@
  *  点击取消按钮 动作：退出当前控制器
  */
 -(void)cancel{
+    [self.textView resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 /**
