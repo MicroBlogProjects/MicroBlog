@@ -17,16 +17,8 @@ typedef enum{
     ToolBarButtonTypeAgree
 }ToolBarButtonType;
 
-@protocol ToolBarDelegate <NSObject>
-
-@optional
--(void)toolBar:(ToolBar*)tooBar clickButton:(UIButton *)button type:(ToolBarButtonType)type;
-
-@end
-
 @interface ToolBar : UIView
 //获取微博数据，取出其中的 转发 评论 点赞个数
 @property (nonatomic , strong) StatusModel *statusModel ;
-@property (nonatomic , weak) id<ToolBarDelegate> delegate;
 +(instancetype)toobar ;
 @end

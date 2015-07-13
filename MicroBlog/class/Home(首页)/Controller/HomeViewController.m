@@ -23,6 +23,9 @@
 #import "StatusFrameModel.h"
 #import "StatusDetailViewController.h"
 #import "DelayUITableview.h"
+#import "ToolBar.h"
+#import "CommentViewController.h"
+#import "NavigationController.h"
 
 
 @interface HomeViewController () <DropDownMenuDelegate >
@@ -45,6 +48,9 @@
     
     self.tableView.backgroundColor =myColor(239, 239, 239);
     
+    //添加一个通知： 当点击微博列表中工具栏的按钮触发  (转发 评论  点赞)
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toolBarCilick:) name:@"ToolBarClick" object:nil];
+    
      //设置导航栏内容
     [self setupNavigationBar];
     
@@ -64,6 +70,50 @@
     //主线程也会抽出时间处理一下timer
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
+
+
+
+/**
+ *  当点击微博列表中工具栏的按钮触发  (转发 评论  点赞)
+ *
+ *  @param notification
+ */
+-(void)toolBarCilick:(NSNotification *)notification{
+    
+    NSDictionary *dict = notification.userInfo ;
+    StatusModel *model = dict[@"statusModel"];
+    UIButton *button = dict[@"button"];
+    
+    //点赞
+    if(button.tag == ToolBarButtonTypeAgree){
+        
+    }
+    
+    //评论
+    if(button.tag == ToolBarButtonTypeComment){
+        
+        
+        if(model.comments_count == 0 ){  //还没有人评论
+            CommentViewController *comment = [[CommentViewController alloc]init ] ;
+            comment.idstr = model.idstr ;
+            NavigationController *nav = [[NavigationController alloc]initWithRootViewController:comment ] ;
+            [self presentViewController:nav animated:YES completion:^{
+            }];
+        }else{//已经有人评论
+            StatusDetailViewController *detailStatus = [[StatusDetailViewController alloc] init];
+            detailStatus.isClickComent = 1; //
+            detailStatus.statusModel = model ;
+            [self.navigationController pushViewController:detailStatus animated:YES];
+        }
+    }
+    
+    //转发
+    if(button.tag == ToolBarButtonTypeRetweet){
+        
+    }
+
+}
+
 
 /**
  *  获取未读消息数目  (没有访问次数限制)
@@ -145,7 +195,7 @@
     
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         

@@ -44,8 +44,7 @@ singleton_implementation(MainTabbarViewController)
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
  
-#warning todo
-    self.selectedIndex  = 3;
+ 
  
 }
 
