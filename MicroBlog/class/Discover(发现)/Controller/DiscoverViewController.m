@@ -72,7 +72,7 @@
     searchBar.height = 35 ;
     searchBar.delegate = self ;
     self.navigationItem.titleView = searchBar;
-}
+} 
 
 
 
