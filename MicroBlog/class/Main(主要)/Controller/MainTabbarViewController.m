@@ -43,9 +43,10 @@ singleton_implementation(MainTabbarViewController)
     TabBar *tabBar = [[TabBar alloc]init];
     tabBar.delegate = self;
     [self setValue:tabBar forKeyPath:@"tabBar"];
-
-
-   
+ 
+#warning todo
+    self.selectedIndex  = 3;
+ 
 }
 
 
@@ -81,6 +82,7 @@ singleton_implementation(MainTabbarViewController)
     //给外面传进来的小控制器 包装 一个导航控制器
     NavigationController *nav = [[NavigationController alloc]initWithRootViewController:childVC];
     [self addChildViewController:nav];
+    
 }
 
 

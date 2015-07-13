@@ -16,14 +16,13 @@
 #import "AddFriendTableViewController.h"
 #import "ToolBarCell.h"
 #import "PersonalInformationViewController.h"
-#import "ToolBarCellController.h"
+#import "NavigationController.h"
 
 
 @interface ProfileViewController ()<UITableViewDelegate,PersonInfoDelegate>
 
 
 @property (nonatomic , strong)ProfileUserModel * userModel;
-@property (nonatomic , strong)ToolBarCellController * toolBarCell;
 
 @end
 
@@ -55,6 +54,7 @@
     //创建一个
     //3发送请求
     [manager GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
+//        NSLog(@"%@",responseObject);
         //设置得到的数据
         [self setU:responseObject];
         [self.tableView reloadData];
@@ -176,13 +176,8 @@
     }
     else if (indexPath.section == 1){
         static NSString * ID = @"toolCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:ID];
-        self.toolBarCell = [[ToolBarCellController alloc]init];
-        if (cell == nil ) {
-            cell = [[ToolBarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        }
-//        [(ToolBarCell *)cell setProfileUserModel:self.userModel];
-        [(ToolBarCell*)cell setProfileUserModel:self.userModel andToolBarCell:self.toolBarCell];
+
+        cell = [[ToolBarCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID andProfileUserModel:self.userModel];
     }
     else
     {
@@ -278,6 +273,27 @@
         PersonalInformationViewController * personalInfoView = [[PersonalInformationViewController alloc]init];
         personalInfoView.personInfoDelegate = self;
         [self.navigationController pushViewController:personalInfoView animated:YES];
+    }
+}
+/** 以下两个函数功能：使Cell中添加图片不会导致分割线被裁减一部分 */
+-(void)viewDidLayoutSubviews {
+    
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+        
+    }
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)])  {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPat{
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]){
+        [cell setSeparatorInset:UIEdgeInsetsZero];
     }
 }
 @end
