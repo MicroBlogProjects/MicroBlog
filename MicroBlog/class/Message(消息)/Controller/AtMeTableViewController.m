@@ -31,6 +31,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setupNavigationBar];
     //下拉刷新数据 现显示现在的数据
     [self setupDownRefresh];
