@@ -15,6 +15,7 @@
  *   给定字体和指定每行最大宽度 计算出字符串的 CGSize
  */
 -(CGSize)sizeWithFont:(UIFont* )font maxWidth:(CGFloat )maxWidth{
+    
     NSMutableDictionary *attribute = [NSMutableDictionary dictionary];
     attribute[NSFontAttributeName] = font ;
     CGSize maxSize = CGSizeMake(maxWidth, MAXFLOAT);

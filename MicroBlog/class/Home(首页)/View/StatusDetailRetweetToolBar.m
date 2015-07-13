@@ -18,6 +18,7 @@
 
     if(self = [super initWithFrame:frame]){
         
+
         [self addButtonWithTitle:@"转发" icon:@"statusdetail_icon_retweet.png" index:0];
         [self addButtonWithTitle:@"评论" icon:@"statusdetail_icon_comment.png" index:1];
         [self addButtonWithTitle:@"赞" icon:@"statusdetail_icon_like.png" index:2];

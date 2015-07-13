@@ -20,14 +20,20 @@
 #import "StatusDetailTitleView.h"
 #import "StatusDetailCell.h"
 #import "CommentCell.h"
+#import "CommentFrameModel.h"
+#import "StatusDetailToolBar.h"
+#import "MainTabbarViewController.h"
+#import "CommentViewController.h"
+#import "NavigationController.h"
 
 
 
-@interface StatusDetailViewController ()
+@interface StatusDetailViewController () <StatusDetailToolBarDelegate>
 @property (nonatomic , strong) StatusDetailFrameModel *statusFrameModel;
 @property (nonatomic , strong) UITableView *tableView;
 @property (nonatomic , strong) StatusDetailTitleView *titleView;
 @property (nonatomic , strong) NSString  *statusID ;
+ 
 
 @property (nonatomic , strong) NSMutableArray *commentFrameModels;
 
@@ -36,12 +42,8 @@
 @implementation StatusDetailViewController
 
 
--(NSMutableArray *)commentFrameModels{
-    if(!_commentFrameModels){
-        _commentFrameModels = [NSMutableArray array];
-    }
-    return _commentFrameModels ;
-}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -52,10 +54,44 @@
     [self createSubViews];
     
     [self loadNewComment];
+
+
+    
+}
+
+/**
+ * 重写目的： 如果是点击评论按钮跳转到此页面，页面就进行偏移，偏移到评论部分
+ */
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if(_isClickComent){
+     [self.tableView setContentOffset:CGPointMake(0, self.statusFrameModel.cellHeight-59) animated:YES];
+        _isClickComent = 0 ;
+    }
+}
+
+/**
+ * 重写的目的：进入评论页面评论完后，重新回到微博详情页，能够加载最新评论信息
+ */
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if(_commentFrameModels.count){
+            NSLog(@"viewWillAppear");
+            [self loadNewComment];
+        }
+    });
+    
+
     
 }
 
 
+/**
+ *  初始化内容
+ */
 -(void)createSubViews{
     
     //初始化frameModel
@@ -63,98 +99,68 @@
     _statusFrameModel.statusModel =_statusModel;
     
     //1.添加tableView
-    _tableView = [[UITableView alloc]init];
-    _tableView.allowsSelection = NO ;
-    _tableView.delegate =self;
-    _tableView.dataSource = self;
-    _tableView.backgroundColor = kGlobalBg ;
-    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    _tableView.frame = CGRectMake(0, 0, size.width, size.height - kOptionHeight);
-    [self.view addSubview:_tableView];
+    self.tableView = [[UITableView alloc]init];
+    self.tableView.allowsSelection = NO ;
+    self.tableView.delegate =self;
+    self.tableView.dataSource = self;
+    self.tableView.backgroundColor = kGlobalBg ;
+    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.tableView.frame = CGRectMake(0, 0, size.width, size.height - kOptionHeight);
+    [self.view addSubview:self.tableView];
    
-    
-    
     //2.评论条
-    UIImageView *option = [[UIImageView alloc]init] ;
-    option.image = [UIImage stretchImageWithName:@"toolbar_background.png"];
-    option.frame = CGRectMake(0, size.height-kOptionHeight, size.width, kOptionHeight);
-    option.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    [self.view addSubview:option];
-    
-    
+    StatusDetailToolBar *toolBar = [[StatusDetailToolBar alloc]init] ;
+    toolBar.frame = CGRectMake(0, size.height-kOptionHeight, size.width, kOptionHeight);
+    toolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    toolBar.delegate = self;
+    [self.view addSubview:toolBar];
     
 }
 
+/**
+ *  加载评论
+ */
 -(void)loadNewComment {
+    [self.commentFrameModels removeAllObjects];
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-
     //2.拼接请求参数
     AccountModel *account = [AccountTool account]; //从沙盒中获取用户信息
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
-    //取出最前面的微博（当前缓存数组中最新的微博，我们下拉只需要获取比缓存中更新的微博数据）
-//    StatusFrameModel *firstStatus = [self.commentFrameModels firstObject];
-//    if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
-//        params[@"since_id"] = firstStatus.statusModel.idstr;
-//    }
     params[@"id"] = _statusModel.idstr ;
-//    NSLog(@"%@",_statusModel.idstr);
-    
-    /*
-     赖伟煌的迷你微博
-     access_token=2.004nnkxBNS6mBB72a37612fdviOKvD
-     uid=1799091161
-     App Key：304647707
-     App Secret：533cfea336e04f236c469931f5d40a7c
-     
-     
-     迷你微博应用
-     access_token=2.004nnkxB0hmQc1ca9521a831L5MZsB
-     uid=1799091161
-     App key : 942446141
-     App Secret : 387ea016d0c2baa3fb73ca00ac3ec049
-     
-     */
-    
+
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/comments/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         
-//        NSLog(@"%@",responseObject);
+        //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"comments"]];
         
         //将StatusModel数组 转换成 StatusFrameModel数组
         NSMutableArray *newsFrames = [NSMutableArray array];
         for(StatusModel *statusModel in newStatuses){
-            StatusFrameModel *f = [[StatusFrameModel alloc]init];
+            CommentFrameModel *f = [[CommentFrameModel alloc]init];
             f.statusModel = statusModel ;
             [newsFrames addObject:f];
         }
-        
         
         //把最新的微博数组，添加到总数组的最前面
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.commentFrameModels insertObjects:newsFrames atIndexes:indexSet];
         
-        
-        
         //刷新表格
         [self.tableView reloadData];
         
-        
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //菊花停止转动
         NSLog(@"%@",error);
     }];
-
-    
 }
 
-
+/**
+ *   从外面输入微博数据
+ */
 -(void)setStatusModel:(StatusModel *)statusModel{
     _statusModel =statusModel ;
     
@@ -177,7 +183,10 @@
     if(section == 0){
         return 1;
     }
-    NSLog(@"%d",_commentFrameModels.count);
+    //当没有评论时候，只显示一行cell (显示内容是“没有评论内容”)
+    if(_commentFrameModels.count == 0 )
+        return  1;
+
     return _commentFrameModels.count;
 }
 
@@ -201,8 +210,12 @@
     if(indexPath.section == 0){
         return  _statusFrameModel.cellHeight;
     }
-    StatusFrameModel *frameModel = _commentFrameModels [indexPath.row];
-    return frameModel.cellHeight;
+     //当没有评论时候 ， 高度为100;
+    if(_commentFrameModels.count == 0)
+        return  120 ;
+    
+    CommentFrameModel *commentFrameModel = _commentFrameModels [indexPath.row];
+    return commentFrameModel.cellHeight;
 }
 
 /** Header的高 */
@@ -226,14 +239,51 @@
         
         return cell ;
 
-    }else{
-
+    }
+    //如果评论为0，显示一个空白的cell
+    if(_commentFrameModels.count ==0 ){
+        static NSString *ID = @"SpaceCell" ;
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if(cell ==nil){
+            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.textLabel.text = @"                    还没有人评论";
+        cell.textLabel.x =200;
+        return cell;
+    }
+    
         CommentCell *cell =  [CommentCell cellWithTablView:tableView];
         cell.commentFrameModel = _commentFrameModels[indexPath.row];
         return cell;
-    }
+    
 }
 
+
+
+#pragma mark - StatusDetailToolBarDelegate（工具条按钮点击事件代理）
+-(void)toolBar:(StatusDetailToolBar *)toolBar clickButton:(UIButton *)button type:(ToolBarButtonType)type{
+    //转发
+    if(type == ToolBarButtonTypeRetweet ){
+        
+    }
+    
+    //评论
+    if(type == ToolBarButtonTypeComment){
+        MainTabbarViewController *mainView = [MainTabbarViewController sharedMainTabbarViewController];
+        CommentViewController *comment = [[CommentViewController alloc]init ] ;
+        comment.idstr = self.statusModel.idstr ;
+        NavigationController *nav = [[NavigationController alloc]initWithRootViewController:comment ] ;
+        
+        [mainView presentViewController:nav animated:YES completion:^{
+            
+        }];
+    }
+    //点赞
+    if(type == ToolBarButtonTypeAgree){
+        
+    }
+    
+}
 
 #pragma mark- 懒加载
 
@@ -251,7 +301,12 @@
     return  _tableView;
 }
 
-
+-(NSMutableArray *)commentFrameModels{
+    if(!_commentFrameModels){
+        _commentFrameModels = [NSMutableArray array];
+    }
+    return _commentFrameModels ;
+}
 
 
 @end

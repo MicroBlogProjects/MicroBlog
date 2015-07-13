@@ -23,6 +23,8 @@
 @property (nonatomic , strong) StatusModel *retweeted_status;
 /**微博配图地址，多图时返回多图连接，无配图时返回“[]” */
 @property (nonatomic , strong) NSArray *pic_urls ;
+/** 是否收藏 */
+@property (nonatomic , assign) BOOL favorited;
 
 /** 转发数*/
 @property (nonatomic , assign)  int reposts_count ;

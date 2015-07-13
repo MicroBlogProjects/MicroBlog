@@ -32,7 +32,6 @@
 
 -(void)retweetClick{
     
-#warning  todo 这里转换还有点不清楚
     NavigationController *nav = (NavigationController *)[MainTabbarViewController sharedMainTabbarViewController].selectedViewController;
     StatusDetailViewController *detail = [[StatusDetailViewController alloc]init ] ;
     detail.statusModel = self.baseFrameModel.statusModel.retweeted_status;
@@ -49,10 +48,10 @@
     CGFloat toolBarHeight = kStatusOptionBarHeight;
     CGFloat toolBarWidth = 200;
     CGFloat toolBarY = self.retweetView.frame.size.height - toolBarHeight;
-    CGFloat toolBarX = retweetWidth - toolBarWidth - 20;
+    CGFloat toolBarX = retweetWidth - toolBarWidth +20;
     CGRect frame = CGRectMake(toolBarX , toolBarY, toolBarWidth, toolBarHeight);
     _toolBar = [[StatusDetailRetweetToolBar alloc] initWithFrame:frame];
-    _toolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    _toolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin  ;
     [self.retweetView addSubview:_toolBar];
     
 }

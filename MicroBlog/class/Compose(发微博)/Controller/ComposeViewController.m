@@ -308,7 +308,7 @@
      }
 }
 #pragma mark -其他方法
-
+#warning todo BUG-》 打开相机没反应
 -(void)switchKeyboard {
     //self.textView.inputView==nil 系统那个自带键盘
     if(self.textView.inputView==nil){//切换自定义表情键盘

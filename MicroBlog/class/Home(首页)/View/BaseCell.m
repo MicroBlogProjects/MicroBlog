@@ -61,12 +61,17 @@
  */
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     
+
+ 
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         self.backgroundColor = [UIColor clearColor];
         //        self.selectionStyle = UITableViewCellEditingStyleNone; //点击cell不变色
         //        UIView *view = [[ UIView alloc]init];
         //       view.backgroundColor = [UIColor blueColor];
         //        self.selectedBackgroundView = view ;              //设置选中cell时显示的颜色
+        
+   
+        
         
         //初始化原创微博模块
         [self setupOriginal];
@@ -81,9 +86,6 @@
     }
     return self ;
 }
-
-
-
 
 
 #pragma mark- 初始化微博框架

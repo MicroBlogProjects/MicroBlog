@@ -24,15 +24,15 @@
 
 
 /**
- *  评论列表每个Cell的一些参数
+ *  评论列表 每个Cell的一些参数
  */
 
-#define kIconImageWidth  50        //头像宽度
-#define kIconImageHeight  50       //头像高度
-#define kCommentCellBorderWidth 10 //cell 的边框宽度
-#define  kCommentCellNameFont  [UIFont systemFontOfSize:15] //昵称字体
-#define  kCommentCellTimeFont [UIFont systemFontOfSize:12]//时间字体
-
+#define kIconImageWidth  35        //头像宽度
+#define kIconImageHeight  35       //头像高度
+#define kCommentCellBorderWidth 8 //cell 的边框宽度
+#define  kCommentCellNameFont  [UIFont systemFontOfSize:14] //昵称字体
+#define  kCommentCellTimeFont [UIFont systemFontOfSize:11]//时间字体
+#define kCommentCellContentFont  [UIFont systemFontOfSize:13] //评论字体
 
 
 

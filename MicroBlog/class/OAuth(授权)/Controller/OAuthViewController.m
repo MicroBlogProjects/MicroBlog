@@ -33,7 +33,7 @@
      client_id	 	申请应用时分配的AppKey。 304647707
      redirect_uri	授权回调地址，站外应用需与设置的回调地址一致，站内应用需填写canvas page的地址。
     */
-    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=1589673142&redirect_uri=http://"];
+    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=3911897486&redirect_uri=http://"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 
@@ -41,6 +41,7 @@
 
 /*
  赖伟煌的迷你微博
+ ?access_token=2.004nnkxBNS6mBB72a37612fdviOKvD&uid=1799091161
  access_token=2.004nnkxBNS6mBB72a37612fdviOKvD
  uid=1799091161
  App Key：304647707
@@ -53,6 +54,17 @@
  App key : 942446141
  App Secret : 387ea016d0c2baa3fb73ca00ac3ec049
  
+ 
+ 迷你微博测试版1
+ App Key：3911897486
+ App Secret：7e0c8ab5272a96dcdb65cf83036304b0
+ 
+ 
+ 迷你微博测试版2
+ access_token=2.004nnkxBhxH_LD465cd88e98gTvHSB
+ uid=1799091161
+ App Key：2915497033
+ App Secret：84c8eda8fb9be1b8429cd9287a6fc398
  
  App Key：
  1589673142
@@ -73,8 +85,8 @@
     AFHTTPRequestOperationManager *manager  = [AFHTTPRequestOperationManager  manager];
     //2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"client_id"]     = @"1589673142" ;
-    params[@"client_secret"] = @"5ea2a3deb5f39a16215ffc6ebf4fcfeb";
+    params[@"client_id"]     = @"3911897486" ;
+    params[@"client_secret"] = @"7e0c8ab5272a96dcdb65cf83036304b0";
     params[@"grant_type"]    = @"authorization_code";
     params[@"code"]          = code ;
     params[@"redirect_uri"]  = @"http://";
