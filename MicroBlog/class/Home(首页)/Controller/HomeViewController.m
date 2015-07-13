@@ -53,7 +53,8 @@
  
     //集成下拉刷新控件 (刚打开APP的时候 模拟下拉一次来获取数据)
     [self setupDownRefresh];
- 
+    
+//    [self justTest];
     
     //集成上拉刷新控件
     [self setupUpRefresh];
@@ -139,12 +140,12 @@
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
         params[@"since_id"] = firstStatus.statusModel.idstr;
     }
-    params[@"count"] = @2;
+    params[@"count"] = @20;
   
     
     //3.发送请求
     [manager GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+        NSLog(@"%@",responseObject);
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
@@ -180,6 +181,24 @@
  
 }
 
+
+#warning todo 
+-(void)justTest{
+    /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
+    //1.请求管理者
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //2.拼接请求参数
+    AccountModel *model = [AccountTool account];
+    NSMutableDictionary *params= [NSMutableDictionary dictionary];
+    params[@"access_token"] = model.access_token;
+    params[@"url_short"] = @"http://t.cn/RLbUH9W";
+    //3.发送请求
+    [manager POST:@"https://api.weibo.com/2/short_url/expand.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error)
+    }];
+}
 
 /**
  *   上拉加载更多微博
@@ -396,7 +415,6 @@
 }
 
 
-
 #pragma mark - dropDownMenuDelegate代理
 /**
  *  下拉菜单被销毁时触发，箭头方向向下
@@ -425,7 +443,6 @@
     return frame.cellHeight ;
 }
 
-/** 点击微博 跳转到 微博详情页 */
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
