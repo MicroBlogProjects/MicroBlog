@@ -10,18 +10,24 @@
 
 #import "MessageViewController.h"
 #import "TestViewController.h"
+#import "MessageModel.h"
+#import "AtMeTableViewController.h"
+#define cellinsertdist 5
 @interface MessageViewController ()
-
+@property (nonatomic,strong)NSMutableArray *messageArray;
 @end
 
 @implementation MessageViewController
-
+-(NSMutableArray *)messageArray {
+    if (_messageArray==nil) {
+        NSString *path=[[NSBundle mainBundle] pathForResource:@"Message.plist" ofType:nil];
+        _messageArray = [NSMutableArray arrayWithContentsOfFile:path];
+    }
+    return _messageArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"写私信" style:UIBarButtonItemStylePlain target:self action:@selector(writeMessage)];
-   
-
 }
 /**
  *  点击"写私信"按钮时调用该方法
@@ -42,23 +48,32 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.messageArray.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger row=indexPath.row;
     static NSString *ID = @"Cell" ;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if(cell ==nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-//    cell.textLabel.text = [NSString stringWithFormat:@"test_message_%d",indexPath.row];
+    MessageModel *message=[MessageModel messageModelbuild:self.messageArray[row]];
+    cell.imageView.image=[UIImage imageNamed:message.png];
+    cell.textLabel.text=message.title;
+    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return  cell ;
+    
+    
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TestViewController *test = [[TestViewController alloc]init] ;
-    test.title = @"测试页面1";
-    [self.navigationController pushViewController:test animated:YES];
+    if (indexPath.row==0) {
+        AtMeTableViewController *atMetable=[[AtMeTableViewController alloc]init];
+        [self.navigationController pushViewController:atMetable animated:YES];
+    }
+//    TestViewController *test = [[TestViewController alloc]init] ;
+//    test.title = [NSString stringWithFormat:@"%lu",indexPath.row];
+//    [self.navigationController pushViewController:test animated:YES];
 }
 
 

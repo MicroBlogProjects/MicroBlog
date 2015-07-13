@@ -17,7 +17,7 @@
 #import "ComposePhotosView.h"
 #import "EmotionKeyboard.h"
 #import "EmotionModel.h"
-@interface ComposeViewController()<UITextViewDelegate,ComposeToolbarDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface ComposeViewController()<UITextViewDelegate,ComposeToolbarDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,EmotionTextViewDeletate>
 /** 输入控件  */
 @property (nonatomic,weak)EmotionTextView *textView;
 /** 键盘顶部工具条 */
@@ -65,7 +65,6 @@
     photosView.height=self.view.height;
     photosView.y=100;
     photosView.x=0;
-   
     [self.textView addSubview:photosView];
    
     self.photosView=photosView;
@@ -127,15 +126,14 @@
     EmotionTextView *textView =[[EmotionTextView alloc]init];
     //垂直方向可以拖拽 （弹簧效果）
     textView.alwaysBounceVertical=YES;
-    textView.frame=self.view.bounds;
+    textView.frame=self.view.frame;
     textView.delegate=self;
     textView.font = [UIFont systemFontOfSize:15];
     textView.placeholder=@"分享新鲜事...";
     [self.view addSubview:textView];
     self.textView=textView;
-
     //文字改变监听通知
-    [NotificationCenter addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:textView];
+    [NotificationCenter addObserver:self selector:@selector(statusHasChange) name:UITextViewTextDidChangeNotification object:textView];
     //键盘通知
     // 键盘的frame发生改变就会调用（位置和尺寸）
 //    UIKeyboardWillChangeFrameNotification
@@ -152,7 +150,7 @@
     //表情选中通知
     [NotificationCenter addObserver:self selector:@selector(emotionDidSelect:)   name:EmotionDidSelectNotification object:nil];
     
-    //表情选中通知
+    //表情删除通知
     [NotificationCenter addObserver:self selector:@selector(emotionDidDelete)   name:EmotionDidDeleteNotification object:nil];
     
 }
@@ -232,7 +230,9 @@
     //2.拼接请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"]     = [AccountTool account].access_token;
+    
     params[@"status"] = self.textView.fullText;
+    
     [manager POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //拼接文件数据
         UIImage *image=[self.photosView.photos firstObject];
@@ -278,8 +278,9 @@
 /**
  *  监听文字改变
  */
-- (void)textDidChange {
-    self.navigationItem.rightBarButtonItem.enabled = self.textView.hasText;
+- (void)statusHasChange {
+    self.navigationItem.rightBarButtonItem.enabled = self.textView.hasText||self.photosView.photos.count>0?YES:NO;
+    
 }
 #pragma mark - UITextView的代理方法
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

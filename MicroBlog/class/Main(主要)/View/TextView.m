@@ -32,7 +32,7 @@
  *  @param rect 重新绘制
  */
 - (void)textDidChange{
-    // 重绘(重新调用)
+        // 重绘(重新调用)
     //setNeedsDisplay 会在下一个消息循环执行这个方法 多次调用也在下一个消息循环只调用一次
     [self setNeedsDisplay];
 }
@@ -41,6 +41,7 @@
    [self setNeedsDisplay];
 }
 -(void)setPlaceholderColor:(UIColor *)placeholderColor {
+    
     _placeholderColor = placeholderColor;
     [self setNeedsDisplay];
 }
