@@ -12,6 +12,7 @@
 #import "TestViewController.h"
 #import "MessageModel.h"
 #import "AtMeTableViewController.h"
+#import "CommentTableViewController.h"
 #define cellinsertdist 5
 @interface MessageViewController ()
 @property (nonatomic,strong)NSMutableArray *messageArray;
@@ -70,6 +71,9 @@
     if (indexPath.row==0) {
         AtMeTableViewController *atMetable=[[AtMeTableViewController alloc]init];
         [self.navigationController pushViewController:atMetable animated:YES];
+    }else if(indexPath.row==1){
+        CommentTableViewController *comment=[[CommentTableViewController alloc] init];
+        [self.navigationController pushViewController:comment animated:YES];
     }
 //    TestViewController *test = [[TestViewController alloc]init] ;
 //    test.title = [NSString stringWithFormat:@"%lu",indexPath.row];
