@@ -10,13 +10,14 @@
 #import "UserModel.h"
 #import "MJExtension.h"
 #import "PhotoModel.h"
+#import "AnnotationsModel.h"
 @implementation StatusModel
 
 
 -(NSDictionary *)objectClassInArray{
     
     // 告诉框架EJExtension , NSArray *pic_urls 这个数组属性里面存的类型是photoModel
-    return @{@"pic_urls" : [PhotoModel class]};
+    return @{@"pic_urls" : [PhotoModel class] , @"annotations":[AnnotationsModel class],@"pic_ids":[NSString class]};
     
 }
 

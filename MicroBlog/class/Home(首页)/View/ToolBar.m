@@ -108,10 +108,6 @@
     [dict setValue:_statusModel forKey:@"statusModel"];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ToolBarClick" object:nil userInfo:dict ] ;
-    
-//    if([self.delegate respondsToSelector:@selector(toolBar:clickButton:type:)] ){
-//        [self.delegate toolBar:self clickButton:button type:(int)button.tag];
-//    }
 
 }
 

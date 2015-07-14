@@ -241,58 +241,7 @@
 }
 
 
-#warning todo 点击微博转发、评论 、点赞
-
-//
-//#pragma mark- toolBarDelegate 点击转发、评论、点赞
-///**
-// *  点击工具条上的按钮（转发，评论、点赞）
-// *
-// *  @param tooBar 工具条
-// *  @param button 按钮
-// *  @param type   按钮类型（区分转发、评论、点赞三个按钮）
-// */
-//-(void)toolBar:(ToolBar *)tooBar clickButton:(UIButton *)button type:(ToolBarButtonType)type{
-//    
-// 
-//    if(button.tag == ToolBarButtonTypeAgree){
-//        
-//       
-//    }
-//    
-//     //点击评论
-//    if(button.tag == ToolBarButtonTypeComment){
-//        
-//        if(_baseFrameModel.statusModel.comments_count == 0 ){  //还没有人评论
-//            
-//            MainTabbarViewController *mainView = [MainTabbarViewController sharedMainTabbarViewController];
-//            CommentViewController *comment = [[CommentViewController alloc]init ] ;
-//            comment.idstr = self.baseFrameModel.statusModel.idstr ;
-//            NavigationController *nav = [[NavigationController alloc]initWithRootViewController:comment ] ;
-//            
-//            [mainView presentViewController:nav animated:YES completion:^{
-//                
-//            }];
-//            
-//            
-//            
-//        }else{//已经有人评论
-//        
-//            NavigationController *nav = [MainTabbarViewController sharedMainTabbarViewController].viewControllers[0];
-//            StatusDetailViewController *detailStatus = [[StatusDetailViewController alloc] init];
-//            detailStatus.isClickComent = 1; //
-//            detailStatus.statusModel = _baseFrameModel.statusModel ;
-//            
-//            [nav pushViewController:detailStatus animated:YES];
-//        }
-//    }
-//    
-// 
-//    if(button.tag == ToolBarButtonTypeRetweet){
-//          NSLog(@"转发");
-//    }
-//    
-//}
+ 
 
 
 

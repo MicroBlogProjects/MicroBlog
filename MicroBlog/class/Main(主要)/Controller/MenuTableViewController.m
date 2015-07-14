@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
 //
 
+
 #import "MenuTableViewController.h"
 
 @interface MenuTableViewController ()
@@ -18,6 +19,9 @@
     [super viewDidLoad];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone ;
+    self.tableView.rowHeight = 44 ;
+
+  
     
 }
 
@@ -30,6 +34,28 @@
 }
 
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+
+    if(indexPath.row == 0){
+        if(self.homeTitleClickBlock){
+            self.homeTitleClickBlock(@"好友");
+        }
+    }
+    if(indexPath.row ==1){
+        if(self.homeTitleClickBlock){
+            self.homeTitleClickBlock(@"我的微博");
+        }
+    }
+    if(indexPath.row ==2 ){
+        if(self.homeTitleClickBlock){
+            self.homeTitleClickBlock(@"周边的微博");
+        }
+    
+    
+    
+    }
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *ID = @"Cell" ;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
@@ -42,18 +68,20 @@
             cell.textLabel.text = @"好友";
             break;
         case 1:
-            cell.textLabel.text = @"密友";
+            cell.textLabel.text = @"我的微博";
             break;
         case 2:
-            cell.textLabel.text = @"全部";
+            cell.textLabel.text = @"周边的微博";
             break;
         default:
             break;
     }
 
     cell.textLabel.textColor = [UIColor whiteColor];
-    
     cell.backgroundColor = [UIColor clearColor];
+
+
+
     return  cell;
 }
 

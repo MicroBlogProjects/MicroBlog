@@ -10,12 +10,13 @@
 #define kStatusCellBorderWidth 10
 //cell 之间的间距
 #define kStatusCellMargin 15
+
 //昵称字体
-#define  kStatusCellNameFont  [UIFont systemFontOfSize:15]
+#define  kStatusCellNameFont  [UIFont systemFontOfSize:14]
 //时间字体
-#define  kStatusCellTimeFont [UIFont systemFontOfSize:12]
+#define  kStatusCellTimeFont [UIFont systemFontOfSize:10]
 //微博来源字体
-#define  kStatusCellSourceFont [UIFont systemFontOfSize:12]
+#define  kStatusCellSourceFont [UIFont systemFontOfSize:10]
 //微博正文字体
 #define  kStatusCellContentFont [UIFont systemFontOfSize:14]
 //被转发微博的正文字体
@@ -35,8 +36,6 @@
 #define kCommentCellContentFont  [UIFont systemFontOfSize:13] //评论字体
 
 
-
-
 /** 微博详情页面 */
 
 // tableView边框的宽度
@@ -45,18 +44,14 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // tableView第一个cell的间距
 #define kTableTopBorderWidth 5
 // tableView每个cell的间距
 #define kTableViewCellMargin 5
+
+
+
+
+
+
+#define  kNotificationClickHomeTitle @"ClickHomeTitle"   //首页标题点击通知

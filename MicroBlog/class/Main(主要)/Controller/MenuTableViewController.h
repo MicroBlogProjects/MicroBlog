@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^HomeTitltClickBlock)(NSString*);
 @interface MenuTableViewController : UITableViewController
+
+@property (nonatomic ,copy ) HomeTitltClickBlock homeTitleClickBlock ;
 
 @end

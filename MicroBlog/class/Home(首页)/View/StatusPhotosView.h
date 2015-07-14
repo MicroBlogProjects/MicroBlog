@@ -11,6 +11,7 @@
 
 @property (nonatomic , strong) NSArray *photos;
 
+
 /**
  *  根据图片的个数计算9宫格相册的尺寸
  */

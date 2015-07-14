@@ -1,24 +1,23 @@
 //
-//  BaseCell.m
+//  NearByStatusCell.m
 //  MicroBlog
 //
-//  Created by lai on 15/7/8.
+//  Created by lai on 15/7/14.
 //  Copyright (c) 2015年 laiweihuang. All rights reserved.
 //
 
-#import "BaseCell.h"
+#import "NearByStatusCell.h"
+
 #import "IconView.h"
 #import "StatusPhotosView.h"
-#import "ToolBar.h" 
-#import "StatusFrameModel.h"
+#import "ToolBar.h"
+#import "NearByStatusFrameModel.h"
 #import "StatusModel.h"
 #import "UserModel.h"
 
+@interface NearByStatusCell ()
 
 
-@interface BaseCell ()
-
-/*原创微博*/
 /**原创微博容器*/
 @property (nonatomic , weak) UIView *originalView ;
 /** 头像*/
@@ -36,14 +35,6 @@
 /** 微博正文*/
 @property (nonatomic , weak) UILabel *contenLabel ;
 
-
-/*转发微博*/
-
-/** 转发微博正文+昵称*/
-@property (nonatomic , weak) UILabel *retweetContentLabel ;
-/** 转发配图*/
-@property (nonatomic , weak) StatusPhotosView *retweetphotosView ;
-
 /** 工具条*/
 @property (nonatomic , weak) ToolBar *toolbar;
 
@@ -51,33 +42,28 @@
 
 
 
-@implementation BaseCell
+@implementation NearByStatusCell
 
- 
+
+
 
 /**
  *  cell的初始化方法，一个cell只会调用一次
  *  一般在这里添加所有可能显示的子控件，以及子控件的一次性设置
  */
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    
 
- 
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         self.backgroundColor = [UIColor clearColor];
         //        self.selectionStyle = UITableViewCellEditingStyleNone; //点击cell不变色
         //        UIView *view = [[ UIView alloc]init];
         //       view.backgroundColor = [UIColor blueColor];
         //        self.selectedBackgroundView = view ;              //设置选中cell时显示的颜色
-        
-   
-        
+
         
         //初始化原创微博模块
         [self setupOriginal];
-        //初始化转发微博模块
-        [self setupRetweet];
-        
+
         //初始化工具条
         [self setupToolBar];
         
@@ -96,31 +82,6 @@
     ToolBar *toolBar = [[ToolBar alloc]init] ;
     [self.contentView addSubview:toolBar];
     self.toolbar = toolBar ;
-    
-}
-
-/**
- *  初始化转发微博模块
- */
--(void)setupRetweet{
-    
-    /** 转发微博整体*/
-    UIView *retweetView = [[UIView alloc]init] ;
-    retweetView.backgroundColor =myColor(245, 245, 245);
-    [self.contentView addSubview:retweetView];
-    self.retweetView = retweetView ;
-    
-    /** 转发微博正文+昵称*/
-    UILabel *retweetContentLabel = [[UILabel alloc]init ] ;
-    retweetContentLabel.numberOfLines = 0 ;
-    [self.retweetView addSubview:retweetContentLabel];
-    self.retweetContentLabel = retweetContentLabel ;
-    
-    /** 转发微博配图 */
-    StatusPhotosView * retweetphotosView = [[StatusPhotosView alloc]init ] ;
-    [retweetView addSubview:retweetphotosView];
-    self.retweetphotosView = retweetphotosView;
-    
 }
 
 
@@ -181,24 +142,26 @@
 /**
  *  具体设置微博内容的Frame和 其他属性
  */
--(void)setBaseFrameModel:(BaseFrameModel *)baseFrameModel{
-    _baseFrameModel = baseFrameModel ;
+-(void)setNearbyStatusFrameModel:(NearByStatusFrameModel *)nearbyStatusFrameModel{
     
-    StatusModel *statusModel = baseFrameModel.statusModel ;
+
+    _nearbyStatusFrameModel = nearbyStatusFrameModel ;
+    
+    StatusModel *statusModel = nearbyStatusFrameModel.statusModel ;
     UserModel *userModel = statusModel.user;
     
     /**原创微博容器*/
-    self.originalView.frame = baseFrameModel.originalViewF;
+    self.originalView.frame = nearbyStatusFrameModel.originalViewF;
     
     /* 头像*/
-    self.iconView.frame = baseFrameModel.iconViewF ;
+    self.iconView.frame = nearbyStatusFrameModel.iconViewF ;
     self.iconView.userModel = userModel ;
     
     
     /* 会员图标*/
     if(userModel.isVip){
         self.vipView.hidden =NO;
-        self.vipView.frame = baseFrameModel.vipViewF ;
+        self.vipView.frame = nearbyStatusFrameModel.vipViewF ;
         NSString *vipImageName = [NSString stringWithFormat:@"common_icon_membership_level%d",userModel.mbrank];
         self.vipView.image = [UIImage imageNamed:vipImageName];
         self.nameLabel.textColor = [UIColor orangeColor];
@@ -208,9 +171,17 @@
     }
     
     /* 微博配图*/
-    if(statusModel.pic_urls.count){
-        self.photosView.frame = baseFrameModel.photosViewF ;
-        self.photosView.photos = statusModel.pic_urls;
+    if(statusModel.pic_ids.count){
+        
+        NSMutableArray *photo = [NSMutableArray array];
+        for(NSString *string in statusModel.pic_ids);{
+            
+            
+        }
+        
+        
+        self.photosView.frame = nearbyStatusFrameModel.photosViewF ;
+        self.photosView.photos = statusModel.pic_ids;
         
         self.photosView.hidden = NO;
     }else{
@@ -218,14 +189,14 @@
     }
     
     /* 昵称*/
-    self.nameLabel.frame = baseFrameModel.nameLabelF;
+    self.nameLabel.frame = nearbyStatusFrameModel.nameLabelF;
     self.nameLabel.text = userModel.name ;
     
     
     /* 时间（微博发布时间）, 每次刷新的时候都要重新计算一下Frame,因为时间会变，宽度就会变 */
     NSString *time = statusModel.created_at ;
-    CGFloat timeX =  baseFrameModel.nameLabelF.origin.x ;
-    CGFloat timeY = CGRectGetMaxY(baseFrameModel.nameLabelF) + kStatusCellBorderWidth/2 ;
+    CGFloat timeX =  nearbyStatusFrameModel.nameLabelF.origin.x ;
+    CGFloat timeY = CGRectGetMaxY(nearbyStatusFrameModel.nameLabelF) + kStatusCellBorderWidth/2 ;
     CGSize timeSize = [time sizeWithFont:kStatusCellTimeFont  ];
     self.timeLabel.frame = CGRectMake(timeX, timeY, timeSize.width, timeSize.height);
     self.timeLabel.text = time;
@@ -237,80 +208,23 @@
     self.sourceLabel.frame =CGRectMake(sourceX, sourceY, sourceSize.width, sourceSize.height);
     self.sourceLabel.text = statusModel.source ;
     
-    
-    
+
     /* 微博正文*/
-    self.contenLabel.frame = baseFrameModel.contenLabelF;
+    self.contenLabel.frame = nearbyStatusFrameModel.contenLabelF;
     self.contenLabel.text = statusModel.text ;
     
     
-    /**被转发的微博*/
-    if(statusModel.retweeted_status){  //如果有转发
-        StatusModel *retweeted_statusModel = statusModel.retweeted_status;
-        UserModel *retweeted_status_userModel = retweeted_statusModel.user ;
-        
-        
-        self.retweetView.hidden = NO;
-        /*被转发微博的整体*/
-        self.retweetView.frame = baseFrameModel.retweetViewF ;
-        
-        /*被转发微博的正文*/
-        NSString *retweetContent = [NSString stringWithFormat:@"@%@ : %@",retweeted_status_userModel.name , retweeted_statusModel.text];
-        self.retweetContentLabel.frame = baseFrameModel.retweetContentLabelF;
-        self.retweetContentLabel.font = kStatusCellRetweetContentFont;
-        self.retweetContentLabel.text = retweetContent;
-        
-        /*被转发微博的配图*/
-        if(retweeted_statusModel.pic_urls.count){//如果转发微博有配图
-            self.retweetphotosView.hidden = NO;
-            self.retweetphotosView.frame = baseFrameModel.retweetPhotosViewF;
-            self.retweetphotosView.photos = retweeted_statusModel.pic_urls;
-            
-            
-        }else{ //没有配图
-            self.retweetphotosView.hidden = YES;
-        }
-        
-        
-    }else{//如果没有转发微博
-        self.retweetView.hidden = YES;
-    }
+    /**  工具条 */
+    self.toolbar.frame = nearbyStatusFrameModel.toolBarF ;
+    self.toolbar.statusModel = nearbyStatusFrameModel.statusModel;
     
-//    
-//    /**  工具条 */
-//    self.toolbar.frame = baseFrameModel.toolBarF ;
-//    self.toolbar.statusModel = baseFrameModel.statusModel;
     
-
 }
 
 
-/**
- *  重写setFrame方法，自己调整cell的Frame
- */
 
 
 
-#warning todo 点击微博转发、评论 、点赞
-//
-//
-//#pragma mark- toolBarDelegate 点击转发、评论、点赞
-//-(void)toolBar:(ToolBar *)tooBar clickButton:(UIButton *)button{
-//    if(button.tag == ToolBarButtonTypeAgree){
-//
-//
-//    }
-//    if(button.tag == ToolBarButtonTypeComment){
-//
-//    }
-//    if(button.tag == ToolBarButtonTypeRetweet){
-//          NSLog(@"转发");
-//    }
-//    
-//}
 
 
 @end
-
-
-

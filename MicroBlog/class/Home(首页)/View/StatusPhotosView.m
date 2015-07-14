@@ -58,6 +58,10 @@
     
 }
 
+
+ 
+
+
 -(void)photoClick:(UITapGestureRecognizer*)getsture{
     
     SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];

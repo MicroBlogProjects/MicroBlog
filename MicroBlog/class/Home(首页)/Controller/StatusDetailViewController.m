@@ -25,6 +25,7 @@
 #import "MainTabbarViewController.h"
 #import "CommentViewController.h"
 #import "NavigationController.h"
+#import "RetweetViewController.h"
 
 
 
@@ -264,6 +265,16 @@
 -(void)toolBar:(StatusDetailToolBar *)toolBar clickButton:(UIButton *)button type:(ToolBarButtonType)type{
     //转发
     if(type == ToolBarButtonTypeRetweet ){
+        MainTabbarViewController *mainView = [MainTabbarViewController sharedMainTabbarViewController];
+        RetweetViewController *retweet = [[RetweetViewController alloc]init ] ;
+        retweet.idstr = self.statusModel.idstr ;
+        NavigationController *nav = [[NavigationController alloc]initWithRootViewController:retweet ] ;
+        
+        [mainView presentViewController:nav animated:YES completion:^{
+            
+        }];
+        
+        
         
     }
     
