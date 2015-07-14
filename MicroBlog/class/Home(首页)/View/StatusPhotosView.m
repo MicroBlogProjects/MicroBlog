@@ -58,6 +58,32 @@
     
 }
 
+-(void)setPhotoStrings:(NSArray *)photoStrings{
+    _photoStrings = photoStrings ;
+    
+    //创建足够数量的图片控件，因为当前拿到的Cell由于重新利用，可能当前的View已经存在之前的imageView
+    while (self.subviews.count < photoStrings.count ) {
+        StatusPhotoView *imageview = [[StatusPhotoView alloc]init] ;
+        [self addSubview: imageview];
+    }
+    
+    //遍历图片，设置1-9张图片内容
+    for(int i=0 ; i<self.subviews.count ; i++){
+        StatusPhotoView *photoView = self.subviews[i];
+        
+        if(i < photoStrings.count ){ //只显示图片个数的imageView
+            //给每个图片添加手势识别
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(photoClick:)];
+            [photoView addGestureRecognizer:tapGesture];
+            photoView.tag = i;  //标志
+            photoView.photoString = photoStrings[i];  //取出数据模型
+            photoView.hidden = NO;
+        }else{ //隐藏多余的imageView
+            photoView.hidden = YES;
+        }
+    }
+}
+
 
  
 
@@ -66,7 +92,7 @@
     
     SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
     browser.sourceImagesContainerView = self; // 原图的父控件
-    browser.imageCount = self.photos.count; // 图片总数
+    browser.imageCount = self.photos.count?self.photos.count:self.photoStrings.count; // 图片总数
     browser.currentImageIndex = getsture.view.tag;  //图片的下标
     browser.delegate = self;
     [browser show];
@@ -79,7 +105,7 @@
     [super layoutSubviews];
     
     //设置图片的尺寸和位置
-    int photosCount = (int)self.photos.count  ;
+    int photosCount =  self.photos.count?self.photos.count:self.photoStrings.count  ;
     for(int i =0 ; i<photosCount ; i++){
         StatusPhotoView *photoView = self.subviews[i];
         
@@ -134,8 +160,13 @@
 // 返回高质量图片的url
 - (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
 {
-    NSString *urlStr = [[self.photos[index] thumbnail_pic] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+    if(_photos.count){
+        NSString *urlStr = [[self.photos[index] thumbnail_pic] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+        return [NSURL URLWithString:urlStr];
+    }
+    NSString *urlStr = [self.photoStrings[index]  stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
     return [NSURL URLWithString:urlStr];
+   
 }
 
 @end

@@ -68,4 +68,16 @@
     self.gifView.hidden = ![photoModel.thumbnail_pic.lowercaseString hasSuffix:@"gif"];
 }
 
+/** 传进来的是图片的URL String , 不是Model要和上面函数区分开来 */
+-(void)setPhotoString:(NSString *)photoString{
+    _photoString = photoString ;
+    
+    //设置图片 （下载下来）
+    [self sd_setImageWithURL:[NSURL URLWithString:photoString] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
+    
+    //显示/隐藏GIF标志 (判断方法是：看url文件的后缀有没有gif或者GIF)
+    self.gifView.hidden = ![photoString.lowercaseString hasSuffix:@"gif"];
+
+}
+
 @end

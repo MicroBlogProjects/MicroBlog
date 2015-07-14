@@ -51,6 +51,11 @@
     //1.设置标题
     self.title = @"微博正文";
     
+    // 去掉多余格式的线
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.tableView setTableFooterView:v];
+    
+    
     //2.添加View的子控制器
     [self createSubViews];
     

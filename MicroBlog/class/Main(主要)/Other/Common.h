@@ -18,9 +18,12 @@
 //微博来源字体
 #define  kStatusCellSourceFont [UIFont systemFontOfSize:10]
 //微博正文字体
-#define  kStatusCellContentFont [UIFont systemFontOfSize:14]
+#define  kStatusCellContentFont [UIFont systemFontOfSize:13]
 //被转发微博的正文字体
 #define   kStatusCellRetweetContentFont [UIFont systemFontOfSize:13]
+//定位信息字体
+#define   kStatusCellLocateFont [UIFont systemFontOfSize:11]
+
 
 
 

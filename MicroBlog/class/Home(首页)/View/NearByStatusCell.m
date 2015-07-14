@@ -14,6 +14,8 @@
 #import "NearByStatusFrameModel.h"
 #import "StatusModel.h"
 #import "UserModel.h"
+#import "AnnotationsModel.h"
+#import "PlaceModel.h"
 
 @interface NearByStatusCell ()
 
@@ -24,6 +26,8 @@
 @property (nonatomic , weak) IconView *iconView ;
 /** 会员图标*/
 @property (nonatomic , weak) UIImageView *vipView ;
+/** 定位图标*/
+@property (nonatomic , weak) UIImageView *locateView ;
 /** 微博配图*/
 @property (nonatomic , weak) StatusPhotosView *photosView ;
 /** 昵称*/
@@ -34,7 +38,10 @@
 @property (nonatomic , weak) UILabel *sourceLabel ;
 /** 微博正文*/
 @property (nonatomic , weak) UILabel *contenLabel ;
-
+/** 定位位置*/
+@property (nonatomic , weak) UILabel *locateLabel ;
+/** 距离多远 */
+@property (nonatomic , weak) UILabel *distanceLabel ;
 /** 工具条*/
 @property (nonatomic , weak) ToolBar *toolbar;
 
@@ -106,6 +113,11 @@
     [self.originalView addSubview:vipView];
     self.vipView = vipView ;
     
+    /** 定位图标*/
+    UIImageView *locateView = [[UIImageView alloc]init ] ;
+    [self.originalView addSubview:locateView];
+    self.locateView = locateView ;
+    
     /** 微博配图*/
     StatusPhotosView *photosView = [[StatusPhotosView alloc]init];
     
@@ -137,6 +149,19 @@
     contenLabel.numberOfLines =0 ;
     [self.originalView addSubview:contenLabel];
     self.contenLabel = contenLabel ;
+    
+    /** 定位信息 */
+    UILabel *locateLabel = [[UILabel alloc]init ] ;
+    locateLabel.font =kStatusCellLocateFont;
+    locateLabel.numberOfLines =0 ;
+    [self.originalView addSubview:locateLabel];
+    self.locateLabel = locateLabel ;
+    
+    UILabel *distanceLabel = [[UILabel alloc]init ] ;
+    distanceLabel.font = kStatusCellLocateFont;
+    distanceLabel.numberOfLines =0  ;
+    [self.originalView addSubview:distanceLabel];
+    self.distanceLabel = distanceLabel ;
 }
 
 /**
@@ -170,23 +195,58 @@
         self.vipView.hidden =YES;
     }
     
+
     /* 微博配图*/
     if(statusModel.pic_ids.count){
         
-        NSMutableArray *photo = [NSMutableArray array];
-        for(NSString *string in statusModel.pic_ids);{
-            
-            
+        // 图片拼接好再传进去
+        NSMutableArray *photos = [NSMutableArray array];
+        NSString  *headString  = @"http://ww1.sinaimg.cn/thumbnail/";
+        NSString *tailSting = @".jpg";
+        for(NSString *photoString in statusModel.pic_ids){
+            NSString *newString = [NSString stringWithFormat:@"%@%@%@",headString,photoString ,tailSting];
+            NSLog(@"%@",newString);
+            [photos addObject:newString];
         }
         
-        
         self.photosView.frame = nearbyStatusFrameModel.photosViewF ;
-        self.photosView.photos = statusModel.pic_ids;
+        NSLog(@"%@",NSStringFromCGRect(nearbyStatusFrameModel.photosViewF));
+        self.photosView.photoStrings = photos;
         
         self.photosView.hidden = NO;
     }else{
         self.photosView.hidden = YES ;
     }
+    
+    AnnotationsModel *annotationsModel = statusModel.annotations[0] ;
+    PlaceModel *placeModel = annotationsModel.place ;
+    if(placeModel.title){ //如果有位置信息
+        
+        self.locateView.frame = nearbyStatusFrameModel.locateViewF ;
+        self.locateView.image = [UIImage imageNamed:@"activity_card_locate"];
+        self.locateView.hidden =NO ;
+        
+        self.locateLabel.frame = nearbyStatusFrameModel.locationLabelF ;
+        self.locateLabel.text = placeModel.title ;
+        self.locateLabel.hidden =NO ;
+        
+        NSString *distanceString ;
+        if(statusModel.distance >=1000){
+            distanceString = [NSString stringWithFormat:@"%.1f公里",statusModel.distance/1000.0];
+        }else{
+            distanceString = [NSString stringWithFormat:@"%d米",statusModel.distance];
+        }
+        self.distanceLabel.frame = nearbyStatusFrameModel.distanLabelF ;
+        self.distanceLabel.text = [NSString stringWithFormat:@"(距离%@)",distanceString];
+        self.distanceLabel.hidden =NO;
+        
+        
+    }else{
+        self.locateView.hidden = YES ;
+        self.locateLabel.hidden = YES ;
+        self.distanceLabel.hidden = YES; 
+    }
+    
     
     /* 昵称*/
     self.nameLabel.frame = nearbyStatusFrameModel.nameLabelF;

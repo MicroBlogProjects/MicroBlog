@@ -21,6 +21,8 @@
 @property (nonatomic , assign) CGRect iconViewF ;
 /** 会员图标*/
 @property (nonatomic , assign) CGRect vipViewF ;
+/** 定位图标*/
+@property (nonatomic , assign) CGRect locateViewF;
 /** 微博配图*/
 @property (nonatomic , assign) CGRect photosViewF ;
 /** 昵称*/
@@ -31,6 +33,10 @@
 @property (nonatomic , assign) CGRect sourceLabelF ;
 /** 微博正文*/
 @property (nonatomic , assign) CGRect contenLabelF ;
+/** 定位地址 */
+@property (nonatomic , assign) CGRect locationLabelF ;
+/** 距离*/
+@property (nonatomic , assign) CGRect distanLabelF ;
 
 
 

@@ -99,10 +99,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 
-    [self removeFromSuperview];
-    if([self.delegate respondsToSelector:@selector(dropDownMenuDidDismiss:)]){
-        [self.delegate dropDownMenuDidDismiss:self];
-    }
+    [self dismiss:@"此字符串没任何意义"];
     
 }
 

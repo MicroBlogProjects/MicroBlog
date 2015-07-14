@@ -30,18 +30,25 @@
 #import <CoreLocation/CoreLocation.h>
 #import "AnnotationsModel.h"
 #import "PlaceModel.h"
+#import "NearByStatusCell.h"
+#import "NearByStatusFrameModel.h"
 
 #define kLongtitude @"longitude"
 #define kLatitude @"latitue"
 
 @interface HomeViewController () <CLLocationManagerDelegate>
 
-/**
- *  微博数组（里面放的都是StatusModelFrame模型，一个StatusModelFrame就代表一条微博信息）
- */
+/** 好友微博数组 */
 @property (nonatomic , strong) NSMutableArray *statusFrameModels;
-/** 定位管理者 */
+/** 附近微博数组 */
+@property (nonatomic , strong) NSMutableArray *nearbyStatusFrameModels;
+/** 我的微博数组*/
+@property (nonatomic , strong) NSMutableArray *myStatusFrameModels;
+/** 当前显示的微博数组 */
+@property (nonatomic , strong) NSMutableArray *curentFrameModels;
+/** 定位器管理者 */
 @property (nonatomic , strong) CLLocationManager *manager;
+/** 菊花 */
 @property (nonatomic , strong) UIRefreshControl *refreshControl ;
 
 @end
@@ -216,6 +223,7 @@
  */
 -(void)loadNewStatus:(UIRefreshControl *)control{
     
+    self.curentFrameModels = self.statusFrameModels ; //当前显示好友微博
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
@@ -465,17 +473,20 @@
         
         UIButton *titleButton  = (UIButton*)self.navigationItem.titleView ;
         titleButton.selected = NO;
+        NSLog(@"NO");
     };
 
     //显示
     [menu showFrom:titleButton];
     //让箭头向上
-    titleButton.selected = YES;
+    titleButton.selected = !titleButton.selected;
+    NSLog(@"YES");
 }
 
 /**  显示周边的微博 */
 -(void)loadNearLocaitonStatus:(UIRefreshControl *)control{
   
+    self.curentFrameModels = self.nearbyStatusFrameModels ;  //当前显示周边微博
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     AccountModel *account = [AccountTool account];
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
@@ -494,7 +505,7 @@
         //将StatusModel数组 转换成 StatusFrameModel数组
         NSMutableArray *newsFrames = [NSMutableArray array];
         for(StatusModel *statusModel in newStatuses){
-            StatusFrameModel *f = [[StatusFrameModel alloc]init];
+            NearByStatusFrameModel *f = [[NearByStatusFrameModel alloc]init];
             f.statusModel = statusModel ;
             [newsFrames addObject:f];
         }
@@ -502,8 +513,8 @@
         //把最新的微博数组，添加到总数组的最前面
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-        [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
-        
+        [self.nearbyStatusFrameModels insertObjects:newsFrames atIndexes:indexSet];
+
         
         //刷新表格
         [self.tableView reloadData];
@@ -523,6 +534,7 @@
 /**  显示我的微博 */
 -(void)loadMyStatus:(UIRefreshControl *)control{
     
+    self.curentFrameModels = self.myStatusFrameModels ; //当前显示我的微博;
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     AccountModel *account = [AccountTool account];
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
@@ -547,7 +559,7 @@
         //把最新的微博数组，添加到总数组的最前面
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-        [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
+        [self.myStatusFrameModels insertObjects:newsFrames atIndexes:indexSet];
         
         
         //刷新表格
@@ -600,50 +612,62 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.statusFrameModels.count;
+    int cout  = self.curentFrameModels.count ; 
+    return self.curentFrameModels.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    StatusFrameModel * frame = self.statusFrameModels[indexPath.row];
+    if(self.curentFrameModels == self.nearbyStatusFrameModels){
+         NearByStatusFrameModel * frame = self.curentFrameModels[indexPath.row];
+        return  frame.cellHeight ;
+    }
     
+    StatusFrameModel * frame = self.curentFrameModels[indexPath.row];
     return frame.cellHeight ;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
-    StatusFrameModel *frameModel = _statusFrameModels[indexPath.row];
+    StatusFrameModel *frameModel = _curentFrameModels[indexPath.row];
     statusDetail.statusModel = frameModel.statusModel;
-    
+    NSLog(@"%ld",indexPath.row);
     [self.navigationController pushViewController:statusDetail animated:YES] ;
     
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
- 
+    /** 显示个人微博 */
+    if(self.curentFrameModels == self.myStatusFrameModels){
+        static NSString *ID = @"myStatusCell" ;
+        StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if(cell ==nil){
+            cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.baseFrameModel = self.curentFrameModels[indexPath.row];
+        return  cell;
+    }
+    /** 显示附近微博 */
+   if(self.curentFrameModels == self.nearbyStatusFrameModels){
+        static NSString *ID = @"NearbytatusCell" ;
+        NearByStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if(cell ==nil){
+            cell = [[NearByStatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.nearbyStatusFrameModel = self.curentFrameModels[indexPath.row];
+        return  cell;
+    }
     
+    /** 显示好友微博 */
     static NSString *ID = @"StatusCell" ;
-    
     StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if(cell ==nil){
         cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    cell.baseFrameModel = _statusFrameModels[indexPath.row];
-    
-    
-//    for (id obj in cell.subviews)
-//    {
-//        if ([NSStringFromClass([obj class]) isEqualToString:@"UITableViewCellScrollView"])
-//        {
-//            UIScrollView *scroll = (UIScrollView *) obj;
-//            scroll.delaysContentTouches = NO;
-//            break;
-//        }
-//    }
-  
-    
+    cell.baseFrameModel = self.curentFrameModels[indexPath.row];
     return  cell;
+   
 }
 
 /**
@@ -704,6 +728,20 @@
         _statusFrameModels = [NSMutableArray array];
     }
     return _statusFrameModels ;
+}
+
+-(NSMutableArray *)myStatusFrameModels{
+    if(_myStatusFrameModels == nil){
+        _myStatusFrameModels = [NSMutableArray array] ;
+    }
+    return  _myStatusFrameModels ;
+}
+
+-(NSMutableArray *)nearbyStatusFrameModels{
+    if(_nearbyStatusFrameModels == nil){
+        _nearbyStatusFrameModels = [NSMutableArray array];
+    }
+    return _nearbyStatusFrameModels ;
 }
 
 -(CLLocationManager *)manager{

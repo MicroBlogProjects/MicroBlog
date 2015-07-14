@@ -10,6 +10,8 @@
 #import "StatusModel.h"
 #import "UserModel.h"
 #import "StatusPhotosView.h"
+#import "AnnotationsModel.h"
+#import "PlaceModel.h"
 
 #define  kStatusIconImageWH 35
 
@@ -25,6 +27,7 @@
     
     _statusModel  = statusModel ;
     UserModel *user= statusModel.user;
+    NSLog(@"----%@",statusModel);
     //cell的宽度
     CGFloat cellW = [UIScreen mainScreen].bounds.size.width ;
     
@@ -76,16 +79,49 @@
     
     /* 微博配图*/
     CGFloat originalH = 0 ;  //原创微博整体的高度
-    if(statusModel.pic_ids){ //有配图
+    CGFloat locateViewY =0 ;    //定位图标Y值
+    if(statusModel.pic_ids.count){ //有配图
         CGFloat photosX = contentX ;
         CGFloat photosY = CGRectGetMaxY(self.contenLabelF) + kStatusCellBorderWidth ;
-        CGSize photosSize = [StatusPhotosView sizeWithCount:statusModel.pic_ids.count];
+        CGSize photosSize = [StatusPhotosView sizeWithCount:(int)statusModel.pic_ids.count];
         self.photosViewF = CGRectMake(photosX, photosY, photosSize.width, photosSize.height);
         originalH = CGRectGetMaxY(self.photosViewF) + kStatusCellBorderWidth ;
+        locateViewY = CGRectGetMaxY(self.photosViewF) + kStatusCellBorderWidth/2 ;
     }else{//没配图
         originalH = CGRectGetMaxY(self.contenLabelF) + kStatusCellBorderWidth ;
+        locateViewY = originalH ;
     }
     
+    AnnotationsModel *annotationModel = statusModel.annotations[0];
+    PlaceModel *placeModel = annotationModel.place ;
+    if(placeModel.title){ //如果有定位信息（比如：独墅湖大学城）
+        
+        CGFloat locateViewX = contentX ;
+        CGFloat locateViewW = 12;
+        CGFloat locateViewH = 15;
+        self.locateViewF = CGRectMake(locateViewX, locateViewY, locateViewW, locateViewH);
+        
+        CGFloat locateLabelX = CGRectGetMaxX(self.locateViewF) + kStatusCellBorderWidth/2;
+        CGFloat locateLabelY = locateViewY +2 ;
+        CGSize  locateLabelSize = [placeModel.title sizeWithFont:kStatusCellLocateFont maxWidth:MaxWidth];
+        self.locationLabelF = CGRectMake(locateLabelX, locateLabelY, locateLabelSize.width, locateLabelSize.height);
+        
+        
+        CGFloat distanceX = CGRectGetMaxX(self.locationLabelF) + kStatusCellBorderWidth ;
+        CGFloat distanceY = locateLabelY ;
+        NSString *distanceString ;
+        if(statusModel.distance >=1000){
+            distanceString = [NSString stringWithFormat:@"%.1f公里",statusModel.distance/1000.0];
+        }else{
+            distanceString = [NSString stringWithFormat:@"%d米",statusModel.distance];
+        }
+        CGSize  distanceSize = [[NSString stringWithFormat:@"(距离%@)", distanceString] sizeWithFont:kStatusCellLocateFont maxWidth:MaxWidth ];
+        self.distanLabelF = CGRectMake(distanceX, distanceY, distanceSize.width, distanceSize.height);
+        
+        
+        originalH = CGRectGetMaxY(self.locateViewF) + kStatusCellBorderWidth ;
+  
+    }
     
     /*原创微博整体*/
     CGFloat originalX = 0 ;
@@ -104,7 +140,7 @@
     self.toolBarF = CGRectMake(toolbarX, toolbarY+1, toolbarW, toolbarH);
     
     
-    self.cellHeight = toolbarY;
+    self.cellHeight = toolbarY +kStatusOptionBarHeight;
 
 }
 
