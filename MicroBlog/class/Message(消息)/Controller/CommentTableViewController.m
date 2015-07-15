@@ -41,6 +41,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     DelayUITableview *tableView=[[DelayUITableview alloc]init];
     self.tableView=tableView;
     self.tableView.backgroundColor=myColor(239, 239, 239);
@@ -89,6 +90,7 @@
     AccountModel *account = [AccountTool account]; //从沙盒中获取用户信息
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
+//    NSLog(@"access_token ====%@",account.access_token);
     //取出最前面的微博（当前缓存数组中最新的微博，我们下拉只需要获取比缓存中更新的微博数据）
     CommentStatusModel *firstStatus = [self.atmeFramwModels firstObject];
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
@@ -200,21 +202,11 @@
 
 -(void)setupNavigationBar{
     TitleButton *titleButton=[[TitleButton alloc] init];
-    [titleButton setTitle:@"所有微博" forState:UIControlStateNormal];
+    [titleButton setTitle:@"所有评论" forState:UIControlStateNormal];
     [titleButton addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView=titleButton;
 }
--(void)titleClick:(UIButton *)titleButton
-{
-    DropDownMenu *menu=[DropDownMenu menu];
-    MessageMenuTableViewController *menuTable=[[MessageMenuTableViewController alloc]init];
-    menuTable.menuarray=@[@"所有微博",@"关注人的微博",@"原创微博",@"所有评论",@"所有关注人的评论"];
-    menuTable.view.height=44*3;
-    menuTable.view.width=217;
-    menu.contentController=menuTable;
-    menu.delegate=self;
-    [menu showFrom:titleButton];
-    titleButton.selected =YES;
+-(void)titleClick:(UIButton *)titleButton{
 }
 #pragma mark - dropDownMenuDelegate代理
 

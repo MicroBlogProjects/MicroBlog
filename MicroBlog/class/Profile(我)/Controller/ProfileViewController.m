@@ -17,6 +17,8 @@
 #import "ToolBarCell.h"
 #import "PersonalInformationViewController.h"
 #import "NavigationController.h"
+#import "PhotoController.h"
+#import "NewFriendController.h"
 
 
 @interface ProfileViewController ()<UITableViewDelegate,PersonInfoDelegate>
@@ -30,7 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.backgroundColor =myColor(239, 239, 239);
+    self.view.backgroundColor = myColor(235, 235, 241);
+    self.tableView.backgroundColor =myColor(235, 235, 241);
     //设置代理
     //设置navigationBar
     [self setupNavigationBar];
@@ -56,7 +59,7 @@
     [manager GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation,id responseObject){
 //        NSLog(@"%@",responseObject);
         //设置得到的数据
-        [self setU:responseObject];
+        [self setUser:responseObject];
         [self.tableView reloadData];
         
     }failure:^(AFHTTPRequestOperation * operation, NSError * error){
@@ -67,7 +70,7 @@
 /**
  *  设置userModel
  */
--(void)setU:(id)responseObject
+-(void)setUser:(id)responseObject
 {
     self.userModel = [[ProfileUserModel alloc]init];
     //昵称
@@ -273,6 +276,20 @@
         PersonalInformationViewController * personalInfoView = [[PersonalInformationViewController alloc]init];
         personalInfoView.personInfoDelegate = self;
         [self.navigationController pushViewController:personalInfoView animated:YES];
+    }
+    else if (indexPath.section == 3)
+    {
+        if (indexPath.row == 0) {
+            UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+            PhotoController * photoController = [[PhotoController alloc]initWithCollectionViewLayout:flowLayout];
+            [self.navigationController pushViewController:photoController animated:YES];
+        }
+    }
+    else if (indexPath.section == 2){
+        if (indexPath.row == 0) {
+            NewFriendController * newFriendController = [[NewFriendController alloc]init];
+            [self.navigationController pushViewController:newFriendController animated:YES];
+        }
     }
 }
 /** 以下两个函数功能：使Cell中添加图片不会导致分割线被裁减一部分 */

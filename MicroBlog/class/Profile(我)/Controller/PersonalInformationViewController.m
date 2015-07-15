@@ -20,8 +20,13 @@
 #import "MJExtension.h"
 #import "StatusCell.h"
 #import "DIYSegmentViewController.h"
+#import "StatusDetailViewController.h"
+#import "LoadMoreFootView.h"
+#import "PhotoCollectionViewCell.h"
 
-@interface PersonalInformationViewController ()<UITableViewDataSource,UITableViewDelegate,DIYSegmentDelegate>
+static NSString * const DIY = @"DIYcell";
+
+@interface PersonalInformationViewController ()<UITableViewDataSource,UITableViewDelegate,DIYSegmentDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic , strong) NSMutableArray *statusFrameModels;
 //个人用户信息;
 @property (nonatomic,strong) ProfileUserModel* userModel;
@@ -36,14 +41,25 @@
     self.tableView.backgroundColor = myColor(239, 239, 239);
     //代理传值 从上个界面将需要的值传递到这个界面
     self.userModel = [self.personInfoDelegate passValue];
+//    NSLog(@"%ld",self.userModel.uid);
     //  设置个人信息页面的默认页面（微博页面）
     self.buttonTag = 2;
     //加载第一次数据
     [self setupDownRefresh];
+    
+    //集成上拉刷新控件
+    [self setupUpRefresh];
+    
 }
-
-
-
+//集成上拉刷新控件
+-(void)setupUpRefresh{
+    
+    LoadMoreFootView *footer = [LoadMoreFootView footer];
+    footer.hidden =YES;
+    self.tableView.tableFooterView =footer;
+    
+}
+//集成上啦刷新
 - (void)setupDownRefresh{
     UIRefreshControl * fresh = [[UIRefreshControl alloc]init];
     [fresh addTarget:self action:@selector(loadNewStatus:) forControlEvents:UIControlEventValueChanged];
@@ -70,8 +86,8 @@
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
         params[@"since_id"] = firstStatus.statusModel.idstr;
     }
+    //           @"https://api.weibo.com/2/statuses/user_timeline.json"
     [manager GET:@"https://api.weibo.com/2/statuses/user_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         
@@ -155,6 +171,7 @@
         
     }
     else{
+        
         //微博页面的cell
         if (self.buttonTag == 2) {
             //获得cell
@@ -190,10 +207,24 @@
                 cell.textLabel.textColor = [UIColor blackColor];
             }
         }
+//        //照片界面
+//        else if (self.buttonTag == 3){
+//             NSLog(@"111");
+//            cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"celllll"];
+//            CGFloat  width = [[UIScreen mainScreen]bounds].size.width;
+//            CGFloat  hight = [[UIScreen mainScreen]bounds].size.height;
+//            CGRect fram = CGRectMake(0, self.userModel.cellHight + kStatusCellBorderWidth, width, hight - self.userModel.cellHight - kStatusCellBorderWidth);
+//            UICollectionViewLayout * layout = [[UICollectionViewLayout alloc]init];
+//            UICollectionView * collectionView = [[UICollectionView alloc]initWithFrame:fram collectionViewLayout:layout];
+//            collectionView.delegate = self;
+//            collectionView.dataSource = self;
+//            [collectionView registerClass:[PhotoCollectionViewCell class] forCellWithReuseIdentifier:DIY];
+//            [cell addSubview:collectionView];
+//        }
     }
     return cell;
 }
-//头文件高度
+//cell高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
@@ -222,6 +253,129 @@
 -(void)exchangeView:(NSInteger)tag;
 {
     self.buttonTag = tag;
+//    NSLog(@"%ld",self.buttonTag);
     [self.tableView reloadData];
 }
+//点击cell
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0 || indexPath.section == 1) return;
+    if (self.buttonTag != 2) {
+        return;
+    }
+    StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
+    StatusFrameModel *frameModel = _statusFrameModels[indexPath.row];
+    statusDetail.statusModel = frameModel.statusModel;
+    
+    [self.navigationController pushViewController:statusDetail animated:YES] ;
+    
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    //不是微博界面不加载
+    if(self.buttonTag != 2)
+        return;
+    // scrollView = self.tableView = self.view
+    //如果tableView还没有数据，就直接返回
+    if(self.statusFrameModels.count==0 || self.tableView.tableFooterView.isHidden == NO)return;
+    
+    CGFloat offsetY = scrollView.contentOffset.y;
+    // 当最后一个cell完全显示在眼前时，contentOffset的y值
+    CGFloat judgeOffsetY = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.height - self.tableView.tableFooterView.height;
+    if (offsetY >= judgeOffsetY) { // 最后一个cell完全进入视野范围内
+        // 显示footer
+        self.tableView.tableFooterView.hidden = NO;
+        
+        // 加载更多的微博数据
+        [self loadMoreStatus];
+    }
+    /*
+     contentInset：除具体内容以外的边框尺寸
+     contentSize: 里面的具体内容（header、cell、footer），除掉contentInset以外的尺寸
+     contentOffset:
+     1.它可以用来判断scrollView滚动到什么位置
+     2.指scrollView的内容超出了scrollView顶部的距离（除掉contentInset以外的尺寸）
+     */
+    
+}
+-(void)loadMoreStatus{
+    
+    
+    /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
+    //1.请求管理者
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //2.拼接请求参数
+    AccountModel *account= [AccountTool account];
+    NSMutableDictionary *params= [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    
+    //取出scrollView中最后一条微博
+    StatusFrameModel *lastStatus = [self.statusFrameModels lastObject];
+    if(lastStatus){
+        //若指定此参数，则返回ID小于或等于max_id的微博。默认为0
+        //id这种数据一般比较大，转化成整数最好用long long
+        long long maxID = lastStatus.statusModel.idstr.longLongValue - 1;
+        params[@"max_id"] = @(maxID);
+    }
+    //3.发送请求
+    [manager GET:@"https://api.weibo.com/2/statuses/user_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@",responseObject);
+        //将“微博字典”数组 转为 “微博模型”数组
+        NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        //将StatusModel数组 转换成 StatusFrameModel数组
+        NSMutableArray *newsFrames = [NSMutableArray array];
+        for(StatusModel *statusModel in newStatuses){
+            StatusFrameModel *f = [[StatusFrameModel alloc]init];
+            f.statusModel = statusModel ;
+            [newsFrames addObject:f];
+        }
+        
+        //将微博添加到微博数组最后面
+        [self.statusFrameModels addObjectsFromArray:newsFrames];
+        
+        //刷新表格
+        [self.tableView reloadData];
+        
+        //结束刷新后，隐藏Footer
+        self.tableView.tableFooterView.hidden = YES;
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求失败 - %@",error);
+        //结束刷新
+        self.tableView.tableFooterView.hidden =YES ;
+    }];
+}
+
+
+//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+//    return 1;
+//}
+//
+//
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+//    return 20;
+//}
+//
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    PhotoCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:DIY forIndexPath:indexPath];
+//    [cell sizeToFit];
+//    return cell;
+//}
+////每个collectionView就是一个cell
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    CGFloat width = ([[UIScreen mainScreen]bounds].size.width - 4 *kStatusCellBorderWidth)/3;
+//    return CGSizeMake(width, width);
+//}
+////定义每个UICollectionView 的间距
+//-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    return UIEdgeInsetsMake(5,5,5,5);
+//}
+////是否可以点击
+//-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
 @end

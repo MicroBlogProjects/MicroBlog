@@ -13,6 +13,8 @@
 @property (nonatomic , retain) NSString * descrip;
 /** 粉丝数*/
 @property (nonatomic , assign) NSInteger followers_count;
+//uid账号;
+@property (nonatomic , assign) NSInteger uid;
 /** 关注数*/
 @property (nonatomic , assign) NSInteger friends_count;
 //** 微博数*/
@@ -32,6 +34,8 @@
 @property (nonatomic , assign) double cellHight;
 //就职于
 @property (nonatomic , strong) NSString * work;
+//学校
 @property (nonatomic , strong) NSString * school;
+//地点
 @property (nonatomic , strong) NSString * location;
 @end

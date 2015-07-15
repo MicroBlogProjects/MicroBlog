@@ -62,6 +62,7 @@
 -(void)click:(UIButton *)button
 {
     NSInteger tag = button.tag - 10000;
+//    NSLog(@"%ld",tag);
     if (tag != self.currIndex) {
         self.currIndex = tag;
         [UIView animateWithDuration:0.3f animations:^{

@@ -14,6 +14,8 @@
 #define kStatusCellBorderWidth 10
 //昵称字体
 #define  kStatusCellNameFont  [UIFont systemFontOfSize:15]
+//line的标记
+#define LineTag  100
 
 
 

@@ -32,7 +32,6 @@
         [iconView getView:userModel];
         iconView.layer.cornerRadius = iconViewW / 2;
         iconView.clipsToBounds = YES;
-//        iconView.alpha = 0.5;
         [self addSubview:iconView];
         
         

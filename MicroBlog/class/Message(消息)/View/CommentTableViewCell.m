@@ -76,13 +76,14 @@
     [self.contentView addSubview:originaView];
     self.originaView=originaView;
     [self.originaView setBackgroundColor:[UIColor whiteColor]];
+    
     /** 右上角button */
     UIButton *rightandupButton=[[UIButton alloc] init];
     [rightandupButton setTitle:@"回复" forState:UIControlStateNormal];
-    [rightandupButton setBackgroundColor:[UIColor grayColor]];
+    [rightandupButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.originaView addSubview:rightandupButton];
-    
-    
+    [rightandupButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_below_button"] forState:UIControlStateNormal];
+    rightandupButton.font=[UIFont systemFontOfSize:14];
     self.rightandupButton=rightandupButton;
 
     

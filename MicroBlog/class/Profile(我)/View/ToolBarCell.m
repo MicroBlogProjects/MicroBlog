@@ -11,6 +11,7 @@
 #import "NavigationController.h"
 #import "ProfileStasusController.h"
 #import "ProfileFansController.h"
+#import "AttentionListController.h"
 
 
 @implementation ToolBarCell
@@ -66,7 +67,8 @@
     }
     //关注
     else if (button.tag == 1002){
-        
+        AttentionListController * attentionController = [[AttentionListController alloc]init];
+        [nav pushViewController:attentionController animated:YES];
     }
     //粉丝
     else{

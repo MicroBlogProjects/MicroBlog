@@ -79,12 +79,14 @@
     descriptionLabel.text = title ;
     descriptionLabel.textColor = myColor(205, 205, 205);
     //线
+    [self deleteLine:LineTag];//先删除原先的控件 不然重叠;
     UIImageView *line = [[UIImageView alloc]init];
     CGFloat lineX = 0;
     CGFloat lineY = CGRectGetMaxY(iconview.frame) + kStatusCellBorderWidth;
     CGFloat lineW = [[UIScreen mainScreen]bounds].size.width;
     CGFloat LineH = 1;
     line.backgroundColor = myColor(225, 225, 225);
+    line.tag = LineTag;
     line.frame = CGRectMake(lineX, lineY, lineW, LineH);
 
     [self addSubview:iconview];
@@ -92,7 +94,10 @@
     [self addSubview:descriptionLabel];
     [self addSubview:line];
     profileUserModel.cellHight = CGRectGetMaxY(line.frame);
-
-
+}
+-(void)deleteLine:(NSInteger)tag
+{
+    UIView * view = [self viewWithTag:tag];
+    [view removeFromSuperview];
 }
 @end

@@ -12,69 +12,55 @@
 #import "AFHTTPSessionManager.h"
 #import "AccountModel.h"
 #import "AccountTool.h"
-#import "ProfileFansModel.h"
+#import "ProfileFansModelList.h"
+#import "ProfileUserModel.h"
+#import "ProfileFansCell.h"
+#import "PersonalInformationViewController.h"
 
 @interface ProfileFansController ()
-@property (nonatomic,strong) NSMutableArray * fansArray;
+@property (nonatomic , strong)ProfileFansModelList * fansList;
+@property (nonatomic , strong)NSMutableArray * uidArray;
+//@property (nonatomic , strong)ProfileUserModel *delegateValue;
 @end
 
 @implementation ProfileFansController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"粉丝";
     //加载第一次数据
     [self setupDownRefresh];
 }
 - (void)setupDownRefresh{
+
     UIRefreshControl * fresh = [[UIRefreshControl alloc]init];
-    [fresh addTarget:self action:@selector(loadNewStatus:) forControlEvents:UIControlEventValueChanged];
+    [fresh addTarget:self action:@selector(loadUID:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:fresh];
     
     //进入刷新状态;
     [fresh beginRefreshing];
-    [self loadNewStatus:fresh];
+    [self loadUID:fresh];
 }
-
--(void)loadNewStatus:(UIRefreshControl *)control{
+//下再用户信息
+-(void)loadNewFans:(UIRefreshControl *)control{
+//    NSLog(@"%@",self.uidArray);
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
     //2.拼接请求参数
     AccountModel *account = [AccountTool account]; //从沙盒中获取用户信息
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
     params[@"access_token"] = account.access_token;
-    //取出最前面的微博（当前缓存数组中最新的微博，我们下拉只需要获取比缓存中更新的微博数据）
-    ProfileFansModel * firstFansModel = [self.fansArray firstObject];
-    if(firstFansModel){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
-    }
-    [manager GET:@"https://api.weibo.com/2/statuses/user_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-
-//        //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
-//        NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-//        
-//        //将StatusModel数组 转换成 StatusFrameModel数组
-//        NSMutableArray *newsFrames = [NSMutableArray array];
-//        for(StatusModel *statusModel in newStatuses){
-//            StatusFrameModel *f = [[StatusFrameModel alloc]init];
-//            f.statusModel = statusModel ;
-//            [newsFrames addObject:f];
-//        }
+    params[@"uid"] = account.uid;
+    params[@"cursor"] =  [NSString stringWithFormat:@"%ld",self.fansList.next_cursor];
+    [manager GET:@"https://api.weibo.com/2/friendships/followers.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         
-//        //把最新的微博数组，添加到总数组的最前面
-//        NSRange range = NSMakeRange(0, newStatuses.count);
-//        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-//        [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
-     
+        [self setProfileFansModelList:responseObject];
         //刷新表格
-//        [self.tableView reloadData];
+        [self.tableView reloadData];
      
         //菊花停止转动
-//        [control endRefreshing];
-     
-        //显示最新微博的数量
-        //        [self showNewStatusCount:(int)newStatuses.count];
+        [control endRefreshing];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //菊花停止转动
@@ -82,13 +68,64 @@
         NSLog(@"%@",error);
     }];
 }
-
--(NSMutableArray *)fansArray
+//下载用户uid
+- (void)loadUID:(UIRefreshControl *)control
 {
-    if (_fansArray == nil) {
-        _fansArray = [[NSMutableArray alloc]init];
+    //1.请求管理者
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //2.拼接参数
+    AccountModel *account = [AccountTool account]; //从沙盒中获取用户信息
+    NSMutableDictionary *params= [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token;
+    params[@"uid"] = account.uid;
+    params[@"cursor"] =  [NSString stringWithFormat:@"%ld",self.fansList.next_cursor];
+    [manager GET:@"https://api.weibo.com/2/friendships/followers/ids.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        self.uidArray = [responseObject objectForKey:@"ids"];
+        [self loadNewFans:control];
+        
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+//懒加载
+- (ProfileFansModelList *)fansList
+{
+    if (_fansList == nil) {
+        _fansList = [[ProfileFansModelList alloc]init];
+        _fansList.profileFansList = [[NSMutableArray alloc]init];
     }
-    return _fansArray;
+    return _fansList;
+}
+
+-(void) setProfileFansModelList:(id)responseObject
+{
+    self.fansList.display_total_number = [[responseObject objectForKey:@"display_total_number"]integerValue];
+    self.fansList.next_cursor = [[responseObject objectForKey:@"next_cursor"]integerValue];
+    self.fansList.previous_cursor = [[responseObject objectForKey:@"previous_cursor"]integerValue];
+    NSArray * fansModelArray = [responseObject objectForKey:@"users"];
+    //倒序插入
+    for (NSInteger i = 0; i < fansModelArray.count ; i++) {
+        NSDictionary * fansModel = [fansModelArray objectAtIndex:i];
+        ProfileUserModel * userModel = [[ProfileUserModel alloc]init];
+        //uid
+        userModel.uid = [[self.uidArray objectAtIndex:i]integerValue];
+        //图片地址
+        userModel.avatar_large = [fansModel objectForKey:@"avatar_large"];
+        //昵称
+        userModel.screen_name = [fansModel objectForKey:@"screen_name"];
+        //个人简介
+        userModel.descrip = [fansModel objectForKey:@"description"];
+        //地址
+        userModel.location = [fansModel objectForKey:@"location"];
+        //vip等级
+        userModel.mbtype = [[fansModel objectForKey:@"mbtype"]integerValue];
+        userModel.mbrank = [[fansModel objectForKey:@"mbrank"]integerValue];
+        [self.fansList.profileFansList insertObject:userModel atIndex:0];
+
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,66 +138,45 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 0;
+    return self.fansList.profileFansList.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    static NSString * ID = @"cell";
+    UITableViewCell *cell = [[ProfileFansCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID andPersonInfo:[self.fansList.profileFansList objectAtIndex:indexPath.row]];
     return cell;
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProfileUserModel * model = [self.fansList.profileFansList objectAtIndex:indexPath.row];
+    return model.cellHight;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+/** 以下两个函数功能：使Cell中添加图片不会导致分割线被裁减一部分 */
+-(void)viewDidLayoutSubviews {
+    
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+        
+    }
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)])  {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPat{
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]){
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

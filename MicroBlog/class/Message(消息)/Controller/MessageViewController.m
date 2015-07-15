@@ -9,7 +9,7 @@
 //
 
 #import "MessageViewController.h"
-#import "TestViewController.h"
+
 #import "MessageModel.h"
 #import "AtMeTableViewController.h"
 #import "CommentTableViewController.h"
@@ -28,6 +28,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 去掉多余格式的线
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.tableView setTableFooterView:v];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"写私信" style:UIBarButtonItemStylePlain target:self action:@selector(writeMessage)];
 }
 /**
@@ -43,7 +46,9 @@
 
 
 #pragma mark - Table view data source
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 96/2+14;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -64,8 +69,6 @@
     cell.textLabel.text=message.title;
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     return  cell ;
-    
-    
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row==0) {
@@ -79,6 +82,26 @@
 //    test.title = [NSString stringWithFormat:@"%lu",indexPath.row];
 //    [self.navigationController pushViewController:test animated:YES];
 }
+/** 以下两个函数功能：使Cell中添加图片不会导致分割线被裁减一部分 */
+-(void)viewDidLayoutSubviews {
+    
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+        
+    }
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)])  {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+}
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPat{
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]){
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+}
 
 @end
