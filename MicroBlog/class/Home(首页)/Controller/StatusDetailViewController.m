@@ -25,6 +25,7 @@
 #import "MainTabbarViewController.h"
 #import "CommentViewController.h"
 #import "NavigationController.h"
+#import "RetweetViewController.h"
 
 
 
@@ -49,6 +50,11 @@
     
     //1.设置标题
     self.title = @"微博正文";
+    
+    // 去掉多余格式的线
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.tableView setTableFooterView:v];
+    
     
     //2.添加View的子控制器
     [self createSubViews];
@@ -79,7 +85,7 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if(_commentFrameModels.count){
-            NSLog(@"viewWillAppear");
+
             [self loadNewComment];
         }
     });
@@ -264,6 +270,16 @@
 -(void)toolBar:(StatusDetailToolBar *)toolBar clickButton:(UIButton *)button type:(ToolBarButtonType)type{
     //转发
     if(type == ToolBarButtonTypeRetweet ){
+        MainTabbarViewController *mainView = [MainTabbarViewController sharedMainTabbarViewController];
+        RetweetViewController *retweet = [[RetweetViewController alloc]init ] ;
+        retweet.idstr = self.statusModel.idstr ;
+        NavigationController *nav = [[NavigationController alloc]initWithRootViewController:retweet ] ;
+        
+        [mainView presentViewController:nav animated:YES completion:^{
+            
+        }];
+        
+        
         
     }
     

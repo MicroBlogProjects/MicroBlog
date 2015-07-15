@@ -12,7 +12,7 @@
 #import "StatusPhotosView.h"
 
 
-
+#define  kStatusIconImageWH 35
 
 
 @implementation BaseFrameModel
@@ -31,8 +31,8 @@
     /** 原创微博*/
     
     /* 头像*/
-    CGFloat iconW = 50 ;
-    CGFloat iconH = 50 ;
+    CGFloat iconW = kStatusIconImageWH ;
+    CGFloat iconH = kStatusIconImageWH ;
     CGFloat iconX = kStatusCellBorderWidth ;
     CGFloat iconY = kStatusCellBorderWidth ;
     self.iconViewF = CGRectMake(iconX , iconY, iconW, iconH);
@@ -47,16 +47,16 @@
     if(user.isVip){
         
         CGFloat vipX = CGRectGetMaxX(self.nameLabelF) + kStatusCellBorderWidth;
-        CGFloat vipY = nameY ;
-        CGFloat vipH = nameSize.height;
-        CGFloat vipW = nameSize.height ;
+        CGFloat vipY = nameY*1.25;
+        CGFloat vipH = nameSize.height *0.75;
+        CGFloat vipW = nameSize.height *0.75;
         self.vipViewF = CGRectMake(vipX, vipY, vipW, vipH);
         
     }
     
     /* 时间（微博发布时间）*/
     CGFloat timeX = nameX ;
-    CGFloat timeY = CGRectGetMaxY(self.nameLabelF) + kStatusCellBorderWidth ;
+    CGFloat timeY = CGRectGetMaxY(self.nameLabelF) + kStatusCellBorderWidth/2 ;
     CGSize timeSize = [statusModel.created_at sizeWithFont:kStatusCellTimeFont  ];
     self.timeLabelF = CGRectMake(timeX, timeY, timeSize.width, timeSize.height);
     

@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 @class DropDownMenu;
+@class MenuTableViewController;
+
 @protocol  DropDownMenuDelegate <NSObject>
 @optional
 -(void)dropDownMenuDidDismiss:(DropDownMenu *)menu ;
 @end
+
+typedef void (^DropDownMenueBlock)(NSString *);
 
 
 @interface DropDownMenu : UIView
@@ -20,14 +24,12 @@
 //内容
 @property (nonatomic, strong) UIView *content ;
 //内容控制器
-@property (nonatomic, strong) UIViewController *contentController ;
+@property (nonatomic, strong) MenuTableViewController *contentController ;
 @property (nonatomic , weak) id<DropDownMenuDelegate> delegate ;
-/**
- *  显示
- */
+@property (nonatomic, copy) DropDownMenueBlock dropDownMenueBlock;
+
+/**显示*/
 -(void)showFrom:(UIView *)from ;
-/**
- *  销毁
- */
--(void)dismiss;
+/**销毁*/
+-(void)dismiss:(NSString *)string;
 @end

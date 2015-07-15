@@ -7,6 +7,7 @@
 //
 
 #import "DropDownMenu.h"
+#import "MenuTableViewController.h"
 
 @interface DropDownMenu ()
 //下拉菜单容器
@@ -15,17 +16,23 @@
 
 @implementation DropDownMenu
 
--(UIImageView *)containerView{
-    if(!_containerView){
-        //添加带箭头的灰色图片(作为下拉菜单的容器)
-        UIImageView *containerView = [[UIImageView alloc]init];
-        containerView.image = [UIImage imageNamed:@"popover_background"];
-        containerView.userInteractionEnabled = YES ; //开启交互功能(imageView默认是没有交互功能的)
-        [self addSubview:containerView];
-        self.containerView = containerView ;
+-(instancetype)initWithFrame:(CGRect)frame{
+    if(self = [super initWithFrame:frame]){
+        self.backgroundColor = [ UIColor clearColor];
+      
     }
-    return  _containerView ;
+    return self ;
 }
+
+-(void)test:(NSNotification *)notification{
+    NSLog(@"%@",NotificationCenter);
+}
+
+
++(instancetype)menu{
+    return  [[self alloc]init];
+}
+
 
 /**
  *  往下拉菜单容器中添加的组件
@@ -47,23 +54,15 @@
     [self.containerView addSubview:content];
 }
 
--(void)setContentController:(UIViewController *)contentController{
+-(void)setContentController:(MenuTableViewController *)contentController{
     _contentController = contentController ;
+    _contentController.homeTitleClickBlock = ^(NSString *string ){
+        [self dismiss:string];
+    };
+    
     self.content = contentController.view ;
 }
 
-
--(instancetype)initWithFrame:(CGRect)frame{
-    if(self = [super initWithFrame:frame]){
-        self.backgroundColor = [ UIColor clearColor];
-    }
-    return self ;
-}
-
-
-+(instancetype)menu{
-    return  [[self alloc]init]; 
-}
 
 /**
  *  显示
@@ -85,18 +84,38 @@
     
 }
 
+
 /**
  *  销毁
  */
--(void)dismiss{
+-(void)dismiss:(NSString *)string{
+    
     [self removeFromSuperview];
-    if([self.delegate respondsToSelector:@selector(dropDownMenuDidDismiss:)]){
-        [self.delegate dropDownMenuDidDismiss:self];
+    if(self.dropDownMenueBlock){
+        self.dropDownMenueBlock(string);
     }
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self dismiss];
+
+    [self dismiss:@"此字符串没任何意义"];
+    
 }
+
+
+-(UIImageView *)containerView{
+    if(!_containerView){
+        //添加带箭头的灰色图片(作为下拉菜单的容器)
+        UIImageView *containerView = [[UIImageView alloc]init];
+        containerView.image = [UIImage imageNamed:@"popover_background"];
+        containerView.userInteractionEnabled = YES ; //开启交互功能(imageView默认是没有交互功能的)
+        [self addSubview:containerView];
+        self.containerView = containerView ;
+    }
+    return  _containerView ;
+}
+
+
 
 @end

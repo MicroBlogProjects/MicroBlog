@@ -225,7 +225,7 @@
     /* 时间（微博发布时间）, 每次刷新的时候都要重新计算一下Frame,因为时间会变，宽度就会变 */
     NSString *time = statusModel.created_at ;
     CGFloat timeX =  baseFrameModel.nameLabelF.origin.x ;
-    CGFloat timeY = CGRectGetMaxY(baseFrameModel.nameLabelF) + kStatusCellBorderWidth ;
+    CGFloat timeY = CGRectGetMaxY(baseFrameModel.nameLabelF) + kStatusCellBorderWidth/2 ;
     CGSize timeSize = [time sizeWithFont:kStatusCellTimeFont  ];
     self.timeLabel.frame = CGRectMake(timeX, timeY, timeSize.width, timeSize.height);
     self.timeLabel.text = time;
@@ -285,29 +285,7 @@
 }
 
 
-/**
- *  重写setFrame方法，自己调整cell的Frame
- */
-
-
-
-#warning todo 点击微博转发、评论 、点赞
-//
-//
-//#pragma mark- toolBarDelegate 点击转发、评论、点赞
-//-(void)toolBar:(ToolBar *)tooBar clickButton:(UIButton *)button{
-//    if(button.tag == ToolBarButtonTypeAgree){
-//
-//
-//    }
-//    if(button.tag == ToolBarButtonTypeComment){
-//
-//    }
-//    if(button.tag == ToolBarButtonTypeRetweet){
-//          NSLog(@"转发");
-//    }
-//    
-//}
+ 
 
 
 @end

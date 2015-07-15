@@ -12,4 +12,7 @@
 
 @property(nonatomic , strong) PhotoModel *photoModel ;
 
+@property (nonatomic , strong) NSString *photoString ;
+
+
 @end

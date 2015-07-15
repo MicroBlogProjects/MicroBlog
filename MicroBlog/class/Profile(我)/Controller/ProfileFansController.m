@@ -49,7 +49,7 @@
     }
     [manager GET:@"https://api.weibo.com/2/statuses/user_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSLog(@"%@",responseObject);
+
 //        //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
 //        NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
 //        

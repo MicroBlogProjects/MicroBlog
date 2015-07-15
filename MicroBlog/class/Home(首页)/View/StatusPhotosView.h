@@ -9,7 +9,10 @@
 
 @interface StatusPhotosView : UIView
 
+/** 数组里面存放的是model类型的图片地址 */
 @property (nonatomic , strong) NSArray *photos;
+/** 数组里面存放的是string类型的图片地址 */
+@property (nonatomic , strong) NSArray *photoStrings;
 
 /**
  *  根据图片的个数计算9宫格相册的尺寸

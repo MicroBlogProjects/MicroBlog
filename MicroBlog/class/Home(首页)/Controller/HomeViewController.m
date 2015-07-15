@@ -26,14 +26,31 @@
 #import "ToolBar.h"
 #import "CommentViewController.h"
 #import "NavigationController.h"
+#import "RetweetViewController.h"
+#import <CoreLocation/CoreLocation.h>
+#import "AnnotationsModel.h"
+#import "PlaceModel.h"
+#import "NearByStatusCell.h"
+#import "NearByStatusFrameModel.h"
+#import "QRViewController.h"
 
+#define kLongtitude @"longitude"
+#define kLatitude @"latitue"
 
-@interface HomeViewController () <DropDownMenuDelegate >
+@interface HomeViewController () <CLLocationManagerDelegate>
 
-/**
- *  微博数组（里面放的都是StatusModelFrame模型，一个StatusModelFrame就代表一条微博信息）
- */
+/** 好友微博数组 */
 @property (nonatomic , strong) NSMutableArray *statusFrameModels;
+/** 附近微博数组 */
+@property (nonatomic , strong) NSMutableArray *nearbyStatusFrameModels;
+/** 我的微博数组*/
+@property (nonatomic , strong) NSMutableArray *myStatusFrameModels;
+/** 当前显示的微博数组 */
+@property (nonatomic , strong) NSMutableArray *curentFrameModels;
+/** 定位器管理者 */
+@property (nonatomic , strong) CLLocationManager *manager;
+/** 菊花 */
+@property (nonatomic , strong) UIRefreshControl *refreshControl ;
 
 @end
 @implementation HomeViewController
@@ -50,6 +67,10 @@
     
     //添加一个通知： 当点击微博列表中工具栏的按钮触发  (转发 评论  点赞)
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toolBarCilick:) name:@"ToolBarClick" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickTitle:) name:kNotificationClickHomeTitle object:nil];
+    
+    //定位
+    [self locate];
     
      //设置导航栏内容
     [self setupNavigationBar];
@@ -57,21 +78,40 @@
     //获取用户信息（昵称）
     [self setupUserInfo];
  
-    //集成下拉刷新控件 (刚打开APP的时候 模拟下拉一次来获取数据)
+//    集成下拉刷新控件 (刚打开APP的时候 模拟下拉一次来获取数据)
     [self setupDownRefresh];
     
-//    [self justTest];
-    
-    //集成上拉刷新控件
+//    集成上拉刷新控件
     [self setupUpRefresh];
     
-    //定时获取未读消息数目，显示在badge上
+//    定时获取未读消息数目，显示在badge上
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(setupUnReadCount) userInfo:nil repeats:YES];
     //主线程也会抽出时间处理一下timer
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 
+-(void)clickTitle:(NSNotification *)notification{
+    NSLog(@"%@",notification);
+    UIButton *titleButton  = (UIButton*)self.navigationItem.titleView ;
+    titleButton.selected = NO;
+    
+}
+
+/**  获取经纬度，然后存在沙盒中 */
+-(void)locate{
+    self.manager.delegate = self ;
+    self.manager.distanceFilter =500; //500米请求一次位置
+    
+    // 如果是IOS8以上系统 ， 定位需要手动请求
+    if([[UIDevice currentDevice].systemVersion doubleValue ] >=8.0) {
+        [self.manager requestAlwaysAuthorization];
+        
+    }else{//IOS8.0以下系统
+       
+    }
+     [self.manager startUpdatingLocation];
+}
 
 /**
  *  当点击微博列表中工具栏的按钮触发  (转发 评论  点赞)
@@ -110,6 +150,11 @@
     //转发
     if(button.tag == ToolBarButtonTypeRetweet){
         
+         RetweetViewController *retweet = [[RetweetViewController alloc]init ] ;
+         retweet.idstr = model.idstr ;
+        NavigationController *nav = [[NavigationController alloc]initWithRootViewController:retweet ] ;
+        [self presentViewController:nav animated:YES completion:^{
+        }];
     }
 
 }
@@ -165,6 +210,7 @@
 -(void)setupDownRefresh{
     
     UIRefreshControl *fresh = [[UIRefreshControl alloc]init];
+    self.refreshControl = fresh ;
     [fresh addTarget:self action:@selector(loadNewStatus:) forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:fresh];
     
@@ -178,6 +224,7 @@
  */
 -(void)loadNewStatus:(UIRefreshControl *)control{
     
+   
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
@@ -190,7 +237,7 @@
     if(firstStatus){  //如果之前存在数据，才会请求since_id之后的微博; 如果没此参数，默认请求20条
         params[@"since_id"] = firstStatus.statusModel.idstr;
     }
-    params[@"count"] = @20;
+    params[@"count"] = @2;
   
     
     //3.发送请求
@@ -212,8 +259,7 @@
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
         
-        
-        
+         self.curentFrameModels = self.statusFrameModels ; //当前显示好友微博
         //刷新表格
         [self.tableView reloadData];
         
@@ -229,25 +275,6 @@
         NSLog(@"%@",error);
     }];
  
-}
-
-
-#warning todo 
--(void)justTest{
-    /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
-    //1.请求管理者
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //2.拼接请求参数
-    AccountModel *model = [AccountTool account];
-    NSMutableDictionary *params= [NSMutableDictionary dictionary];
-    params[@"access_token"] = model.access_token;
-    params[@"url_short"] = @"http://t.cn/RLbUH9W";
-    //3.发送请求
-    [manager POST:@"https://api.weibo.com/2/short_url/expand.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error)
-    }];
 }
 
 /**
@@ -411,7 +438,6 @@
     self.navigationItem.titleView = titleButton ;
 }
 
-
 /**
  *  点击标题(微博名)，会出现下拉菜单
  */
@@ -419,25 +445,170 @@
     
     //创建下拉菜单
     DropDownMenu *menu = [DropDownMenu menu];
+    
     //设置下拉菜单的内容
     MenuTableViewController *menuTable = [[MenuTableViewController alloc]init];
     menuTable.view.height =44*3 ;
-    menuTable.view.width =217 ;
+    menuTable.view.width =120 ;
     menu.contentController =  menuTable ;
-    menu.delegate = self ;
+    menu.dropDownMenueBlock = ^(NSString * string){
+        
+        if([string isEqualToString:@"好友"]){
+            [self.refreshControl beginRefreshing];
+            
+            [self loadNewStatus:self.refreshControl];
+        
+        }
+        if([string isEqualToString:@"我的微博"]){
+            
+            [self.refreshControl beginRefreshing];
+            [self loadMyStatus:self.refreshControl];
+            
+        }
+        if([string isEqualToString:@"周边的微博"]){
+ 
+            [self.refreshControl beginRefreshing];
+            [self loadNearLocaitonStatus:self.refreshControl];
+            
+        }
+        
+        UIButton *titleButton  = (UIButton*)self.navigationItem.titleView ;
+        titleButton.selected = NO;
+
+    };
+
     //显示
     [menu showFrom:titleButton];
     //让箭头向上
-    titleButton.selected = YES;
+    titleButton.selected = !titleButton.selected;
+
 }
 
+/**  显示周边的微博 */
+-(void)loadNearLocaitonStatus:(UIRefreshControl *)control{
+  
+  
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AccountModel *account = [AccountTool account];
+    NSMutableDictionary *params= [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token ;
+    params[@"lat"] = @([[NSUserDefaults standardUserDefaults]doubleForKey:kLatitude]) ;
+    params[@"long"] =@([[NSUserDefaults standardUserDefaults]doubleForKey:kLongtitude]);
+    params[@"range"] =@5000;
+    params[@"count"] = @50;
+
+    [manager GET:@"https://api.weibo.com/2/place/nearby_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+ 
+        
+        //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
+        NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        //将StatusModel数组 转换成 StatusFrameModel数组
+        NSMutableArray *newsFrames = [NSMutableArray array];
+        for(StatusModel *statusModel in newStatuses){
+            NearByStatusFrameModel *f = [[NearByStatusFrameModel alloc]init];
+            f.statusModel = statusModel ;
+            [newsFrames addObject:f];
+        }
+        
+        //把最新的微博数组，添加到总数组的最前面
+        NSRange range = NSMakeRange(0, newStatuses.count);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        [self.nearbyStatusFrameModels insertObjects:newsFrames atIndexes:indexSet];
+        self.curentFrameModels = self.nearbyStatusFrameModels ;  //当前显示周边微博
+        
+        //刷新表格
+        [self.tableView reloadData];
+        
+        //菊花停止转动
+        [control endRefreshing];
+        
+        //显示最新微博的数量
+        [self showNewStatusCount:(int)newStatuses.count];
+
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+/**  显示我的微博 */
+-(void)loadMyStatus:(UIRefreshControl *)control{
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AccountModel *account = [AccountTool account];
+    NSMutableDictionary *params= [NSMutableDictionary dictionary];
+    params[@"access_token"] = account.access_token ;
+    params[@"uid"] = account.uid ;
+    params[@"count"] = @50;
+    
+    [manager GET:@"https://api.weibo.com/2/statuses/user_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        
+        //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
+        NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        
+        //将StatusModel数组 转换成 StatusFrameModel数组
+        NSMutableArray *newsFrames = [NSMutableArray array];
+        for(StatusModel *statusModel in newStatuses){
+            StatusFrameModel *f = [[StatusFrameModel alloc]init];
+            f.statusModel = statusModel ;
+            [newsFrames addObject:f];
+        }
+        
+        //把最新的微博数组，添加到总数组的最前面
+        NSRange range = NSMakeRange(0, newStatuses.count);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        [self.myStatusFrameModels insertObjects:newsFrames atIndexes:indexSet];
+        
+        self.curentFrameModels = self.myStatusFrameModels ; //当前显示我的微博;
+        
+        //刷新表格
+        [self.tableView reloadData];
+        
+       [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+        //菊花停止转动
+        [control endRefreshing];
+        
+        //显示最新微博的数量
+        [self showNewStatusCount:(int)newStatuses.count];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
+}
 
 /**
  *  点击右上角按钮
  */
 -(void)pop{
+    if ([self validateCamera]) {
+        
+        [self showQRViewController];
+        
+    } else {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有摄像头或摄像头不可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+}
+
+- (BOOL)validateCamera {
     
+    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] &&
+    [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
+}
+
+- (void)showQRViewController {
     
+    QRViewController *qrVC = [[QRViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:qrVC];
+    [self presentViewController:nav animated:YES completion:^{
+        
+    }];
 }
 
 
@@ -454,25 +625,6 @@
 }
 
 
-/**
- *  statuses懒加载
- */
--(NSMutableArray *)statusFrameModels{
-    if(_statusFrameModels == nil){
-        _statusFrameModels = [NSMutableArray array];
-    }
-    return _statusFrameModels ;
-}
-
-
-#pragma mark - dropDownMenuDelegate代理
-/**
- *  下拉菜单被销毁时触发，箭头方向向下
- */
--(void)dropDownMenuDidDismiss:(DropDownMenu *)menu{
-    UIButton *titleButton  = (UIButton*)self.navigationItem.titleView ;
-    titleButton.selected = NO;
-}
 
 
 
@@ -484,50 +636,62 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.statusFrameModels.count;
+    int cout  = self.curentFrameModels.count ; 
+    return self.curentFrameModels.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    StatusFrameModel * frame = self.statusFrameModels[indexPath.row];
+    if(self.curentFrameModels == self.nearbyStatusFrameModels){
+         NearByStatusFrameModel * frame = self.curentFrameModels[indexPath.row];
+        return  frame.cellHeight ;
+    }
     
+    StatusFrameModel * frame = self.curentFrameModels[indexPath.row];
     return frame.cellHeight ;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
-    StatusFrameModel *frameModel = _statusFrameModels[indexPath.row];
+    StatusFrameModel *frameModel = _curentFrameModels[indexPath.row];
     statusDetail.statusModel = frameModel.statusModel;
-    
+
     [self.navigationController pushViewController:statusDetail animated:YES] ;
     
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
- 
+    /** 显示个人微博 */
+    if(self.curentFrameModels == self.myStatusFrameModels){
+        static NSString *ID = @"myStatusCell" ;
+        StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if(cell ==nil){
+            cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.baseFrameModel = self.curentFrameModels[indexPath.row];
+        return  cell;
+    }
+    /** 显示附近微博 */
+   if(self.curentFrameModels == self.nearbyStatusFrameModels){
+        static NSString *ID = @"NearbytatusCell" ;
+        NearByStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        if(cell ==nil){
+            cell = [[NearByStatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        }
+        cell.nearbyStatusFrameModel = self.curentFrameModels[indexPath.row];
+        return  cell;
+    }
     
+    /** 显示好友微博 */
     static NSString *ID = @"StatusCell" ;
-    
     StatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if(cell ==nil){
         cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
-    cell.baseFrameModel = _statusFrameModels[indexPath.row];
-    
-    
-//    for (id obj in cell.subviews)
-//    {
-//        if ([NSStringFromClass([obj class]) isEqualToString:@"UITableViewCellScrollView"])
-//        {
-//            UIScrollView *scroll = (UIScrollView *) obj;
-//            scroll.delaysContentTouches = NO;
-//            break;
-//        }
-//    }
-  
-    
+    cell.baseFrameModel = self.curentFrameModels[indexPath.row];
     return  cell;
+   
 }
 
 /**
@@ -559,7 +723,65 @@
     
 }
 
- 
+
+
+
+
+#pragma mark- CLLocationManager代理方法（定位）
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    
+    CLLocation *location =  [locations lastObject];
+    double longitude =  location.coordinate.longitude ;
+    double latitue = location.coordinate.latitude;
+    
+    [[NSUserDefaults standardUserDefaults] setDouble:longitude forKey:@"longitude"];
+    [[NSUserDefaults standardUserDefaults] setDouble:latitue forKey:@"latitue"];
+    
+}
+-(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
+
+}
+
+
+
+#pragma mark - 懒加载
+
+-(NSMutableArray *)statusFrameModels{
+    if(_statusFrameModels == nil){
+        _statusFrameModels = [NSMutableArray array];
+    }
+    return _statusFrameModels ;
+}
+
+-(NSMutableArray *)myStatusFrameModels{
+    if(_myStatusFrameModels == nil){
+        _myStatusFrameModels = [NSMutableArray array] ;
+    }
+    return  _myStatusFrameModels ;
+}
+
+-(NSMutableArray *)nearbyStatusFrameModels{
+    if(_nearbyStatusFrameModels == nil){
+        _nearbyStatusFrameModels = [NSMutableArray array];
+    }
+    return _nearbyStatusFrameModels ;
+}
+
+-(CLLocationManager *)manager{
+    if(!_manager){
+        _manager = [[CLLocationManager alloc]init ] ;
+    }
+    return _manager ;
+}
+
+
+
+-(void)menueTabViewdidSelecteGroup:(NSString *)group{
+    UIButton *titleButton  = (UIButton*)self.navigationItem.titleView ;
+    titleButton.selected =  NO;
+
+}
 
 @end
 

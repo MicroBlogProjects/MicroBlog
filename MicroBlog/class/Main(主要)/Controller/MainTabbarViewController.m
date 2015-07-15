@@ -49,7 +49,6 @@ singleton_implementation(MainTabbarViewController)
 }
 
 
-
 /**
  *  添加一个子控制器 （底部的Tabbar,首页，消息，发现，我）
  *
@@ -87,7 +86,6 @@ singleton_implementation(MainTabbarViewController)
 
 #pragma mark - TabBarDelegate代理方法
 
-#warning doing 发微博的功能
 -(void)tabBarClickPlusButton:(TabBar *)tabBar{
     
     ComposeViewController *compose = [[ComposeViewController alloc]init];

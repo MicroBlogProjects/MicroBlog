@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>微博</string>
+	<string>迷你微博</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string></string>
@@ -36,5 +36,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>请求授权定位</string>
 </dict>
 </plist>
