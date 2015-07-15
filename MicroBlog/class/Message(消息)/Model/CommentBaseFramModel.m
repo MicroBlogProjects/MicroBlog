@@ -22,7 +22,8 @@
     //cell的宽度
     CGFloat cellW =[UIScreen mainScreen].bounds.size.width;
     //右上角的button、
-    self.rightandupButtonF=CGRectMake(cellW-50, kStatusCellBorderWidth, 45, 25);
+    self.rightandupButtonF=CGRectMake(cellW-55, kStatusCellBorderWidth, 50, 35);
+
     //头像
     CGFloat iconW=30;
     CGFloat iconH =30;

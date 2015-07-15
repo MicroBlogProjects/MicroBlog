@@ -66,7 +66,6 @@
     photosView.y=100;
     photosView.x=0;
     [self.textView addSubview:photosView];
-   
     self.photosView=photosView;
 }
 /**

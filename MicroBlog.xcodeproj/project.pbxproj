@@ -115,15 +115,12 @@
 		2BDE74D11B3D343500E540AF /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74B21B3D343500E540AF /* NavigationController.m */; };
 		2BDE74D21B3D343500E540AF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74B71B3D343500E540AF /* AppDelegate.m */; };
 		2BDE74D31B3D343500E540AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74B81B3D343500E540AF /* main.m */; };
-		2BDE74D61B3D343500E540AF /* Test2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74C81B3D343500E540AF /* Test2ViewController.m */; };
-		2BDE74D71B3D343500E540AF /* Test2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDE74C91B3D343500E540AF /* Test2ViewController.xib */; };
-		2BDE74D81B3D343500E540AF /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDE74CB1B3D343500E540AF /* TestViewController.m */; };
-		2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BDE74CC1B3D343500E540AF /* TestViewController.xib */; };
 		2BEC52001B4D1D87002965E6 /* StatusDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC51FF1B4D1D87002965E6 /* StatusDetailTitleView.m */; };
 		2BEC520B1B4D3AF0002965E6 /* BaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEC520A1B4D3AF0002965E6 /* BaseCell.m */; };
 		A5B5F4531B53420D00401E57 /* ProfileFansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B5F4521B53420D00401E57 /* ProfileFansCell.m */; };
 		A5B5F4561B534A3600401E57 /* ProfileFansController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B5F4551B534A3600401E57 /* ProfileFansController.m */; };
 		A5B5F4591B534CF600401E57 /* ProfileFansModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B5F4581B534CF600401E57 /* ProfileFansModel.m */; };
+		C34E3D2F1B56010E0058DAEE /* ProvinceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34E3D2E1B56010E0058DAEE /* ProvinceTableViewController.m */; };
 		C34E53FF1B4FCF90005E6203 /* Message.plist in Resources */ = {isa = PBXBuildFile; fileRef = C34E53FE1B4FCF90005E6203 /* Message.plist */; };
 		C352B2331B4CAD480005071C /* EmotionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2321B4CAD480005071C /* EmotionTextView.m */; };
 		C352B2361B4CB06A0005071C /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2351B4CB06A0005071C /* UITextView+Extension.m */; };
@@ -382,12 +379,6 @@
 		2BDE74B61B3D343500E540AF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2BDE74B71B3D343500E540AF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2BDE74B81B3D343500E540AF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2BDE74C71B3D343500E540AF /* Test2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test2ViewController.h; sourceTree = "<group>"; };
-		2BDE74C81B3D343500E540AF /* Test2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2ViewController.m; sourceTree = "<group>"; };
-		2BDE74C91B3D343500E540AF /* Test2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Test2ViewController.xib; sourceTree = "<group>"; };
-		2BDE74CA1B3D343500E540AF /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		2BDE74CB1B3D343500E540AF /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		2BDE74CC1B3D343500E540AF /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		2BEC51FE1B4D1D87002965E6 /* StatusDetailTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusDetailTitleView.h; sourceTree = "<group>"; };
 		2BEC51FF1B4D1D87002965E6 /* StatusDetailTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusDetailTitleView.m; sourceTree = "<group>"; };
 		2BEC52091B4D3AF0002965E6 /* BaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseCell.h; sourceTree = "<group>"; };
@@ -398,6 +389,8 @@
 		A5B5F4551B534A3600401E57 /* ProfileFansController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileFansController.m; sourceTree = "<group>"; };
 		A5B5F4571B534CF600401E57 /* ProfileFansModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileFansModel.h; sourceTree = "<group>"; };
 		A5B5F4581B534CF600401E57 /* ProfileFansModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileFansModel.m; sourceTree = "<group>"; };
+		C34E3D2D1B56010E0058DAEE /* ProvinceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvinceTableViewController.h; sourceTree = "<group>"; };
+		C34E3D2E1B56010E0058DAEE /* ProvinceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvinceTableViewController.m; sourceTree = "<group>"; };
 		C34E53FE1B4FCF90005E6203 /* Message.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Message.plist; sourceTree = "<group>"; };
 		C352B2311B4CAD480005071C /* EmotionTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionTextView.h; sourceTree = "<group>"; };
 		C352B2321B4CAD480005071C /* EmotionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTextView.m; sourceTree = "<group>"; };
@@ -1043,12 +1036,6 @@
 		2BDE74C61B3D343500E540AF /* temp */ = {
 			isa = PBXGroup;
 			children = (
-				2BDE74C71B3D343500E540AF /* Test2ViewController.h */,
-				2BDE74C81B3D343500E540AF /* Test2ViewController.m */,
-				2BDE74C91B3D343500E540AF /* Test2ViewController.xib */,
-				2BDE74CA1B3D343500E540AF /* TestViewController.h */,
-				2BDE74CB1B3D343500E540AF /* TestViewController.m */,
-				2BDE74CC1B3D343500E540AF /* TestViewController.xib */,
 			);
 			path = temp;
 			sourceTree = "<group>";
@@ -1136,6 +1123,8 @@
 				C3DAD95A1B552D7800DCA5AB /* MessageMenuTableViewController.m */,
 				C3DAD95B1B552D7800DCA5AB /* MessageViewController.h */,
 				C3DAD95C1B552D7800DCA5AB /* MessageViewController.m */,
+				C34E3D2D1B56010E0058DAEE /* ProvinceTableViewController.h */,
+				C34E3D2E1B56010E0058DAEE /* ProvinceTableViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1222,14 +1211,11 @@
 			files = (
 				2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */,
 				2BCCDB711B3ED31000E407CC /* MBProgressHUD.bundle in Resources */,
-				2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */,
 				C34E53FF1B4FCF90005E6203 /* Message.plist in Resources */,
 				2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */,
 				2BCCDB711B3ED31000E407CC /* MBProgressHUD.bundle in Resources */,
-				2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */,
 				C3A349481B4BDF2300F6C263 /* EmotionPopView.xib in Resources */,
 				C37784E61B4B7B460040F1CA /* EmotionIcons in Resources */,
-				2BDE74D71B3D343500E540AF /* Test2ViewController.xib in Resources */,
 				2BC8239B1B4772AA009018D4 /* LoadMoreFootView.xib in Resources */,
 				2B4E18401B4F8D7000624C24 /* AddFriendTableViewController.xib in Resources */,
 				2BA7619E1B4D125C001167F1 /* toolbar_background.png in Resources */,
@@ -1266,6 +1252,7 @@
 				2BC823971B4772AA009018D4 /* StatusFrameModel.m in Sources */,
 				2BA7619A1B4D11D6001167F1 /* UIImage+Image.m in Sources */,
 				2BC8239C1B4772AA009018D4 /* StatusCell.m in Sources */,
+				C34E3D2F1B56010E0058DAEE /* ProvinceTableViewController.m in Sources */,
 				2B087D181B4D52BD00B9F0C2 /* StatusDetailCell.m in Sources */,
 				2B4E183F1B4F8D7000624C24 /* AddFriendTableViewController.m in Sources */,
 				2B4E18471B4F8D7000624C24 /* ToolBarCell.m in Sources */,
@@ -1333,7 +1320,6 @@
 				C3DAD9601B552D7800DCA5AB /* MessageViewController.m in Sources */,
 				2BCF23AF1B50BB020064A409 /* HotTopCell.m in Sources */,
 				C3A3493D1B4BC39200F6C263 /* EmotionPageView.m in Sources */,
-				2BDE74D61B3D343500E540AF /* Test2ViewController.m in Sources */,
 				C38E04B61B4BEC630011B21A /* EmotionButton.m in Sources */,
 				2B63321A1B4386AF006D2840 /* SDWebImageDownloader.m in Sources */,
 				2B6332161B4386AF006D2840 /* NSData+ImageContentType.m in Sources */,
@@ -1365,7 +1351,6 @@
 				2BD76F231B4A9ADB00A1B4CB /* StatusDetailViewController.m in Sources */,
 				2B6332431B43ACF7006D2840 /* MJArgument.m in Sources */,
 				2BC8239A1B4772AA009018D4 /* LoadMoreFootView.m in Sources */,
-				2BDE74D81B3D343500E540AF /* TestViewController.m in Sources */,
 				2BA761A21B4D144B001167F1 /* NSString+File.m in Sources */,
 				2BDE74D31B3D343500E540AF /* main.m in Sources */,
 				C3DAD94D1B552CF100DCA5AB /* CommentCellModel.m in Sources */,
@@ -1487,7 +1472,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wei Feng Hou (R8VPNFFZ6F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Wei Feng Hou (S3RY9LN78U)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/MicroBlog/MicroBlog-PreFIx.pch";
 				INFOPLIST_FILE = MicroBlog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
