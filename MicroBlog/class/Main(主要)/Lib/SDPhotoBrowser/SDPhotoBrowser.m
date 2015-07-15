@@ -69,8 +69,8 @@
     UIButton *saveButton = [[UIButton alloc] init];
     [saveButton setTitle:@"保存" forState:UIControlStateNormal];
     [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    saveButton.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.90f];
-    saveButton.frame = CGRectMake(30, self.bounds.size.height - 70, 50, 25);
+    saveButton.backgroundColor = [UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:0.90f];
+    saveButton.frame = CGRectMake(20, self.bounds.size.height - 60, 80, 40);
     saveButton.layer.cornerRadius = 5;
     saveButton.clipsToBounds = YES;
     [saveButton addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
@@ -85,17 +85,17 @@
     
     UIImageWriteToSavedPhotosAlbum(currentImageView.image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] init];
-    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-    indicator.center = self.center;
-    _indicatorView = indicator;
-    [[UIApplication sharedApplication].keyWindow addSubview:indicator];
-    [indicator startAnimating];
+//    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] init];
+//    indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+//    indicator.center = self.center;
+//    _indicatorView = indicator;
+//    [[UIApplication sharedApplication].keyWindow addSubview:indicator];
+//    [indicator startAnimating];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
 {
-    [_indicatorView removeFromSuperview];
+//    [_indicatorView removeFromSuperview];
     
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor whiteColor];
@@ -220,6 +220,7 @@
 {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     self.frame = window.bounds;
+    self.backgroundColor = [UIColor redColor];
     [window addSubview:self];
 }
 

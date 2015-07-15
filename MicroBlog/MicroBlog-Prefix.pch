@@ -51,6 +51,7 @@
 
 // 判断是否为iPhone5
 #define iPhone5 ([UIScreen mainScreen].bounds.size.height == 568)
+#define IOS7 [[[UIDevice currentDevice] systemVersion]floatValue]>=7
 
 
 

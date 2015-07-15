@@ -32,6 +32,7 @@
 #import "PlaceModel.h"
 #import "NearByStatusCell.h"
 #import "NearByStatusFrameModel.h"
+#import "QRViewController.h"
 
 #define kLongtitude @"longitude"
 #define kLatitude @"latitue"
@@ -583,8 +584,30 @@
  *  点击右上角按钮
  */
 -(void)pop{
+    if ([self validateCamera]) {
+        
+        [self showQRViewController];
+        
+    } else {
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"没有摄像头或摄像头不可用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+}
+
+- (BOOL)validateCamera {
     
+    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] &&
+    [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
+}
+
+- (void)showQRViewController {
     
+    QRViewController *qrVC = [[QRViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:qrVC];
+    [self presentViewController:nav animated:YES completion:^{
+        
+    }];
 }
 
 
