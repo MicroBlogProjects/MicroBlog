@@ -62,7 +62,6 @@
 		2B7863621B3CEFED00DC74C4 /* __Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7863611B3CEFED00DC74C4 /* __Tests.m */; };
 		2B7D1B841B4E263900EE8921 /* CommentFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D1B831B4E263900EE8921 /* CommentFrameModel.m */; };
 		2B7D1B871B4E264400EE8921 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D1B861B4E264400EE8921 /* CommentModel.m */; };
-		2B81215D1B56122F0085B4B7 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B81215C1B56122F0085B4B7 /* MessageModel.m */; };
 		2B83A9AC1B47746700E0F351 /* StatusPhotosView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9AB1B47746700E0F351 /* StatusPhotosView.m */; };
 		2B83A9B21B4788DF00E0F351 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9B11B4788DF00E0F351 /* PhotoModel.m */; };
 		2B83A9B81B47AAEE00E0F351 /* StatusPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B83A9B71B47AAEE00E0F351 /* StatusPhotoView.m */; };
@@ -148,6 +147,9 @@
 		A5B5F4531B53420D00401E57 /* ProfileFansCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B5F4521B53420D00401E57 /* ProfileFansCell.m */; };
 		A5B5F4561B534A3600401E57 /* ProfileFansController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B5F4551B534A3600401E57 /* ProfileFansController.m */; };
 		A5B5F4591B534CF600401E57 /* ProfileFansModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B5F4581B534CF600401E57 /* ProfileFansModel.m */; };
+
+		C34E53FD1B4FC93C005E6203 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34E53FC1B4FC93C005E6203 /* MessageModel.m */; };
+
 		C34E53FF1B4FCF90005E6203 /* Message.plist in Resources */ = {isa = PBXBuildFile; fileRef = C34E53FE1B4FCF90005E6203 /* Message.plist */; };
 		C352B2331B4CAD480005071C /* EmotionTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2321B4CAD480005071C /* EmotionTextView.m */; };
 		C352B2361B4CB06A0005071C /* UITextView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C352B2351B4CB06A0005071C /* UITextView+Extension.m */; };
@@ -167,15 +169,20 @@
 		C3A49C771B4AB7ED0071DB7B /* EmotionKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C761B4AB7ED0071DB7B /* EmotionKeyboard.m */; };
 		C3A49C7A1B4AB9600071DB7B /* EmotionTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */; };
 		C3A49C7D1B4ABA0D0071DB7B /* EmotionListView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */; };
+
 		C3DAD94C1B552CF100DCA5AB /* CommentBaseFramModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAD9451B552CF100DCA5AB /* CommentBaseFramModel.m */; };
 		C3DAD94D1B552CF100DCA5AB /* CommentCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAD9471B552CF100DCA5AB /* CommentCellModel.m */; };
 		C3DAD94E1B552CF100DCA5AB /* CommentStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAD9491B552CF100DCA5AB /* CommentStatusModel.m */; };
+		C3DAD94F1B552CF100DCA5AB /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAD94B1B552CF100DCA5AB /* MessageModel.m */; };
 		C3DAD9531B552CFB00DCA5AB /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAD9521B552CFB00DCA5AB /* CommentTableViewCell.m */; };
 		C3DAD95D1B552D7800DCA5AB /* AtMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAD9561B552D7800DCA5AB /* AtMeTableViewController.m */; };
 		C3DAD95E1B552D7800DCA5AB /* CommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAD9581B552D7800DCA5AB /* CommentTableViewController.m */; };
 		C3DAD95F1B552D7800DCA5AB /* MessageMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAD95A1B552D7800DCA5AB /* MessageMenuTableViewController.m */; };
 		C3DAD9601B552D7800DCA5AB /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAD95C1B552D7800DCA5AB /* MessageViewController.m */; };
+
+		E6588B951B52677C00BF2B51 /* MessageMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6588B941B52677C00BF2B51 /* MessageMenuTableViewController.m */; };
 		E6CE1F2A1B5250610081200B /* AtMeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6CE1F291B5250610081200B /* AtMeTableViewController.m */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -300,7 +307,6 @@
 		2B7D1B831B4E263900EE8921 /* CommentFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentFrameModel.m; sourceTree = "<group>"; };
 		2B7D1B851B4E264400EE8921 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		2B7D1B861B4E264400EE8921 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
-		2B81215C1B56122F0085B4B7 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		2B83A9AA1B47746700E0F351 /* StatusPhotosView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusPhotosView.h; sourceTree = "<group>"; };
 		2B83A9AB1B47746700E0F351 /* StatusPhotosView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusPhotosView.m; sourceTree = "<group>"; };
 		2B83A9B01B4788DF00E0F351 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
@@ -484,6 +490,10 @@
 		A5B5F4551B534A3600401E57 /* ProfileFansController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileFansController.m; sourceTree = "<group>"; };
 		A5B5F4571B534CF600401E57 /* ProfileFansModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileFansModel.h; sourceTree = "<group>"; };
 		A5B5F4581B534CF600401E57 /* ProfileFansModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileFansModel.m; sourceTree = "<group>"; };
+
+		C34E53FB1B4FC93C005E6203 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = SOURCE_ROOT; };
+		C34E53FC1B4FC93C005E6203 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = SOURCE_ROOT; };
+
 		C34E53FE1B4FCF90005E6203 /* Message.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Message.plist; sourceTree = "<group>"; };
 		C352B2311B4CAD480005071C /* EmotionTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionTextView.h; sourceTree = "<group>"; };
 		C352B2321B4CAD480005071C /* EmotionTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTextView.m; sourceTree = "<group>"; };
@@ -519,6 +529,7 @@
 		C3A49C791B4AB9600071DB7B /* EmotionTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTabBar.m; sourceTree = "<group>"; };
 		C3A49C7B1B4ABA0D0071DB7B /* EmotionListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionListView.h; sourceTree = "<group>"; };
 		C3A49C7C1B4ABA0D0071DB7B /* EmotionListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionListView.m; sourceTree = "<group>"; };
+
 		C3DAD9441B552CF100DCA5AB /* CommentBaseFramModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentBaseFramModel.h; sourceTree = "<group>"; };
 		C3DAD9451B552CF100DCA5AB /* CommentBaseFramModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentBaseFramModel.m; sourceTree = "<group>"; };
 		C3DAD9461B552CF100DCA5AB /* CommentCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCellModel.h; sourceTree = "<group>"; };
@@ -526,6 +537,7 @@
 		C3DAD9481B552CF100DCA5AB /* CommentStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentStatusModel.h; sourceTree = "<group>"; };
 		C3DAD9491B552CF100DCA5AB /* CommentStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentStatusModel.m; sourceTree = "<group>"; };
 		C3DAD94A1B552CF100DCA5AB /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		C3DAD94B1B552CF100DCA5AB /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		C3DAD9511B552CFB00DCA5AB /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableViewCell.h; sourceTree = "<group>"; };
 		C3DAD9521B552CFB00DCA5AB /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableViewCell.m; sourceTree = "<group>"; };
 		C3DAD9551B552D7800DCA5AB /* AtMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtMeTableViewController.h; sourceTree = "<group>"; };
@@ -536,7 +548,12 @@
 		C3DAD95A1B552D7800DCA5AB /* MessageMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageMenuTableViewController.m; sourceTree = "<group>"; };
 		C3DAD95B1B552D7800DCA5AB /* MessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		C3DAD95C1B552D7800DCA5AB /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+
+		E6588B931B52677C00BF2B51 /* MessageMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageMenuTableViewController.h; sourceTree = "<group>"; };
+		E6588B941B52677C00BF2B51 /* MessageMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageMenuTableViewController.m; sourceTree = "<group>"; };
+		E6CE1F281B5250610081200B /* AtMeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AtMeTableViewController.h; sourceTree = "<group>"; };
 		E6CE1F291B5250610081200B /* AtMeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AtMeTableViewController.m; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1308,7 +1325,6 @@
 		C3DAD9431B552CF100DCA5AB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2B81215C1B56122F0085B4B7 /* MessageModel.m */,
 				C3DAD9441B552CF100DCA5AB /* CommentBaseFramModel.h */,
 				C3DAD9451B552CF100DCA5AB /* CommentBaseFramModel.m */,
 				C3DAD9461B552CF100DCA5AB /* CommentCellModel.h */,
@@ -1316,6 +1332,7 @@
 				C3DAD9481B552CF100DCA5AB /* CommentStatusModel.h */,
 				C3DAD9491B552CF100DCA5AB /* CommentStatusModel.m */,
 				C3DAD94A1B552CF100DCA5AB /* MessageModel.h */,
+				C3DAD94B1B552CF100DCA5AB /* MessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1424,8 +1441,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				2BB4C39E1B5540910044906D /* zbar-help.html in Resources */,
 				2BB4C3A01B5540910044906D /* zbar-samples.png in Resources */,
+
 				2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */,
 				2BCCDB711B3ED31000E407CC /* MBProgressHUD.bundle in Resources */,
 				2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */,
@@ -1433,7 +1452,9 @@
 				2B7863531B3CEFED00DC74C4 /* Images.xcassets in Resources */,
 				2BCCDB711B3ED31000E407CC /* MBProgressHUD.bundle in Resources */,
 				2BDE74D91B3D343500E540AF /* TestViewController.xib in Resources */,
+
 				2BB4C39F1B5540910044906D /* zbar-helpicons.png in Resources */,
+
 				C3A349481B4BDF2300F6C263 /* EmotionPopView.xib in Resources */,
 				C37784E61B4B7B460040F1CA /* EmotionIcons in Resources */,
 				2BDE74D71B3D343500E540AF /* Test2ViewController.xib in Resources */,
@@ -1511,6 +1532,7 @@
 				2BB4F1CA1B4B62A000126F91 /* SDWaitingView.m in Sources */,
 				2BC823991B4772AA009018D4 /* UserModel.m in Sources */,
 				2BC7C10C1B3D6F77005636CE /* UIBarButtonItem+DIYButton.m in Sources */,
+				C3DAD94F1B552CF100DCA5AB /* MessageModel.m in Sources */,
 				2B65390F1B417E7C00FD9893 /* UIWindow+Extention.m in Sources */,
 				2BB4C3991B5540910044906D /* qrspec.c in Sources */,
 				2B6332221B4386AF006D2840 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -1531,7 +1553,6 @@
 				2B6332481B43ACF7006D2840 /* MJMethod.m in Sources */,
 				2BC76BCE1B555823007199C5 /* QRView.m in Sources */,
 				2BB4F1C91B4B62A000126F91 /* SDPhotoBrowser.m in Sources */,
-				2B81215D1B56122F0085B4B7 /* MessageModel.m in Sources */,
 				C3A349461B4BDF1000F6C263 /* EmotionPopView.m in Sources */,
 				C3A49C7A1B4AB9600071DB7B /* EmotionTabBar.m in Sources */,
 				2BC76BCC1B555823007199C5 /* QRItem.m in Sources */,
@@ -1550,16 +1571,22 @@
 				2BC8239E1B4772AA009018D4 /* ToolBar.m in Sources */,
 				2BB4C3971B5540910044906D /* qrencode.c in Sources */,
 				2B63321E1B4386AF006D2840 /* UIButton+WebCache.m in Sources */,
+
 				C3DAD9601B552D7800DCA5AB /* MessageViewController.m in Sources */,
 				2BCF23AF1B50BB020064A409 /* HotTopCell.m in Sources */,
+
 				2BCF23AF1B50BB020064A409 /* HotTopCell.m in Sources */,
+				C34E53FD1B4FC93C005E6203 /* MessageModel.m in Sources */,
+
 				C3A3493D1B4BC39200F6C263 /* EmotionPageView.m in Sources */,
 				2BDE74D61B3D343500E540AF /* Test2ViewController.m in Sources */,
 				2BD0B09D1B54AF9300E3C440 /* PlaceModel.m in Sources */,
 				C38E04B61B4BEC630011B21A /* EmotionButton.m in Sources */,
+
 				E6CE1F2A1B5250610081200B /* AtMeTableViewController.m in Sources */,
 				2BD0B0A31B54B5A900E3C440 /* NearByStatusFrameModel.m in Sources */,
 				2B19D7171B538E5A00CBD8EC /* RetweetViewController.m in Sources */,
+
 				2B63321A1B4386AF006D2840 /* SDWebImageDownloader.m in Sources */,
 				2B6332161B4386AF006D2840 /* NSData+ImageContentType.m in Sources */,
 				2BD0358A1B40DEF400E5A0F7 /* AFHTTPSessionManager.m in Sources */,
@@ -1569,7 +1596,9 @@
 				2B5F28771B4006E200C36B97 /* NewFeatureViewController.m in Sources */,
 				2BC640411B52C78500743D4B /* CommentViewController.m in Sources */,
 				A5B5F4531B53420D00401E57 /* ProfileFansCell.m in Sources */,
+
 				C3DAD95F1B552D7800DCA5AB /* MessageMenuTableViewController.m in Sources */,
+
 				2B63324C1B43ACF7006D2840 /* NSObject+MJKeyValue.m in Sources */,
 				C352B24C1B4D20310005071C /* EmotionAttachmentModel.m in Sources */,
 				2B6332211B4386AF006D2840 /* UIImage+WebP.m in Sources */,
@@ -1585,8 +1614,11 @@
 				2BEC52001B4D1D87002965E6 /* StatusDetailTitleView.m in Sources */,
 				2B6332461B43ACF7006D2840 /* MJIvar.m in Sources */,
 				2B6332181B4386AF006D2840 /* SDWebImageCompat.m in Sources */,
+
 				C3DAD94C1B552CF100DCA5AB /* CommentBaseFramModel.m in Sources */,
+
 				2BB4C3941B5540910044906D /* bitstream.c in Sources */,
+
 				2BC640321B521A1100743D4B /* StatusDetailToolBar.m in Sources */,
 				2BD76F231B4A9ADB00A1B4CB /* StatusDetailViewController.m in Sources */,
 				2B6332431B43ACF7006D2840 /* MJArgument.m in Sources */,
@@ -1596,9 +1628,12 @@
 				2BDE74D31B3D343500E540AF /* main.m in Sources */,
 				C3DAD94D1B552CF100DCA5AB /* CommentCellModel.m in Sources */,
 				2B087D1B1B4D53B800B9F0C2 /* StatusDetailRetweetToolBar.m in Sources */,
+
 				C3DAD9531B552CFB00DCA5AB /* CommentTableViewCell.m in Sources */,
+
 				2BB4C3951B5540910044906D /* mask.c in Sources */,
 				2BD0B0A01B54B25600E3C440 /* AnnotationsModel.m in Sources */,
+
 				2BB4F1C81B4B62A000126F91 /* SDBrowserImageView.m in Sources */,
 				2B4E183B1B4F8D7000624C24 /* ProfileStasusController.m in Sources */,
 				2B4E183A1B4F8D7000624C24 /* PersonalInformationViewController.m in Sources */,
