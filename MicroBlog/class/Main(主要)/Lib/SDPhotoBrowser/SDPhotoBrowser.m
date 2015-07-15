@@ -220,7 +220,7 @@
 {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     self.frame = window.bounds;
-    self.backgroundColor = [UIColor redColor];
+
     [window addSubview:self];
 }
 

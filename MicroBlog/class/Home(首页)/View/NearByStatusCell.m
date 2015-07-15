@@ -205,12 +205,12 @@
         NSString *tailSting = @".jpg";
         for(NSString *photoString in statusModel.pic_ids){
             NSString *newString = [NSString stringWithFormat:@"%@%@%@",headString,photoString ,tailSting];
-            NSLog(@"%@",newString);
+
             [photos addObject:newString];
         }
         
         self.photosView.frame = nearbyStatusFrameModel.photosViewF ;
-        NSLog(@"%@",NSStringFromCGRect(nearbyStatusFrameModel.photosViewF));
+
         self.photosView.photoStrings = photos;
         
         self.photosView.hidden = NO;

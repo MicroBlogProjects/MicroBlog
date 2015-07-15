@@ -68,7 +68,7 @@ static NSTimeInterval kQrLineanimateDuration = 0.02;
 
     qrMenu.didSelectedBlock = ^(QRItem *item){
         
-        NSLog(@"点击的是%u",item.type);
+
         
         if ([weakSelf.delegate respondsToSelector:@selector(scanTypeConfig:)] ) {
             

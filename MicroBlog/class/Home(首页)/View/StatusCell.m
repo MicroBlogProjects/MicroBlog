@@ -135,7 +135,7 @@
     params[@"access_token"] = account.access_token ;
     params[@"id"] = self.baseFrameModel.statusModel.idstr;
     [manager POST:@"https://api.weibo.com/2/favorites/create.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+
         
         [MBProgressHUD showSuccess:@"收藏成功" toView:[UIApplication sharedApplication].keyWindow ];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -159,7 +159,7 @@
         params[@"access_token"] = account.access_token ;
         params[@"id"] = self.baseFrameModel.statusModel.idstr;
         [manager POST:@"https://api.weibo.com/2/favorites/destroy.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@"%@",responseObject);
+
             
             [MBProgressHUD showSuccess:@"删除收藏成功" toView:[UIApplication sharedApplication].keyWindow ];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

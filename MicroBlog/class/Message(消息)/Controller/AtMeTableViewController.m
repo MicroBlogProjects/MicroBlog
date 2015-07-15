@@ -66,7 +66,7 @@
  *  下拉刷新
  */
 -(void)loadNewStatus:(UIRefreshControl *)control{
-    NSLog(@"hahaha");
+
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     

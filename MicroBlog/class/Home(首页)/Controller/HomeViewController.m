@@ -224,7 +224,7 @@
  */
 -(void)loadNewStatus:(UIRefreshControl *)control{
     
-    self.curentFrameModels = self.statusFrameModels ; //当前显示好友微博
+   
     //1.请求管理者
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
 
@@ -259,7 +259,7 @@
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.statusFrameModels insertObjects:newsFrames atIndexes:indexSet];
         
-
+         self.curentFrameModels = self.statusFrameModels ; //当前显示好友微博
         //刷新表格
         [self.tableView reloadData];
         
@@ -474,20 +474,20 @@
         
         UIButton *titleButton  = (UIButton*)self.navigationItem.titleView ;
         titleButton.selected = NO;
-        NSLog(@"NO");
+
     };
 
     //显示
     [menu showFrom:titleButton];
     //让箭头向上
     titleButton.selected = !titleButton.selected;
-    NSLog(@"YES");
+
 }
 
 /**  显示周边的微博 */
 -(void)loadNearLocaitonStatus:(UIRefreshControl *)control{
   
-    self.curentFrameModels = self.nearbyStatusFrameModels ;  //当前显示周边微博
+  
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     AccountModel *account = [AccountTool account];
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
@@ -515,7 +515,7 @@
         NSRange range = NSMakeRange(0, newStatuses.count);
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.nearbyStatusFrameModels insertObjects:newsFrames atIndexes:indexSet];
-
+        self.curentFrameModels = self.nearbyStatusFrameModels ;  //当前显示周边微博
         
         //刷新表格
         [self.tableView reloadData];
@@ -535,7 +535,7 @@
 /**  显示我的微博 */
 -(void)loadMyStatus:(UIRefreshControl *)control{
     
-    self.curentFrameModels = self.myStatusFrameModels ; //当前显示我的微博;
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     AccountModel *account = [AccountTool account];
     NSMutableDictionary *params= [NSMutableDictionary dictionary];
@@ -544,7 +544,7 @@
     params[@"count"] = @50;
     
     [manager GET:@"https://api.weibo.com/2/statuses/user_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
+
         
         //  将“微博字典”数组 转成  “微博模型”数组 ， 这个是MJExtention框架的方法
         NSArray *newStatuses = [StatusModel objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
@@ -562,16 +562,17 @@
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
         [self.myStatusFrameModels insertObjects:newsFrames atIndexes:indexSet];
         
+        self.curentFrameModels = self.myStatusFrameModels ; //当前显示我的微博;
         
         //刷新表格
         [self.tableView reloadData];
         
+       [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
         //菊花停止转动
         [control endRefreshing];
         
         //显示最新微博的数量
         [self showNewStatusCount:(int)newStatuses.count];
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error);
@@ -654,7 +655,7 @@
     StatusDetailViewController *statusDetail = [[StatusDetailViewController alloc]init];
     StatusFrameModel *frameModel = _curentFrameModels[indexPath.row];
     statusDetail.statusModel = frameModel.statusModel;
-    NSLog(@"%ld",indexPath.row);
+
     [self.navigationController pushViewController:statusDetail animated:YES] ;
     
 }
@@ -779,7 +780,7 @@
 -(void)menueTabViewdidSelecteGroup:(NSString *)group{
     UIButton *titleButton  = (UIButton*)self.navigationItem.titleView ;
     titleButton.selected =  NO;
-    NSLog(@"%@",group);
+
 }
 
 @end

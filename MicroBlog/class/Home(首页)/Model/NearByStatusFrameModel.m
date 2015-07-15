@@ -27,7 +27,7 @@
     
     _statusModel  = statusModel ;
     UserModel *user= statusModel.user;
-    NSLog(@"----%@",statusModel);
+
     //cell的宽度
     CGFloat cellW = [UIScreen mainScreen].bounds.size.width ;
     

@@ -285,29 +285,7 @@
 }
 
 
-/**
- *  重写setFrame方法，自己调整cell的Frame
- */
-
-
-
-#warning todo 点击微博转发、评论 、点赞
-//
-//
-//#pragma mark- toolBarDelegate 点击转发、评论、点赞
-//-(void)toolBar:(ToolBar *)tooBar clickButton:(UIButton *)button{
-//    if(button.tag == ToolBarButtonTypeAgree){
-//
-//
-//    }
-//    if(button.tag == ToolBarButtonTypeComment){
-//
-//    }
-//    if(button.tag == ToolBarButtonTypeRetweet){
-//          NSLog(@"转发");
-//    }
-//    
-//}
+ 
 
 
 @end
