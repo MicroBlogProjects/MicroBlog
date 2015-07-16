@@ -257,7 +257,7 @@
         cell.textLabel.x =200;
         return cell;
     }
-    
+
         CommentCell *cell =  [CommentCell cellWithTablView:tableView];
         cell.commentFrameModel = _commentFrameModels[indexPath.row];
         return cell;

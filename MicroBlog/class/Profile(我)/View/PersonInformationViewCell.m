@@ -20,7 +20,7 @@
         CGRect mainScreen = [[UIScreen mainScreen]bounds];
         mainScreen.size.height *= 0.2;
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:mainScreen];
-        imageView.image = [UIImage imageNamed:@"person_information_backgroud"];
+        imageView.image = [UIImage imageNamed:@"backGroud"];
         [self addSubview:imageView];
         
         //头像

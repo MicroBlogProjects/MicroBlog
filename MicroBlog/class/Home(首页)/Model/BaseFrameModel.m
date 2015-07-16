@@ -115,7 +115,7 @@
             self.retweetPhotosViewF = CGRectMake(retweetPhotosX, retweetPhotosY, retweetPhotosSize.width, retweetPhotosSize.height);
             retweetViewH = CGRectGetMaxY(self.retweetPhotosViewF) + kStatusCellBorderWidth ;
         }else{//转发微博没配图
-            retweetViewH = CGRectGetMaxY(self.contenLabelF) + kStatusCellBorderWidth ;
+            retweetViewH = CGRectGetMaxY(self.retweetContentLabelF) + kStatusCellBorderWidth ;
         }
         
         /*被转发微博整体*/
@@ -130,17 +130,13 @@
     }else{ //没有转发微博
         toolbarY = CGRectGetMaxY(self.originalViewF);
     }
-    
-    
+
     /*工具条*/
     CGFloat toolbarX = 0 ;
     CGFloat toolbarW = cellW ;
     CGFloat toolbarH = 36;
     self.toolBarF = CGRectMake(toolbarX, toolbarY+1, toolbarW, toolbarH);
-    
-    
     self.cellHeight = toolbarY;
-    
     
 }
 

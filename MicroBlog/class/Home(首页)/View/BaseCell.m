@@ -113,6 +113,7 @@
     /** 转发微博正文+昵称*/
     UILabel *retweetContentLabel = [[UILabel alloc]init ] ;
     retweetContentLabel.numberOfLines = 0 ;
+    retweetContentLabel.font = kStatusCellRetweetContentFont ;
     [self.retweetView addSubview:retweetContentLabel];
     self.retweetContentLabel = retweetContentLabel ;
     

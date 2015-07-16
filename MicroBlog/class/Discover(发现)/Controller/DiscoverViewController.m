@@ -30,35 +30,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO;   //不会自动调节，这样第一个Section的头部就不会留出一片空白
     self.tableView.sectionFooterHeight =0 ;
     self.tableView.separatorStyle =UITableViewCellSeparatorStyleSingleLine ;
-    
-   
-
     [self addSearBar];
-    
-    
+
 }
-
--(void)getMessage{
-    
-    /* 项目要导入AFNetworking框架，并import头文件AFNetworking.h */
-    //1.请求管理者
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-
-    //2.拼接请求参数
-    AccountModel *account = [AccountTool account];
-    NSMutableDictionary *params= [NSMutableDictionary dictionary];
-    params[@"access_token"] = account.access_token;
-    params[@"q"] = @"bi";
-    //3.发送请求
-    [manager POST:@"https://api.weibo.com/2/search/suggestions/users.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject );
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error);
-    }];
-    
-}
-
-
 
 
 /**  创建搜索框 */
